@@ -53,15 +53,25 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="GameObjects\Characters\Factories\CharacterFactory.cs" />
+    <Compile Include="GameObjects\Characters\Factories\EnemyFactory.cs" />
+    <Compile Include="GameObjects\Characters\Factories\FriendFactory.cs" />
+    <Compile Include="GameObjects\Characters\Factories\IRandomRace.cs" />
+    <Compile Include="GameObjects\Characters\Factories\PlayerFactory.cs" />
+    <Compile Include="GameObjects\Characters\Friend.cs" />
+    <Compile Include="GameObjects\Interfaces\ICharacter.cs" />
     <Compile Include="GameObjects\Interfaces\IDrawable.cs" />
-    <Compile Include="GameObjects\Interfaces\IPlayer.cs" />
+    <Compile Include="GameObjects\Interfaces\IRace.cs" />
+    <Compile Include="GameObjects\Characters\Races\AbstractRace.cs" />
+    <Compile Include="GameObjects\Characters\Races\PickachuRace.cs" />
+    <Compile Include="GameObjects\Characters\Races\PolicemanRace.cs" />
     <Compile Include="GameUI\IInputHandlerer.cs" />
     <Compile Include="GameUI\WpfUI\GameCommand.cs" />
     <Compile Include="GameUI\WpfUI\KeyDownEventArgs.cs" />
     <Compile Include="GameUI\WpfUI\WpfInputHandlerer.cs" />
-    <Compile Include="GameObjects\EquipmentItem.cs" />
-    <Compile Include="GameObjects\Item.cs" />
-    <Compile Include="GameObjects\Weapon.cs" />
+    <Compile Include="GameObjects\Items\EquipmentItem.cs" />
+    <Compile Include="GameObjects\Items\Item.cs" />
+    <Compile Include="GameObjects\Items\Weapon.cs" />
     <Compile Include="GameUI\IRenderer.cs" />
     <Compile Include="GameUI\WpfUI\WpfRenderer.cs" />
     <Page Include="MainWindow.xaml">
@@ -73,13 +83,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Engines\GameEngine.cs" />
-    <Compile Include="GameObjects\Bulet.cs" />
-    <Compile Include="GameObjects\Character.cs" />
-    <Compile Include="GameObjects\Enemy.cs" />
+    <Compile Include="GameObjects\Characters\Character.cs" />
+    <Compile Include="GameObjects\Characters\Enemy.cs" />
     <Compile Include="GameObjects\GameObject.cs" />
-    <Compile Include="GameObjects\Pickachu.cs" />
-    <Compile Include="GameObjects\Player.cs" />
-    <Compile Include="GameObjects\Policeman.cs" />
+    <Compile Include="GameObjects\Characters\Player.cs" />
     <Compile Include="GameObjects\Position.cs" />
     <Compile Include="GameObjects\Size.cs" />
     <Compile Include="MainWindow.xaml.cs">

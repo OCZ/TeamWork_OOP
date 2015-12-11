@@ -3,9 +3,7 @@
     public interface IDrawable
     {
         Position Position { get; set; }
-
         Size Size { get; set; }
-        
-        string AvatarUri { get; }
+        string AvatarUri { get; set; }
     }
 }

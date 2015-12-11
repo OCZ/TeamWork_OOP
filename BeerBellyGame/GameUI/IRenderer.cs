@@ -7,5 +7,6 @@
         void Clear();
 
         void Draw(params IDrawable[] gameObjects);
+        
     }
 }

@@ -10,6 +10,6 @@
         }
         public Position Position { get; set; }
         public Size Size { get; set; }
-        public abstract string AvatarUri { get; }
+        public string AvatarUri { get; set; }
     }
 }

@@ -3,9 +3,11 @@
     using System;
     using System.Windows.Controls;
     using System.Windows.Media.Imaging;
+   
     using GameObjects;
     using GameObjects.Characters;
     using GameObjects.Interfaces;
+    using GameObjects.HUD;
 
     public class WpfRenderer: IGameRenderer
     {
@@ -15,7 +17,6 @@
         public WpfRenderer(Canvas canvas)
         {
             this._canvas = canvas;
-
         }
 
         public void Clear()
@@ -34,11 +35,13 @@
                 else if (go is Enemy)
                 {
                     this.DrowEnemy(go);
-                }            
+                } 
+                else if (go is Hud) 
+                {
+                    this.DrawHud(go);
+                }
             }       
         }
-
-        
 
         private void DrowEnemy(GameObject enemy)
         {
@@ -73,6 +76,25 @@
 
             Canvas.SetLeft(avatar, player.Position.Left);
             Canvas.SetTop(avatar, player.Position.Top);
+            this._canvas.Children.Add(avatar);
+        }
+
+        private void DrawHud(GameObject hud)
+        {
+            var avatarSource = new BitmapImage();
+            avatarSource.BeginInit();
+            avatarSource.UriSource = new Uri(hud.AvatarUri, UriKind.Relative);
+            avatarSource.EndInit();
+
+            var avatar = new Image
+            {
+                Source = avatarSource,
+                Width = hud.Size.Width,
+                Height = hud.Size.Height
+            };
+
+            Canvas.SetLeft(avatar, hud.Position.Left);
+            Canvas.SetTop(avatar, hud.Position.Top);
             this._canvas.Children.Add(avatar);
         }
     }

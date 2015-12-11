@@ -59,6 +59,7 @@
     <Compile Include="GameObjects\Characters\Factories\IRandomRace.cs" />
     <Compile Include="GameObjects\Characters\Factories\PlayerFactory.cs" />
     <Compile Include="GameObjects\Characters\Friend.cs" />
+    <Compile Include="GameObjects\HUD\Hud.cs" />
     <Compile Include="GameObjects\Interfaces\ICharacter.cs" />
     <Compile Include="GameObjects\Interfaces\IDrawable.cs" />
     <Compile Include="GameObjects\Interfaces\IRace.cs" />
@@ -89,6 +90,11 @@
     <Compile Include="GameObjects\Characters\Player.cs" />
     <Compile Include="GameObjects\Position.cs" />
     <Compile Include="GameObjects\Size.cs" />
+    <Compile Include="ImageResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImageResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -108,6 +114,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="ImageResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ImageResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

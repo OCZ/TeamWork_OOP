@@ -1,6 +1,4 @@
-﻿
-
-namespace BeerBellyGame
+﻿namespace BeerBellyGame
 {
     using System;
     using System.Collections.Generic;
@@ -20,6 +18,7 @@ namespace BeerBellyGame
     using Engines;
     using GameUI;
     using GameUI.WpfUI;
+    using System.Resources;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -31,14 +30,12 @@ namespace BeerBellyGame
             InitializeComponent();
             var renderer = new WpfRenderer(this.GameCanvas);
             var inputHandlerer = new WpfInputHandlerer(this.GameCanvas);
+
             this.Engine = new GameEngine(renderer, inputHandlerer);
             this.Engine.InitGame();
             this.Engine.StartGame();  
         }
 
         public GameEngine Engine { get; set; }
-
-        
-
     }
 }

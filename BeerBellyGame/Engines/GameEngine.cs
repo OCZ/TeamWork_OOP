@@ -12,25 +12,19 @@
     using GameObjects.Characters;
     using GameObjects.Characters.Factories;
     using GameObjects.Characters.Races;
-    using GameObjects.Interfaces;
-   
+    using GameObjects.HUD;
+    using GameObjects.Items;
     using GameUI.WpfUI;
 
-    using BeerBellyGame.GameObjects.HUD;
+    
 
     public class GameEngine
     {
         //the interval of time in milliseconds which the game will be redrawn
-        private const int TimerTickIntervalInMilliseconds = 100;
-        private const int MopvementSpeed = 10;
-        private const int EnemyCount = 10;
-
+      
         private readonly IGameRenderer _renderer;
         private readonly IInputHandlerer _inputHandlerer;
-        private readonly PlayerFactory playerFactory = new PlayerFactory();
-        private readonly FriendFactory friendFactory = new FriendFactory();
-        private readonly EnemyFactory enemyFactory = new EnemyFactory();
-
+       
         static Random rand = new Random();
 
         public GameEngine(IGameRenderer renderer, IInputHandlerer inputHandlerer)
@@ -38,15 +32,101 @@
             this._renderer = renderer;
             this._inputHandlerer = inputHandlerer;
             this._inputHandlerer.UIActionHappened += this.HandleUIActionHappend;
-           
         }
 
-        public Player Player { get; set; }
-        public ICollection<Enemy> Enemies { get; set; }
+        public Player Player 
+        {
+            get { return MapLoader.Player; } 
+        }
+        public Friend Friend
+        {
+            get { return MapLoader.Friend; } 
+        }
+
+        public List<Enemy> Enemies
+        {
+            get { return MapLoader.Enemies; } 
+        }
+
+        public static List<GameObject> ItemToCollect
+        {
+            get { return MapLoader.ItemToCollect; } 
+        }
+
+        public static List<MazeItem> Maze
+        {
+            get { return MapLoader.Maze; } 
+        }
         
         public Hud Hud
         { 
             get { return Hud.Instance; }
+        }
+
+        
+
+        public void InitGame()
+        {
+            MapLoader.Load();
+            this.Hud.Size = new Size(30, 70);
+        }
+
+        public void StartGame() 
+        {
+            //TODO setwaneto na timera, t.kato se prawi wednyv weroqtno trqbwa da se prawi w InitGame
+            //the game cycle set by the  DisparcherTimer 
+            //in every const Miliceconsd the objects will be redrawn
+            var timer = new DispatcherTimer {Interval = TimeSpan.FromMilliseconds(AppSettings.TimerTickIntervalInMilliseconds)};
+            timer.Tick += this.GameLoop;
+            timer.Start();
+           
+        }
+
+        private void GameLoop(object sender, EventArgs e)
+        {
+            this._renderer.Clear();
+            foreach (var mazeItem in Maze)
+            {
+                this._renderer.Draw(mazeItem);
+            }
+            foreach (var itemToCollect in ItemToCollect)
+            {
+                this._renderer.Draw(itemToCollect);
+            }
+            this._renderer.Draw(this.Player);
+            this._renderer.Draw(this.Friend);
+            this._renderer.Draw(this.Hud);
+            foreach (var enemy in Enemies)
+            {
+                this._renderer.Draw(enemy);
+            }
+            
+            ////prowerka na koliziqta
+            //foreach (var enemy in Enemies)
+            //{
+            //    int pBottomRight = 0;
+            //    int pBottomLeft = 0;
+            //    int pTopRight = 0;
+            //    int pTopLeft = 0;
+
+            //    int eBottomRight = 0;
+            //    int eBottomLeft = 0;
+            //    int eTopRight = 0;
+            //    int eTopLeft = 0;
+
+
+
+
+            //    bool shouldDie = false;
+            //    if (shouldDie)
+            //    {
+            //        enemy.IsAlive = false;
+            //    }
+            //}
+
+
+            this.Enemies.RemoveAll(enemy => enemy.IsAlive == false);
+            //wzetite itemy trqbwa da se premahwat ot kolekciite
         }
 
         //the method will be exec on UIaction happend
@@ -58,55 +138,21 @@
             switch (e.Command)
             {
                 case GameCommand.MoveDown:
-                    this.Player.Position = new Position(left, top + MopvementSpeed);
+                    this.Player.Position = new Position(left, top + AppSettings.MopvementSpeed);
                     break;
                 case GameCommand.MoveUp:
-                    this.Player.Position = new Position(left, top - MopvementSpeed);    
-                break;
+                    this.Player.Position = new Position(left, top - AppSettings.MopvementSpeed);
+                    break;
                 case GameCommand.MoveLeft:
-                    this.Player.Position = new Position(left - MopvementSpeed, top);    
-                break;
+                    this.Player.Position = new Position(left - AppSettings.MopvementSpeed, top);
+                    break;
                 case GameCommand.MoveRight:
-                    this.Player.Position = new Position(left + MopvementSpeed, top);    
-                break;
+                    this.Player.Position = new Position(left + AppSettings.MopvementSpeed, top);
+                    break;
                 case GameCommand.Attack:
                     this.Atack();
-                break;
+                    break;
             }
-        }
-
-        public void InitGame()
-        {
-            //create player, playera move da se izwadi ot fabrikata za geroi
-            this.Player = (Player)this.playerFactory.Create(new PickachuRace());
-            this.Player.Position = new Position(10, 10);
-            this.Player.Size = new Size(30, 70);
-            
-            this.Hud.Size = new Size(30, 70);
-
-            //create enemy collection
-            for (int i = 0; i < EnemyCount; i++)
-            {
-                var enemy = (Enemy)this.enemyFactory.Create(new PolicemanRace());
-            }
-        }
-
-        public void StartGame() 
-        {
-            //TODO setwaneto na timera, t.kato se prawi wednyv weroqtno trqbwa da se prawi w InitGame
-            //the game cycle set by the  DisparcherTimer 
-            //in every const Miliceconsd the objects will be redrawn
-            var timer = new DispatcherTimer {Interval = TimeSpan.FromMilliseconds(TimerTickIntervalInMilliseconds)};
-            timer.Tick += this.GameLoop;
-            timer.Start();
-           
-        }
-
-        private void GameLoop(object sender, EventArgs e)
-        {
-            this._renderer.Clear();
-            this._renderer.Draw(this.Player);
-            this._renderer.Draw(this.Hud);
         }
 
         private void Atack()

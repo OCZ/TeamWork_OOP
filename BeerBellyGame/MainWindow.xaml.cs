@@ -28,6 +28,7 @@
         public MainWindow()
         {
             InitializeComponent();
+            
             var renderer = new WpfRenderer(this.GameCanvas);
             var inputHandlerer = new WpfInputHandlerer(this.GameCanvas);
 

@@ -3,19 +3,20 @@
     using Interfaces;
     using Races;
 
-    public class FriendFactory: CharacterFactory, IRandomRace
+    public class FriendFactory: CharacterFactory
     {
-        public override Character Create(IRace race)
+        public override Character Create()
         {
+            IRace race = this.GetRace();
             var friend = new Friend(race);
             return friend;
         }
 
-
-        public IRace GetRace()
+        public override IRace GetRace()
         {
-            // TODO: implement randomly select rom FRIENDRaces and submit to constructor 
-            return null;
+            //TODO =>  radomly generate Friend Race
+            IRace race = new LeprechaunRace();
+            return race;
         }
     }
 }

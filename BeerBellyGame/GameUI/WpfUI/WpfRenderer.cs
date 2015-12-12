@@ -28,56 +28,31 @@
         {
             foreach (GameObject go in gameObjects)
             {
-                if (go is Player)
-                {
-                    this.DrowPlayer(go);
-                }
-                else if (go is Enemy)
-                {
-                    this.DrowEnemy(go);
-                } 
-                else if (go is Hud) 
+                if (go is Hud)
                 {
                     this.DrawHud(go);
                 }
+                else this.DrowGo(go);
             }       
         }
-
-        private void DrowEnemy(GameObject enemy)
+        private void DrowGo(GameObject go)
         {
             var avatarSource = new BitmapImage();
             avatarSource.BeginInit();
-            avatarSource.UriSource = new Uri(enemy.AvatarUri, UriKind.Relative);
+            avatarSource.UriSource = new Uri(go.AvatarUri, UriKind.Relative);
             avatarSource.EndInit();
             var avatar = new Image
             {
                 Source = avatarSource,
-                Width = enemy.Size.Width,
-                Height = enemy.Size.Height
+                Width = go.Size.Width,
+                Height = go.Size.Height
             };
 
-            Canvas.SetLeft(avatar, enemy.Position.Left);
-            Canvas.SetTop(avatar, enemy.Position.Top);
+            Canvas.SetLeft(avatar, go.Position.Left);
+            Canvas.SetTop(avatar, go.Position.Top);
             this._canvas.Children.Add(avatar);
         }
 
-        private void DrowPlayer(GameObject player)
-        {
-            var avatarSource = new BitmapImage();
-            avatarSource.BeginInit();
-            avatarSource.UriSource = new Uri(player.AvatarUri, UriKind.Relative);
-            avatarSource.EndInit();
-            var avatar = new Image
-            {
-                Source = avatarSource,
-                Width = player.Size.Width,
-                Height = player.Size.Height
-            };
-
-            Canvas.SetLeft(avatar, player.Position.Left);
-            Canvas.SetTop(avatar, player.Position.Top);
-            this._canvas.Children.Add(avatar);
-        }
 
         private void DrawHud(GameObject hud)
         {

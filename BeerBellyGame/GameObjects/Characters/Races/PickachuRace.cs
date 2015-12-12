@@ -2,9 +2,11 @@
 {
     public class PickachuRace: AbstractRace
     {
-        //ctor (int range, double aggression, string avatar)
         public PickachuRace()
-            : base(2, 100.2, "/Content/Characters/pikachu.png", "Pikachu, the yellow hero")
+            : base( AppSettings.RaceAggressionRangePickachu, 
+                    AppSettings.RaceAggressionPickachu, 
+                    AppSettings.RaceAvatarPickachu, 
+                    AppSettings.RaceDescriptionPickachu)
         {
         }
     }

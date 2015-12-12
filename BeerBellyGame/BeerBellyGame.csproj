@@ -53,26 +53,30 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AppSettings.cs" />
+    <Compile Include="Engines\MapLoader.cs" />
     <Compile Include="GameObjects\Characters\Factories\CharacterFactory.cs" />
     <Compile Include="GameObjects\Characters\Factories\EnemyFactory.cs" />
     <Compile Include="GameObjects\Characters\Factories\FriendFactory.cs" />
     <Compile Include="GameObjects\Characters\Factories\IRandomRace.cs" />
-    <Compile Include="GameObjects\Characters\Factories\PlayerFactory.cs" />
     <Compile Include="GameObjects\Characters\Friend.cs" />
+    <Compile Include="GameObjects\Characters\Races\LeprechaunRace.cs" />
     <Compile Include="GameObjects\HUD\Hud.cs" />
     <Compile Include="GameObjects\Interfaces\ICharacter.cs" />
+    <Compile Include="GameObjects\Interfaces\ICollectable.cs" />
     <Compile Include="GameObjects\Interfaces\IDrawable.cs" />
     <Compile Include="GameObjects\Interfaces\IRace.cs" />
     <Compile Include="GameObjects\Characters\Races\AbstractRace.cs" />
     <Compile Include="GameObjects\Characters\Races\PickachuRace.cs" />
     <Compile Include="GameObjects\Characters\Races\PolicemanRace.cs" />
+    <Compile Include="GameObjects\Items\BeerItem.cs" />
+    <Compile Include="GameObjects\Items\HealthItem.cs" />
+    <Compile Include="GameObjects\Items\LifeItem.cs" />
     <Compile Include="GameUI\IInputHandlerer.cs" />
     <Compile Include="GameUI\WpfUI\GameCommand.cs" />
     <Compile Include="GameUI\WpfUI\KeyDownEventArgs.cs" />
     <Compile Include="GameUI\WpfUI\WpfInputHandlerer.cs" />
-    <Compile Include="GameObjects\Items\EquipmentItem.cs" />
-    <Compile Include="GameObjects\Items\Item.cs" />
-    <Compile Include="GameObjects\Items\Weapon.cs" />
+    <Compile Include="GameObjects\Items\MazeItem.cs" />
     <Compile Include="GameUI\IRenderer.cs" />
     <Compile Include="GameUI\WpfUI\WpfRenderer.cs" />
     <Page Include="MainWindow.xaml">
@@ -90,11 +94,6 @@
     <Compile Include="GameObjects\Characters\Player.cs" />
     <Compile Include="GameObjects\Position.cs" />
     <Compile Include="GameObjects\Size.cs" />
-    <Compile Include="ImageResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ImageResources.resx</DependentUpon>
-    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -114,10 +113,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="ImageResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ImageResources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -133,19 +128,40 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Content\Characters\pikachu.png" />
+    <Resource Include="Content\Items\wall_50x50.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Content\Characters\pikachu50.png" />
+    <Resource Include="Content\Maps\map_l1.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Content\Characters\policeman2.png" />
-    <Resource Include="Content\Characters\Policeman_64x64.png" />
+    <Resource Include="Content\Items\heart_v1.png" />
+    <Resource Include="Content\Items\heart_v2.png" />
+    <Resource Include="Content\Items\heart_v3.png" />
+    <Resource Include="Content\Items\potion_v1.png" />
+    <Resource Include="Content\Items\potion_v2.png" />
+    <Resource Include="Content\Items\potion_v3.png" />
+    <Resource Include="Content\Items\potion_v4.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Content\Characters\332888_rashaw_pokemon-sprite-policeman.png" />
+    <Resource Include="Content\Items\beer_vp1.png" />
+    <Resource Include="Content\Items\beer_vp2.png" />
+    <Resource Include="Content\Items\beer_vp3.png" />
+    <Resource Include="Content\Items\beer_vp4.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Content\Characters\leprechaun_v1.png" />
+    <Resource Include="Content\Characters\leprechaun_v2.png" />
+    <Resource Include="Content\Characters\policeman.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Other\beer.png" />
+    <Resource Include="Content\Other\beer_bg.jpg" />
+    <Resource Include="Content\Other\Leprechaun_with_Beer_PNG.png" />
+    <Resource Include="Content\Other\logo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Characters\pikachu_v1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

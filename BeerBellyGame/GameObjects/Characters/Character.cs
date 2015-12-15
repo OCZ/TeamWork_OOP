@@ -1,6 +1,8 @@
 ﻿namespace BeerBellyGame.GameObjects.Characters
 {
+    using BeerBellyGame.GameObjects.Items;
     using Interfaces;
+    using System.Collections.Generic;
 
     public abstract class Character: GameObject, ICharacter
     {
@@ -32,6 +34,21 @@
         //TODO: Money not implemented
         public double Money { get; set; }
 
-        
+        public ICollection<Direction> PossibleMovements(ICollection<MazeItem> objs)
+        {
+            List<Direction> directions = new List<Direction>(){
+                Direction.down,
+                Direction.left,
+                Direction.right,
+                Direction.up
+            };
+
+            foreach (GameObject o in objs)
+            {
+                directions.Remove(this.IntersectWith(o));
+            }
+
+            return directions;
+        }
     }
 }

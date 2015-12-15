@@ -1,4 +1,6 @@
-﻿namespace BeerBellyGame.GameObjects.Interfaces
+﻿using BeerBellyGame.GameObjects.Items;
+using System.Collections.Generic;
+namespace BeerBellyGame.GameObjects.Interfaces
 {
     public interface ICharacter
     {
@@ -11,5 +13,6 @@
         double Money { get; set; }
         string Description { get; set; }
 
+        ICollection<Direction> PossibleMovements(ICollection<MazeItem> objs);
     }
 }

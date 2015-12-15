@@ -123,8 +123,8 @@
             //        enemy.IsAlive = false;
             //    }
             //}
-
-
+            this.Friend.Move(this.Player, Maze);
+            this.Enemies.ForEach(en => en.Move(this.Player, Maze));
             this.Enemies.RemoveAll(enemy => enemy.IsAlive == false);
             //wzetite itemy trqbwa da se premahwat ot kolekciite
         }
@@ -135,19 +135,25 @@
             var left = this.Player.Position.Left;
             var top = this.Player.Position.Top;
             //TODO - check if it new position is in the map
+            var possibleMovements = this.Player.PossibleMovements(Maze);
+
             switch (e.Command)
             {
                 case GameCommand.MoveDown:
-                    this.Player.Position = new Position(left, top + AppSettings.MopvementSpeed);
+                    if(possibleMovements.Contains(Direction.down))
+                        this.Player.Position = new Position(left, top + AppSettings.MopvementSpeed);
                     break;
                 case GameCommand.MoveUp:
-                    this.Player.Position = new Position(left, top - AppSettings.MopvementSpeed);
+                    if (possibleMovements.Contains(Direction.up))
+                        this.Player.Position = new Position(left, top - AppSettings.MopvementSpeed);
                     break;
                 case GameCommand.MoveLeft:
-                    this.Player.Position = new Position(left - AppSettings.MopvementSpeed, top);
+                    if (possibleMovements.Contains(Direction.left))
+                        this.Player.Position = new Position(left - AppSettings.MopvementSpeed, top);
                     break;
                 case GameCommand.MoveRight:
-                    this.Player.Position = new Position(left + AppSettings.MopvementSpeed, top);
+                    if (possibleMovements.Contains(Direction.right))
+                        this.Player.Position = new Position(left + AppSettings.MopvementSpeed, top);
                     break;
                 case GameCommand.Attack:
                     this.Atack();

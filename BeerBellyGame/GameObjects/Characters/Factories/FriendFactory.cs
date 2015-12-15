@@ -1,5 +1,6 @@
 ﻿namespace BeerBellyGame.GameObjects.Characters.Factories
 {
+    using BeerBellyGame.GameObjects.AI;
     using Interfaces;
     using Races;
 
@@ -8,7 +9,7 @@
         public override Character Create()
         {
             IRace race = this.GetRace();
-            var friend = new Friend(race);
+            var friend = new Friend(race, new RandomAIProvider());
             return friend;
         }
 

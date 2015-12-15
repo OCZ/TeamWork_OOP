@@ -55,6 +55,11 @@
     </ApplicationDefinition>
     <Compile Include="AppSettings.cs" />
     <Compile Include="Engines\MapLoader.cs" />
+    <Compile Include="GameObjects\AI\AIProvider.cs" />
+    <Compile Include="GameObjects\AI\IAIMovement.cs" />
+    <Compile Include="GameObjects\AI\RandomAIProvider.cs" />
+    <Compile Include="GameObjects\AI\TargetCharacterAIProvider.cs" />
+    <Compile Include="GameObjects\Characters\AIPlayer.cs" />
     <Compile Include="GameObjects\Characters\Factories\CharacterFactory.cs" />
     <Compile Include="GameObjects\Characters\Factories\EnemyFactory.cs" />
     <Compile Include="GameObjects\Characters\Factories\FriendFactory.cs" />
@@ -69,6 +74,7 @@
     <Compile Include="GameObjects\Characters\Races\AbstractRace.cs" />
     <Compile Include="GameObjects\Characters\Races\PickachuRace.cs" />
     <Compile Include="GameObjects\Characters\Races\PolicemanRace.cs" />
+    <Compile Include="GameObjects\Direction.cs" />
     <Compile Include="GameObjects\Items\BeerItem.cs" />
     <Compile Include="GameObjects\Items\HealthItem.cs" />
     <Compile Include="GameObjects\Items\LifeItem.cs" />

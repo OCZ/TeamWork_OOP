@@ -1,6 +1,6 @@
 ﻿namespace BeerBellyGame.GameObjects.Items
 {
-    public class MazeItem: GameObject
+    public class MazeItem : GameObject
     {
         public MazeItem()
         {

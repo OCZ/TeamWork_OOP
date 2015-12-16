@@ -80,6 +80,9 @@
     <Compile Include="GameUI\IInputHandlerer.cs" />
     <Compile Include="GameUI\WpfUI\GameCommand.cs" />
     <Compile Include="GameUI\WpfUI\KeyDownEventArgs.cs" />
+    <Compile Include="GameUI\WpfUI\Windows\ChoosePlayerWindow.xaml.cs">
+      <DependentUpon>ChoosePlayerWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GameUI\WpfUI\Windows\HowToPlayWindow.xaml.cs">
       <DependentUpon>HowToPlayWindow.xaml</DependentUpon>
     </Compile>
@@ -90,6 +93,10 @@
     <Compile Include="GameObjects\Items\MazeItem.cs" />
     <Compile Include="GameUI\IRenderer.cs" />
     <Compile Include="GameUI\WpfUI\WpfRenderer.cs" />
+    <Page Include="GameUI\WpfUI\Windows\ChoosePlayerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GameUI\WpfUI\Windows\HowToPlayWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

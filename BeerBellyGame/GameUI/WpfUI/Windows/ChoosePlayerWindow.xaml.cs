@@ -1,5 +1,4 @@
-﻿
-namespace BeerBellyGame.GameUI.WpfUI.Windows
+﻿namespace BeerBellyGame.GameUI.WpfUI.Windows
 {
     using System;
     using System.Collections.Generic;
@@ -14,15 +13,22 @@ namespace BeerBellyGame.GameUI.WpfUI.Windows
     using System.Windows.Media;
     using System.Windows.Media.Imaging;
     using System.Windows.Shapes;
-   
-    public partial class HowToPlayWindow : Window
+    using GameObjects.Characters.Races;
+
+    public partial class ChoosePlayerWindow : Window
     {
-        public HowToPlayWindow()
+        public ChoosePlayerWindow()
         {
             InitializeComponent();
+            var avatarSource = new BitmapImage();
+            avatarSource.BeginInit();
+            avatarSource.UriSource = new Uri(new PickachuRace().DefaultAvatar, UriKind.Relative);
+            avatarSource.EndInit();
+            this.avatar1.Source = avatarSource;
+
         }
 
-      private void BtnBack_Click(object sender, RoutedEventArgs e)
+        private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
             var window = new MenuWindow()
             {

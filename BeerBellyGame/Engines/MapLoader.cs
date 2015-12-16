@@ -98,7 +98,8 @@
                                     break;
 
                                 case 'h':
-                                    HealthItem itemHealth = new HealthItem()
+                                    
+                                    LargeHealthItem itemHealth = new LargeHealthItem()
                                     {
                                         Position = new Position(left, top),
                                         Size = new Size(width, height)

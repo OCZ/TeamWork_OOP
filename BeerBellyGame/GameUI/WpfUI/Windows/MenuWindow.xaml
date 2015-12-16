@@ -17,7 +17,7 @@
                 <DropShadowEffect ShadowDepth="10" BlurRadius="10"/>
             </Button.Effect>
         </Button>
-        <Button x:Name="BtnChooseHero" Content="Choose Hero" Margin="558,57,205,478" BorderThickness="1" FontFamily="Comic Sans MS" FontSize="24" Background="{x:Null}" BorderBrush="#FF51504C" Foreground="#FF2B2B12" FontWeight="Bold" ClickMode="Press">
+        <Button x:Name="BtnChooseHero" Content="Choose Hero" Margin="558,57,205,478" BorderThickness="1" FontFamily="Comic Sans MS" FontSize="24" Background="{x:Null}" BorderBrush="#FF51504C" Foreground="#FF2B2B12" FontWeight="Bold" ClickMode="Press" Click="BtnChooseHero_Click">
             <Button.Effect>
                 <DropShadowEffect ShadowDepth="10" BlurRadius="10"/>
             </Button.Effect>

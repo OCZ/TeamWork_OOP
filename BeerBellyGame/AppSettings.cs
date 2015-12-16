@@ -46,6 +46,8 @@
         public static readonly double RaceAggressionLeprechaun = 300.5;
 
 
+        public const int TargetAICount = 2;
+
         //GAME ENGINE
         public const int TimerTickIntervalInMilliseconds = 100;
         public const int MopvementSpeed = 10;

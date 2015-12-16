@@ -28,7 +28,7 @@
         private AIProvider GetAI()
         {
             counter++;
-            if (counter < 2)
+            if (counter < AppSettings.TargetAICount)
             {
                 return new TargetCharacterAIProvider();
             }

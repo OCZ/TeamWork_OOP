@@ -12,7 +12,7 @@
         private static int counter = 0;
         public override Character Create()
         {
-            IRace race = this.GetRace();
+            var race = this.GetRace();
             var enemy = new Enemy(race, GetAI());
             return enemy;
         }

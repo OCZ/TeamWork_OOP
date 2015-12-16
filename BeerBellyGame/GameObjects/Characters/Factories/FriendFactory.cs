@@ -1,14 +1,14 @@
-﻿namespace BeerBellyGame.GameObjects.Characters.Factories
-{
-    using BeerBellyGame.GameObjects.AI;
-    using Interfaces;
-    using Races;
+﻿using BeerBellyGame.GameObjects.AI;
+using BeerBellyGame.GameObjects.Characters.Races;
+using BeerBellyGame.GameObjects.Interfaces;
 
-    public class FriendFactory: CharacterFactory
+namespace BeerBellyGame.GameObjects.Characters.Factories
+{
+    public class FriendFactory : CharacterFactory
     {
         public override Character Create()
         {
-            IRace race = this.GetRace();
+            var race = GetRace();
             var friend = new Friend(race, new RandomAIProvider());
             return friend;
         }

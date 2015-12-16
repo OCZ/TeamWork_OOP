@@ -1,11 +1,7 @@
 ﻿using BeerBellyGame.GameObjects.AI;
 using BeerBellyGame.GameObjects.Interfaces;
 using BeerBellyGame.GameObjects.Items;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BeerBellyGame.GameObjects.Characters
 {
@@ -27,16 +23,16 @@ namespace BeerBellyGame.GameObjects.Characters
 
             switch (this.AI.GetDirection(moveTo, obstacles))
             {
-                case Direction.left:
+                case Direction.Left:
                     left = this.Position.Left - AppSettings.MopvementSpeed;
                     break;
-                case Direction.right:
+                case Direction.Right:
                     left = this.Position.Left + AppSettings.MopvementSpeed;
                     break;
-                case Direction.up:
+                case Direction.Up:
                     top = this.Position.Top - AppSettings.MopvementSpeed;
                     break;
-                case Direction.down:
+                case Direction.Down:
                     top = this.Position.Top + AppSettings.MopvementSpeed;
                     break;
             }

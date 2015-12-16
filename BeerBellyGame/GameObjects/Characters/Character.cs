@@ -1,6 +1,6 @@
 ﻿namespace BeerBellyGame.GameObjects.Characters
 {
-    using BeerBellyGame.GameObjects.Items;
+    using Items;
     using Interfaces;
     using System.Collections.Generic;
 
@@ -27,6 +27,7 @@
         public bool IsAlive { get; set; }
         public int Life { get; set; }
         public double Health { get; set; }
+        public int BeerBelly { get; set; }
         public int AggressionRange { get; set; }
         public double Aggression { get; set; }
         public string Description { get; set; }
@@ -37,10 +38,10 @@
         public ICollection<Direction> PossibleMovements(ICollection<MazeItem> objs)
         {
             List<Direction> directions = new List<Direction>(){
-                Direction.down,
-                Direction.left,
-                Direction.right,
-                Direction.up
+                Direction.Down,
+                Direction.Left,
+                Direction.Right,
+                Direction.Up
             };
 
             foreach (GameObject o in objs)

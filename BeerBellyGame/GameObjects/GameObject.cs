@@ -19,12 +19,12 @@
             {
                 if (this.Position.Top + this.Size.Height >= obj.Position.Top && this.Position.Top + this.Size.Height < obj.Position.Top + obj.Size.Height)
                 {
-                    return Direction.down;
+                    return Direction.Down;
                 }
 
                 if (this.Position.Top <= obj.Position.Top + obj.Size.Height && this.Position.Top > obj.Position.Top)
                 {
-                    return Direction.up;
+                    return Direction.Up;
                 }
             }
 
@@ -34,16 +34,16 @@
             {
                 if (this.Position.Left <= obj.Position.Left + obj.Size.Width && this.Position.Left > obj.Position.Left)
                 {
-                    return Direction.left;
+                    return Direction.Left;
                 }
 
                 if (this.Position.Left + this.Size.Width >= obj.Position.Left && this.Position.Left + this.Size.Width < obj.Position.Left + obj.Size.Width)
                 {
-                    return Direction.right;
+                    return Direction.Right;
                 }
             }
 
-            return Direction.none;
+            return Direction.None;
         }
 
         //public Direction IntersectWith(IDrawable obj)

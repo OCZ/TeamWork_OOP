@@ -151,19 +151,19 @@
             switch (e.Command)
             {
                 case GameCommand.MoveDown:
-                    if(possibleMovements.Contains(Direction.down))
+                    if(possibleMovements.Contains(Direction.Down))
                         this.Player.Position = new Position(left, top + AppSettings.MopvementSpeed);
                     break;
                 case GameCommand.MoveUp:
-                    if (possibleMovements.Contains(Direction.up))
+                    if (possibleMovements.Contains(Direction.Up))
                         this.Player.Position = new Position(left, top - AppSettings.MopvementSpeed);
                     break;
                 case GameCommand.MoveLeft:
-                    if (possibleMovements.Contains(Direction.left))
+                    if (possibleMovements.Contains(Direction.Left))
                         this.Player.Position = new Position(left - AppSettings.MopvementSpeed, top);
                     break;
                 case GameCommand.MoveRight:
-                    if (possibleMovements.Contains(Direction.right))
+                    if (possibleMovements.Contains(Direction.Right))
                         this.Player.Position = new Position(left + AppSettings.MopvementSpeed, top);
                     break;
                 case GameCommand.Attack:

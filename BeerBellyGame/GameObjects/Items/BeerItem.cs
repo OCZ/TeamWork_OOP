@@ -1,4 +1,6 @@
-﻿namespace BeerBellyGame.GameObjects.Items
+﻿using BeerBellyGame.GameObjects.Characters;
+
+namespace BeerBellyGame.GameObjects.Items
 {
     using Interfaces;
 
@@ -7,6 +9,11 @@
         public BeerItem()
         {
             this.AvatarUri = AppSettings.BeerItemAvatar;
+        }
+
+        public void Consume(Character ch)
+        {
+            ch.BeerBelly += 10;
         }
     }
 }

@@ -14,25 +14,25 @@
         {
             List<Direction> possibles = (List<Direction>)this.Character.PossibleMovements(obstacles);
 
-            if (moveTo.Position.Left < this.Character.Position.Left && possibles.Contains(Direction.left))
+            if (moveTo.Position.Left < this.Character.Position.Left && possibles.Contains(Direction.Left))
             {
-                return Direction.left;
+                return Direction.Left;
             }
-            else if (moveTo.Position.Left > this.Character.Position.Left && possibles.Contains(Direction.right))
+            else if (moveTo.Position.Left > this.Character.Position.Left && possibles.Contains(Direction.Right))
             {
-                return Direction.right;
-            }
-
-            if (moveTo.Position.Top < this.Character.Position.Top && possibles.Contains(Direction.up))
-            {
-                return Direction.up;
-            }
-            else if (moveTo.Position.Top > this.Character.Position.Top && possibles.Contains(Direction.down))
-            {
-                return Direction.down;
+                return Direction.Right;
             }
 
-            return Direction.none;
+            if (moveTo.Position.Top < this.Character.Position.Top && possibles.Contains(Direction.Up))
+            {
+                return Direction.Up;
+            }
+            else if (moveTo.Position.Top > this.Character.Position.Top && possibles.Contains(Direction.Down))
+            {
+                return Direction.Down;
+            }
+
+            return Direction.None;
         }
     }
 }

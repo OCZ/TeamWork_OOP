@@ -14,6 +14,12 @@
         {
             this._canvas = canvas;
             //cast to MainWindow couse MainWindow has Focus, canvas does not have
+            this.KeyboardHandlerer();
+        }
+        public event EventHandler<KeyDownEventArgs> UIActionHappened;
+
+        private void KeyboardHandlerer()
+        {
             MainWindow focusedControl;
             if (this._canvas.Parent is Grid)
             {
@@ -24,14 +30,14 @@
             {
                 focusedControl = this._canvas.Parent as MainWindow;
             }
-          
+
             (focusedControl).KeyDown += (sender, args) =>
             {
                 var key = args.Key;
                 //in cases the event is fired
                 switch (key)
                 {
-                    case Key.Down: 
+                    case Key.Down:
                         this.UIActionHappened(this, new KeyDownEventArgs(GameCommand.MoveDown));
                         break;
                     case Key.Up:
@@ -46,11 +52,11 @@
                     case Key.Space:
                         this.UIActionHappened(this, new KeyDownEventArgs(GameCommand.Attack));
                         break;
-                }                            
+                }
             };
-
         }
-        public event EventHandler<KeyDownEventArgs> UIActionHappened;
+
+        
 
     }
 }

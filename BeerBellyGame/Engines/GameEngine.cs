@@ -13,6 +13,7 @@
     using GameObjects.Characters.Factories;
     using GameObjects.Characters.Races;
     using GameObjects.HUD;
+    using GameObjects.Interfaces;
     using GameObjects.Items;
     using GameUI.WpfUI;
 
@@ -21,17 +22,17 @@
     public class GameEngine
     {
         //the interval of time in milliseconds which the game will be redrawn
-      
+        private readonly IRace _playerRace;
         private readonly IGameRenderer _renderer;
         private readonly IInputHandlerer _inputHandlerer;
        
-        static Random rand = new Random();
-
-        public GameEngine(IGameRenderer renderer, IInputHandlerer inputHandlerer)
+        public GameEngine(IGameRenderer renderer, IInputHandlerer inputHandlerer, IRace playerRace)
         {
+            this._playerRace = playerRace;
             this._renderer = renderer;
             this._inputHandlerer = inputHandlerer;
             this._inputHandlerer.UIActionHappened += this.HandleUIActionHappend;
+            MapLoader.Load(this._playerRace);
         }
 
         public Player Player 

@@ -25,23 +25,7 @@
             InitializeComponent();
         }
 
-        private void BtnStartGame_Click(object sender, RoutedEventArgs e)
-        {
-            var gameWindow = new MainWindow()
-            {
-                Height = AppSettings.WindowHeight,
-                Width = AppSettings.WindowWidth,
-                ResizeMode = ResizeMode.NoResize,
-                WindowStartupLocation = WindowStartupLocation.CenterScreen,
-                Background = new ImageBrush(new BitmapImage(new Uri(AppSettings.WindowBackgraund))),
-                Icon = new BitmapImage(new Uri(AppSettings.WindowIcon))
-            };
-
-            gameWindow.Show();
-            this.Close();
-        }
-
-        private void BtnHowToPLay_Click(object sender, RoutedEventArgs e)
+      private void BtnHowToPLay_Click(object sender, RoutedEventArgs e)
         {
             var howToPlayWindow = new HowToPlayWindow()
             {

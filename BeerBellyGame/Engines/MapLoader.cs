@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Dynamic;
     using System.IO;
+    using System.Runtime.CompilerServices;
     using GameObjects;
     using GameObjects.Characters;
     using GameObjects.Characters.Factories;
@@ -15,17 +16,18 @@
     {
         public static Player Player;
         public static Friend Friend;
+        private static IRace _playerRace;
         public static List<Enemy> Enemies = new List<Enemy>();
         public static List<GameObject> ItemToCollect = new List<GameObject>();
         public static List<MazeItem> Maze = new List<MazeItem>();
       
-        public static void Load()
+        public static void Load(IRace playerRace)
         {
             //TODO implement diff levels 
             //-> pass as parameter in methed the level create sweatch for levels and set for mapPath diff map resourse
 
             string mapPath = AppSettings.MapLevel1;
-
+            _playerRace = playerRace;
             var frientFactory = new FriendFactory();
             var enemyFactory = new EnemyFactory();
             var width = AppSettings.MapElementSize.Width;
@@ -49,7 +51,7 @@
                             switch (currentsymbol)
                             {
                                 case 'p':
-                                    Player = new Player(new PickachuRace())
+                                    Player = new Player(_playerRace)
                                     {
                                         Position = new Position (left, top),
                                         Size = new Size(width, height)

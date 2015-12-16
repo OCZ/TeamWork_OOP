@@ -24,7 +24,7 @@
                 Background = new ImageBrush(new BitmapImage(new Uri(AppSettings.WindowBackgraund))),
                 Icon = new BitmapImage(new Uri(AppSettings.WindowIcon))
             };
-            MapLoader.Load();
+           
             window.Show();
         }
     }

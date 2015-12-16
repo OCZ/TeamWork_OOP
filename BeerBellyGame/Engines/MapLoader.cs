@@ -97,7 +97,7 @@
                                     ItemToCollect.Add(itemLife);
                                     break;
 
-                                case 'h': //TODO: create item that gives health
+                                case 'h':
                                     HealthItem itemHealth = new HealthItem()
                                     {
                                         Position = new Position(left, top),

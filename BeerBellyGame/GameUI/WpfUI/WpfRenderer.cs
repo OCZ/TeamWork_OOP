@@ -28,11 +28,12 @@
         {
             foreach (GameObject go in gameObjects)
             {
-                if (go is Hud)
-                {
-                    this.DrawHud(go);
-                }
-                else this.DrowGo(go);
+                //if (go is Hud)
+                //{
+                //    this.DrawHud(go);
+                //}
+                //else
+                    this.DrowGo(go);
             }       
         }
         private void DrowGo(GameObject go)

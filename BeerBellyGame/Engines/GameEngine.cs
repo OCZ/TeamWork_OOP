@@ -48,12 +48,12 @@
             get { return MapLoader.Enemies; } 
         }
 
-        public static List<GameObject> ItemToCollect
+        public List<GameObject> ItemToCollect
         {
             get { return MapLoader.ItemToCollect; } 
         }
 
-        public static List<MazeItem> Maze
+        public List<MazeItem> Maze
         {
             get { return MapLoader.Maze; } 
         }
@@ -67,16 +67,12 @@
 
         public void InitGame()
         {
-            MapLoader.Load();
             this.Hud.Size = new Size(30, 70);
         }
 
         public void StartGame() 
         {
-            //TODO setwaneto na timera, t.kato se prawi wednyv weroqtno trqbwa da se prawi w InitGame
-            //the game cycle set by the  DisparcherTimer 
-            //in every const Miliceconsd the objects will be redrawn
-            var timer = new DispatcherTimer {Interval = TimeSpan.FromMilliseconds(AppSettings.TimerTickIntervalInMilliseconds)};
+           var timer = new DispatcherTimer {Interval = TimeSpan.FromMilliseconds(AppSettings.TimerTickIntervalInMilliseconds)};
             timer.Tick += this.GameLoop;
             timer.Start();
            
@@ -85,14 +81,29 @@
         private void GameLoop(object sender, EventArgs e)
         {
             this._renderer.Clear();
-            foreach (var mazeItem in Maze)
+            //this._renderer.Draw(new MazeItem()
+            //{
+            //    Position = new Position(40, 20),
+            //    Size = new Size(20, 20),
+            //    AvatarUri = this.Player.AvatarUri
+            //});
+
+            //this._renderer.Draw(new Player(new PickachuRace())
+            //{
+            //    Position = new Position(this.Player.Position.Left, this.Player.Position.Top),
+            //    Size = new Size(20, 20),
+            //    AvatarUri = AppSettings.MazeItemAvatar
+            //});
+           
+            foreach (var mazeItem in this.Maze)
             {
                 this._renderer.Draw(mazeItem);
             }
-            foreach (var itemToCollect in ItemToCollect)
+            foreach (var item in this.ItemToCollect)
             {
-                this._renderer.Draw(itemToCollect);
+                this._renderer.Draw(item);
             }
+
             this._renderer.Draw(this.Player);
             this._renderer.Draw(this.Friend);
             this._renderer.Draw(this.Hud);
@@ -126,7 +137,7 @@
             this.Friend.Move(this.Player, Maze);
             this.Enemies.ForEach(en => en.Move(this.Player, Maze));
             this.Enemies.RemoveAll(enemy => enemy.IsAlive == false);
-            //wzetite itemy trqbwa da se premahwat ot kolekciite
+          //  wzetite itemy trqbwa da se premahwat ot kolekciite
         }
 
         //the method will be exec on UIaction happend
@@ -134,7 +145,7 @@
         {
             var left = this.Player.Position.Left;
             var top = this.Player.Position.Top;
-            //TODO - check if it new position is in the map
+           
             var possibleMovements = this.Player.PossibleMovements(Maze);
 
             switch (e.Command)

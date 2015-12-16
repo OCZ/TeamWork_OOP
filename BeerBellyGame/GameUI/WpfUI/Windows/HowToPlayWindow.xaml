@@ -1,0 +1,26 @@
+﻿<Window x:Class="BeerBellyGame.GameUI.WpfUI.Windows.HowToPlayWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="How To Play Beer Belly Game" 
+        Height="620" 
+        Width="950"
+        >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140" />
+            <RowDefinition Height="410" />
+        </Grid.RowDefinitions>
+        <Image  Grid.Row ="0" Name="img_logo"  HorizontalAlignment="Left" Height="109" VerticalAlignment="Top" Width="181" Source="/BeerBellyGame;component/Content/Windows/logo.png" Margin="0,9,0,0"/>
+
+        <Label Content="TO MOVE YOUR AVATAR USE ARROWS KEYS " HorizontalAlignment="Left" Height="35" Margin="80,45,0,0" Grid.Row="1" VerticalAlignment="Top" Width="393" FontFamily="Comic Sans MS" FontSize="16" FontWeight="Bold"/>
+        <Image HorizontalAlignment="Left" Height="107" Margin="554,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="162" Source="/BeerBellyGame;component/Content/Windows/keyboard_arrow.png"/>
+        <TextBlock HorizontalAlignment="Left" Margin="55,138,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="273" Width="830" FontFamily="Comic Sans MS" FontSize="18" Grid.Row="1"><Run Text="THE PLAYGROUND: Labyrinth."/><LineBreak/><LineBreak/><Run Text="GAME LOGIC: In the maze wandering different characters - your enemies(managed by computer). They can hurt and kill you. You can kill enemies against you will get money or avoid them."/><LineBreak/><Run Text="In your thoughts, you have the support of one friend (also managed by computer). He can heals you in ..... cases."/><LineBreak/><Run Text="On the map there are items that you can collect. They can give you life points, health points."/></TextBlock>
+        <Button x:Name="BtnBack" Content="&lt;&lt;Back" BorderThickness="1" FontFamily="Comic Sans MS" FontSize="16" Background="{x:Null}" BorderBrush="#FF51504C" Foreground="#FF2B2B12" FontWeight="Bold" ClickMode="Press" Margin="825,68,34,39" Click="BtnBack_Click">
+            <Button.Effect>
+                <DropShadowEffect ShadowDepth="10" BlurRadius="10"/>
+            </Button.Effect>
+        </Button>
+
+
+    </Grid>
+</Window>

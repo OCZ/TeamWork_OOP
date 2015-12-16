@@ -4,21 +4,28 @@
 
     public static class AppSettings
     {
+        //GAME WINDOWS 
+        public const string WindowIcon = @"pack://application:,,,/BeerBellyGame;component/Content/Windows/icon.png";
+        public const string WindowBackgraund = @"pack://application:,,,/BeerBellyGame;component/Content/Windows/background.jpg";
+        public const string WindowLogo = @"pack://application:,,,/BeerBellyGame;component/Content/Windows/logo.png";
+        public const int WindowHeight = 620;
+        public const int WindowWidth = 950;
+
         //HUD
         public static readonly int HudHeight = 100;
 
         //Map
-        public static readonly Position MapPosition = new Position(0, HudHeight);
+        public static readonly Position MapPosition = new Position(0, 0);
         public static readonly Size MapElementSize = new Size(30, 30);
         public static readonly int MapElementsCountX = 30;
         public static readonly int MapElementsCountY = 15;
         public static readonly string MapLevel1 =  "../../Content/Maps/map_l1.txt";
 
         //Items - Default Values
-        public static readonly string MazeItemAvatar = "../../Content/Items/wall_50x50.png";
-        public static readonly string LifeItemAvatar = "../../Content/Items/heart_v2.png";
-        public static readonly string HealthItemAvatar = "../../Content/Items/potion_v2.png";
-        public static readonly string BeerItemAvatar = "../../Content/Items/beer_vp1.png";
+        public static readonly string MazeItemAvatar = "/Content/Items/wall_50x50.png";
+        public static readonly string LifeItemAvatar = "/Content/Items/heart_v2.png";
+        public static readonly string HealthItemAvatar = "/Content/Items/potion_v2.png";
+        public static readonly string BeerItemAvatar = "/Content/Items/beer_vp1.png";
 
         //Characters - Dafault Values
         public static readonly string RaceAvatarPickachu = "/Content/Characters/pikachu_v1.png";

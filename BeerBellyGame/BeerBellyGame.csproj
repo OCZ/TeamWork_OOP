@@ -81,11 +81,21 @@
     <Compile Include="GameUI\IInputHandlerer.cs" />
     <Compile Include="GameUI\WpfUI\GameCommand.cs" />
     <Compile Include="GameUI\WpfUI\KeyDownEventArgs.cs" />
+    <Compile Include="GameUI\WpfUI\Windows\HowToPlayWindow.xaml.cs">
+      <DependentUpon>HowToPlayWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GameUI\WpfUI\Windows\MenuWindow.xaml.cs">
+      <DependentUpon>MenuWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GameUI\WpfUI\WpfInputHandlerer.cs" />
     <Compile Include="GameObjects\Items\MazeItem.cs" />
     <Compile Include="GameUI\IRenderer.cs" />
     <Compile Include="GameUI\WpfUI\WpfRenderer.cs" />
-    <Page Include="MainWindow.xaml">
+    <Page Include="GameUI\WpfUI\Windows\HowToPlayWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GameUI\WpfUI\Windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -100,10 +110,14 @@
     <Compile Include="GameObjects\Characters\Player.cs" />
     <Compile Include="GameObjects\Position.cs" />
     <Compile Include="GameObjects\Size.cs" />
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="GameUI\WpfUI\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="GameUI\WpfUI\Windows\MenuWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -161,12 +175,22 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Content\Other\beer.png" />
-    <Resource Include="Content\Other\beer_bg.jpg" />
     <Resource Include="Content\Other\Leprechaun_with_Beer_PNG.png" />
     <Resource Include="Content\Other\logo.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Content\Characters\pikachu_v1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Windows\keyboard_arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Windows\background.jpg" />
+    <Resource Include="Content\Windows\icon.png" />
+    <Resource Include="Content\Windows\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Windows\go_back.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

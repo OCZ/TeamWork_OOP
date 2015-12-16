@@ -1,15 +1,16 @@
-﻿using BeerBellyGame.GameObjects.Characters;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BeerBellyGame.GameObjects.AI
+﻿namespace BeerBellyGame.GameObjects.AI
 {
-    class TargetCharacterAIProvider : AIProvider
+    using BeerBellyGame.GameObjects.Characters;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using Items;
+
+    public class TargetCharacterAIProvider : AIProvider
     {
-        public override Direction GetDirection(GameObject moveTo, ICollection<Items.MazeItem> obstacles)
+        public override Direction GetDirection(GameObject moveTo, ICollection<MazeItem> obstacles)
         {
             List<Direction> possibles = (List<Direction>)this.Character.PossibleMovements(obstacles);
 

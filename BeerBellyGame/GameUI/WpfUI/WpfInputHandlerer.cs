@@ -3,6 +3,7 @@
     using System;
     using System.Windows.Controls;
     using System.Windows.Input;
+    using Windows;
     using GameUI;
 
     public class WpfInputHandlerer: IInputHandlerer
@@ -13,7 +14,18 @@
         {
             this._canvas = canvas;
             //cast to MainWindow couse MainWindow has Focus, canvas does not have
-            (this._canvas.Parent as MainWindow).KeyDown += (sender, args) =>
+            MainWindow focusedControl;
+            if (this._canvas.Parent is Grid)
+            {
+                var grid = this._canvas.Parent as Grid;
+                focusedControl = grid.Parent as MainWindow;
+            }
+            else
+            {
+                focusedControl = this._canvas.Parent as MainWindow;
+            }
+          
+            (focusedControl).KeyDown += (sender, args) =>
             {
                 var key = args.Key;
                 //in cases the event is fired

@@ -14,19 +14,27 @@
     using System.Windows.Media.Imaging;
     using System.Windows.Shapes;
     using GameObjects.Characters.Races;
+    using GameObjects.Characters.Races.AIPlayerRaces;
+    using GameObjects.Characters.Races.PlayerRaces;
     using GameObjects.Interfaces;
 
     public partial class ChoosePlayerWindow : Window
     {
-        private IRace _playerRace;
-
+        private IRace _selectedPlayerRace;
+        private ICollection<IRace> _playeRaces = new List<IRace>()
+        {
+            new PickachuRace(), 
+            
+        };
         public ChoosePlayerWindow()
         {
             InitializeComponent();
+
             var avatarSource = new BitmapImage();
             avatarSource.BeginInit();
             avatarSource.UriSource = new Uri(new PickachuRace().DefaultAvatar, UriKind.Relative);
             avatarSource.EndInit();
+
             this.avatar1.Source = avatarSource;
             this.BtnStartGame.IsEnabled = false;
 
@@ -49,7 +57,7 @@
         }
         private void BtnStartGame_Click(object sender, RoutedEventArgs e)
         {
-            var gameWindow = new MainWindow(this._playerRace)
+            var gameWindow = new MainWindow(this._selectedPlayerRace)
             {
                 Height = AppSettings.WindowHeight,
                 Width = AppSettings.WindowWidth,
@@ -66,20 +74,20 @@
         private void BtnChoosePickachu_Click(object sender, RoutedEventArgs e)
         {
             this.BtnStartGame.IsEnabled = true;
-            this._playerRace = new PickachuRace();
+            this._selectedPlayerRace = new PickachuRace();
         }
 
 
         private void BtnChooseLeprechaun_Click(object sender, RoutedEventArgs e)
         {
             this.BtnStartGame.IsEnabled = true;
-            this._playerRace = new LeprechaunRace();
+            this._selectedPlayerRace = new MageRace();
         }
 
         private void BtnChoosePoliceman_Click(object sender, RoutedEventArgs e)
         {
             this.BtnStartGame.IsEnabled = true;
-            this._playerRace = new PolicemanRace();
+            this._selectedPlayerRace = new ChuckNorrisRace();
         }
     }
 }

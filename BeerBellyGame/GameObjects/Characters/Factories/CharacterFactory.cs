@@ -1,8 +1,6 @@
 ﻿namespace BeerBellyGame.GameObjects.Characters.Factories
 {
     using Interfaces;
-
-    
     
     public abstract class CharacterFactory
     {

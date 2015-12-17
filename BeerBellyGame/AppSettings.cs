@@ -28,12 +28,7 @@
         public static readonly string BeerItemAvatar = "/Content/Items/beer_vp1.png";
 
         //Characters - Dafault Values
-        public static readonly string RaceAvatarPickachu = "/Content/Characters/pikachu_v1.png";
-        public static readonly string RaceDescriptionPickachu = "Pikachu, the yellow hero";
-        public static readonly int RaceAggressionRangePickachu = 2;
-        public static readonly double RaceAggressionPickachu = 100.2;
-
-
+       
         public static readonly string RaceAvatarPoliceman = "/Content/Characters/policeman.png";
         public static readonly string RaceDescriptionPoliceman = "policeman the blue hero";
         public static readonly int RaceAggressionRangePoliceman = 2;

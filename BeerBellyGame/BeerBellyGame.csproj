@@ -56,12 +56,22 @@
     <Compile Include="GameObjects\AI\RandomAIProvider.cs" />
     <Compile Include="GameObjects\AI\TargetCharacterAIProvider.cs" />
     <Compile Include="GameObjects\Characters\AIPlayer.cs" />
+    <Compile Include="GameObjects\Characters\Atributes\EnemyAttribute.cs" />
+    <Compile Include="GameObjects\Characters\Atributes\FriendAttribute.cs" />
     <Compile Include="GameObjects\Characters\Factories\CharacterFactory.cs" />
     <Compile Include="GameObjects\Characters\Factories\EnemyFactory.cs" />
     <Compile Include="GameObjects\Characters\Factories\FriendFactory.cs" />
     <Compile Include="GameObjects\Characters\Factories\IRandomRace.cs" />
     <Compile Include="GameObjects\Characters\Friend.cs" />
-    <Compile Include="GameObjects\Characters\Races\LeprechaunRace.cs" />
+    <Compile Include="GameObjects\Characters\Races\AIPlayerRaces\GrandpaRace.cs" />
+    <Compile Include="GameObjects\Characters\Races\AIPlayerRaces\LeprechaunRace.cs" />
+    <Compile Include="GameObjects\Characters\Races\AIPlayerRaces\NinjaRace.cs" />
+    <Compile Include="GameObjects\Characters\Races\AIPlayerRaces\SuperGrandmaRace.cs" />
+    <Compile Include="GameObjects\Characters\Races\AIPlayerRaces\WarriorRace.cs" />
+    <Compile Include="GameObjects\Characters\Races\AIPlayerRaces\XenaRace.cs" />
+    <Compile Include="GameObjects\Characters\Races\AIPlayerRaces\YodaRace.cs" />
+    <Compile Include="GameObjects\Characters\Races\PlayerRaces\ChuckNorrisRace.cs" />
+    <Compile Include="GameObjects\Characters\Races\PlayerRaces\MageRace.cs" />
     <Compile Include="GameObjects\HUD\Hud.cs" />
     <Compile Include="GameObjects\Interfaces\ICharacter.cs" />
     <Compile Include="GameObjects\Interfaces\ICollectable.cs" />
@@ -69,8 +79,8 @@
     <Compile Include="GameObjects\Interfaces\IHealable.cs" />
     <Compile Include="GameObjects\Interfaces\IRace.cs" />
     <Compile Include="GameObjects\Characters\Races\AbstractRace.cs" />
-    <Compile Include="GameObjects\Characters\Races\PickachuRace.cs" />
-    <Compile Include="GameObjects\Characters\Races\PolicemanRace.cs" />
+    <Compile Include="GameObjects\Characters\Races\PlayerRaces\PickachuRace.cs" />
+    <Compile Include="GameObjects\Characters\Races\AIPlayerRaces\PolicemanRace.cs" />
     <Compile Include="GameObjects\Direction.cs" />
     <Compile Include="GameObjects\Items\BeerItem.cs" />
     <Compile Include="GameObjects\Items\LargeHealthItem.cs" />
@@ -197,6 +207,17 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Content\Windows\go_back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Characters\chucknorrist.gif" />
+    <Resource Include="Content\Characters\grandma.png" />
+    <Resource Include="Content\Characters\grandpa.png" />
+    <Resource Include="Content\Characters\mage.png" />
+    <Resource Include="Content\Characters\ninja.png" />
+    <Resource Include="Content\Characters\samurai.png" />
+    <Resource Include="Content\Characters\warrior.png" />
+    <Resource Include="Content\Characters\yoda.png" />
+    <Resource Include="Content\Characters\xena.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

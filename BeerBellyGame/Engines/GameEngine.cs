@@ -1,17 +1,15 @@
-﻿namespace BeerBellyGame.Engines
+﻿using System.Linq;
+
+namespace BeerBellyGame.Engines
 {
     using System;
     using System.Collections.Generic;
-    using System.Runtime.Remoting.Channels;
-    using System.Windows.Documents;
     using System.Windows.Threading;
   
     using GameUI;
     
     using GameObjects;
     using GameObjects.Characters;
-    using GameObjects.Characters.Factories;
-    using GameObjects.Characters.Races;
     using GameObjects.HUD;
     using GameObjects.Interfaces;
     using GameObjects.Items;
@@ -31,7 +29,7 @@
             this._playerRace = playerRace;
             this._renderer = renderer;
             this._inputHandlerer = inputHandlerer;
-            this._inputHandlerer.UiActionHappened += this.HandleUIActionHappend;
+            this._inputHandlerer.UiActionHappened += this.HandleUiActionHappend;
             MapLoader.Load(this._playerRace);
         }
 
@@ -135,6 +133,7 @@
             //        enemy.IsAlive = false;
             //    }
             //}
+            EnemyAttack();
             this.Friend.Move(this.Player, Maze);
             this.Enemies.ForEach(en => en.Move(this.Player, Maze));
             this.Enemies.RemoveAll(enemy => enemy.IsAlive == false);
@@ -142,7 +141,7 @@
         }
 
         //the method will be exec on UIaction happend
-        private void HandleUIActionHappend(object sender, KeyDownEventArgs e)
+        private void HandleUiActionHappend(object sender, KeyDownEventArgs e)
         {
             var left = this.Player.Position.Left;
             var top = this.Player.Position.Top;
@@ -168,14 +167,45 @@
                         this.Player.Position = new Position(left + AppSettings.MopvementSpeed, top);
                     break;
                 case GameCommand.Attack:
-                    this.Atack();
+                    //this.PlayerAttack();
                     break;
             }
         }
 
-        private void Atack()
+        private void EnemyAttack()
         {
-         //TODO implement 
+            foreach (var enemy in this.Enemies.Where(enemy => enemy.IntersectWith(this.Player) != Direction.None))
+            {
+                if (this.Player.Health - enemy.Aggression <= 0)
+                {
+                    if (this.Player.Life == 0)
+                    {
+                        this.Player.IsAlive = false;
+                    }
+                    else
+                    {
+                        this.Player.Life--;
+                        this.Player.Health = 100;
+                    }
+
+                }
+                else
+                {
+                    this.Player.Health -= enemy.Aggression;
+                }                
+            }
         }
+
+        //Work in progress 
+//        private void PlayerAttack()
+//        {
+//            foreach (var enemy in this.Enemies)
+//            {
+//                if (this.Player.IntersectWith(enemy) != Direction.None)
+//                {
+//                    enemy.Health -= this.Player.Aggression;
+//                }
+//            }
+//        }
     }
 }

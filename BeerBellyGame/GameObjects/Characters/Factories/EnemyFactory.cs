@@ -5,7 +5,7 @@
 
     public class EnemyFactory: CharacterFactory
     {
-        private static int counter = 0;
+        private static int _counter = 0;
         
         public override Character Create(IRace race)
         {
@@ -16,8 +16,8 @@
        
         private AIProvider GetAI()
         {
-            counter++;
-            if (counter < AppSettings.TargetAICount)
+            _counter++;
+            if (_counter < AppSettings.TargetAICount)
             {
                 return new TargetCharacterAIProvider();
             }

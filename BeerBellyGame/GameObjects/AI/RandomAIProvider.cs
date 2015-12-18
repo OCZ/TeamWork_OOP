@@ -10,25 +10,25 @@
 
    public class RandomAIProvider : AIProvider
     {
-        private DateTime time;
-        private Direction rand;
-        private Random random;
+       private DateTime _time;
+       private Direction _rand;
+       private readonly Random _random;
 
         public RandomAIProvider()
         {
-            this.random = new Random();
+            this._random = new Random();
         }
 
         public override Direction GetDirection(GameObject moveTo, ICollection<MazeItem> obstacles)
         {
             List<Direction> possibles = (List<Direction>)this.Character.PossibleMovements(obstacles);
-            if (DateTime.Now > this.time.AddSeconds(random.Next(1, 3)) || !possibles.Contains(this.rand))
+            if (DateTime.Now > this._time.AddSeconds(_random.Next(1, 3)) || !possibles.Contains(this._rand))
             {
-                this.rand = possibles[random.Next(0, possibles.Count)];
-                this.time = DateTime.Now;
+                this._rand = possibles[_random.Next(0, possibles.Count)];
+                this._time = DateTime.Now;
             }
 
-            return this.rand;
+            return this._rand;
         }
     }
 }

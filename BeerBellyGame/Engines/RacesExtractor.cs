@@ -10,8 +10,8 @@
 
     public class RacesExtractor
     {
-        private static volatile RacesExtractor instance;
-        private static object syncRoot = new Object();
+        private static volatile RacesExtractor _instance;
+        private static object _syncRoot = new Object();
         private IList<IRace> _playerRaces;
         private IList<IRace> _friendRaces;
         private IList<IRace> _enemyRaces;
@@ -26,18 +26,18 @@
         {
             get
             {
-                if (instance == null)
+                if (_instance == null)
                 {
-                    lock (syncRoot)
+                    lock (_syncRoot)
                     {
-                        if (instance == null)
+                        if (_instance == null)
                         {
-                            instance = new RacesExtractor();
+                            _instance = new RacesExtractor();
                         }
                     }
                 }
                 
-                return instance;
+                return _instance;
             }
         }
 

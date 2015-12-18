@@ -13,5 +13,7 @@
             : base(race, ai, DefaultLifes)
         {
         }
+
+       
     }
 }

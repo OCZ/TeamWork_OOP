@@ -73,6 +73,7 @@
 
                                 case 'e':
                                     var enemy = (Enemy)enemyFactory.Create(_enemyRace);
+                                    enemy.Aggression = 50;
                                     enemy.Position = new Position (left, top);
                                     enemy.Size = new Size(width, height);
                                     Enemies.Add(enemy);

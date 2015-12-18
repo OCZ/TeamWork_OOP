@@ -1,4 +1,6 @@
 ﻿using System;
+using BeerBellyGame.Engines;
+using BeerBellyGame.GameUI.WpfUI.Windows;
 
 namespace BeerBellyGame.GameObjects.Characters
 {
@@ -54,11 +56,13 @@ namespace BeerBellyGame.GameObjects.Characters
             return directions;
         }
 
-        public void Attack(Enemy e)
-        {
-            //Reduce the enemy health here
-            //Enemy class not implemented!!!
-        }
+//        public void Attack()
+//        {
+//            if ()
+//            {
+//                
+//            }
+//        }
 
         public void EquipWeapon(WeaponItem i)
         {

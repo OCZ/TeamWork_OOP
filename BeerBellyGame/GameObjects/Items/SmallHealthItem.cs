@@ -3,7 +3,7 @@ using BeerBellyGame.GameObjects.Interfaces;
 
 namespace BeerBellyGame.GameObjects.Items
 {
-    public class SmallHealthItem : GameObject, ICollectable, IHealable
+    public class SmallHealthItem : CollectableItem, IHealable
     {
         public SmallHealthItem()
         {
@@ -13,7 +13,7 @@ namespace BeerBellyGame.GameObjects.Items
 
         public int RegenAmount { get; private set; }
 
-        public void Consume(Character ch)
+        public override void Consume(Character ch)
         {
             ch.Health += this.RegenAmount;
         }

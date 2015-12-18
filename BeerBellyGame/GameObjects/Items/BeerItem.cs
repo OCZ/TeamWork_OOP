@@ -4,14 +4,14 @@ namespace BeerBellyGame.GameObjects.Items
 {
     using Interfaces;
 
-    public class BeerItem: GameObject, ICollectable
+    public class BeerItem: CollectableItem
     {
         public BeerItem()
         {
             this.AvatarUri = AppSettings.BeerItemAvatar;
         }
 
-        public void Consume(Character ch)
+        public override void Consume(Character ch)
         {
             ch.BeerBelly += 10;
         }

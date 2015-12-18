@@ -76,7 +76,6 @@
     <Compile Include="GameObjects\Characters\Races\PlayerRaces\MageRace.cs" />
     <Compile Include="GameObjects\HUD\Hud.cs" />
     <Compile Include="GameObjects\Interfaces\ICharacter.cs" />
-    <Compile Include="GameObjects\Interfaces\ICollectable.cs" />
     <Compile Include="GameObjects\Interfaces\IDrawable.cs" />
     <Compile Include="GameObjects\Interfaces\IEquipable.cs" />
     <Compile Include="GameObjects\Interfaces\IHealable.cs" />
@@ -86,6 +85,7 @@
     <Compile Include="GameObjects\Characters\Races\AIPlayerRaces\PolicemanRace.cs" />
     <Compile Include="GameObjects\Direction.cs" />
     <Compile Include="GameObjects\Items\BeerItem.cs" />
+    <Compile Include="GameObjects\Items\CollectableItem.cs" />
     <Compile Include="GameObjects\Items\LargeHealthItem.cs" />
     <Compile Include="GameObjects\Items\LifeItem.cs" />
     <Compile Include="GameObjects\Items\MediumHealthItem.cs" />
@@ -158,6 +158,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="AI.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

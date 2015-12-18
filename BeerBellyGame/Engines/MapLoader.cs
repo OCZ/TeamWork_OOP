@@ -20,7 +20,7 @@
         private static readonly IList<IRace> EnemyRaces = RacesExtractor.Instance.EnemyRaces;
         private static readonly IList<IRace> FrienRaces = RacesExtractor.Instance.FriendRaces;
         public static List<Enemy> Enemies = new List<Enemy>();
-        public static List<GameObject> ItemToCollect = new List<GameObject>();
+        public static List<CollectableItem> ItemToCollect = new List<CollectableItem>();
         public static List<MazeItem> Maze = new List<MazeItem>();
         private static readonly Random Rand = new Random();
         

@@ -1,5 +1,8 @@
 ﻿namespace BeerBellyGame.GameObjects.Characters.Races.PlayerRaces
 {
+    using Attributes;
+
+    [PlayerRace]
     public class PickachuRace: AbstractRace
     {
         private const string PickachuAvatar = "/Content/Characters/pikachu_v1.png";

@@ -50,14 +50,16 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AppSettings.cs" />
+    <Compile Include="Attributes\PlayerRaceAttribute.cs" />
     <Compile Include="Engines\MapLoader.cs" />
+    <Compile Include="Engines\RacesExtractor.cs" />
     <Compile Include="GameObjects\AI\AIProvider.cs" />
     <Compile Include="GameObjects\AI\IAIMovement.cs" />
     <Compile Include="GameObjects\AI\RandomAIProvider.cs" />
     <Compile Include="GameObjects\AI\TargetCharacterAIProvider.cs" />
     <Compile Include="GameObjects\Characters\AIPlayer.cs" />
-    <Compile Include="GameObjects\Characters\Atributes\EnemyAttribute.cs" />
-    <Compile Include="GameObjects\Characters\Atributes\FriendAttribute.cs" />
+    <Compile Include="Attributes\EnemyRaceAttribute.cs" />
+    <Compile Include="Attributes\FriendRaceAttribute.cs" />
     <Compile Include="GameObjects\Characters\Factories\CharacterFactory.cs" />
     <Compile Include="GameObjects\Characters\Factories\EnemyFactory.cs" />
     <Compile Include="GameObjects\Characters\Factories\FriendFactory.cs" />
@@ -219,6 +221,7 @@
     <Resource Include="Content\Characters\yoda.png" />
     <Resource Include="Content\Characters\xena.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

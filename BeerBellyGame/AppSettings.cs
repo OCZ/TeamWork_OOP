@@ -10,7 +10,7 @@
         public const string WindowLogo = @"pack://application:,,,/BeerBellyGame;component/Content/Windows/logo.png";
         public const int WindowHeight = 620;
         public const int WindowWidth = 950;
-
+        
         //HUD
         public static readonly int HudHeight = 100;
 

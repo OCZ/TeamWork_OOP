@@ -1,5 +1,8 @@
 ﻿namespace BeerBellyGame.GameObjects.Characters.Races.PlayerRaces
 {
+    using Attributes;
+
+    [PlayerRace]
     public class MageRace : AbstractRace
     {
         private const string MageAvatar = "/Content/Characters/mage.png";

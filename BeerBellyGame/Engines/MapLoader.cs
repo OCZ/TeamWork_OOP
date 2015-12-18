@@ -2,13 +2,11 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Dynamic;
     using System.IO;
-    using System.Runtime.CompilerServices;
     using GameObjects;
     using GameObjects.Characters;
     using GameObjects.Characters.Factories;
-    using GameObjects.Characters.Races;
+
     using GameObjects.Interfaces;
     using GameObjects.Items;
 
@@ -17,10 +15,15 @@
         public static Player Player;
         public static Friend Friend;
         private static IRace _playerRace;
+        private static IRace _friendRace;
+        private static IRace _enemyRace;
+        private static readonly IList<IRace> EnemyRaces = RacesExtractor.Instance.EnemyRaces;
+        private static readonly IList<IRace> FrienRaces = RacesExtractor.Instance.FriendRaces;
         public static List<Enemy> Enemies = new List<Enemy>();
         public static List<GameObject> ItemToCollect = new List<GameObject>();
         public static List<MazeItem> Maze = new List<MazeItem>();
-      
+        private static readonly Random Rand = new Random();
+        
         public static void Load(IRace playerRace)
         {
             //TODO implement diff levels 
@@ -28,10 +31,14 @@
 
             string mapPath = AppSettings.MapLevel1;
             _playerRace = playerRace;
+            _friendRace = ChoseRandomFriendRace();
+            _enemyRace = ChoseRandomEnemyRace();
             var frientFactory = new FriendFactory();
             var enemyFactory = new EnemyFactory();
+            
             var width = AppSettings.MapElementSize.Width;
             var height = AppSettings.MapElementSize.Height;
+             
             
 
             try
@@ -59,13 +66,13 @@
                                     break;
 
                                 case 'f':
-                                    Friend = (Friend)frientFactory.Create();
+                                    Friend = (Friend)frientFactory.Create(_friendRace);
                                     Friend.Position = new Position(left, top);
                                     Friend.Size = new Size(width, height);
                                     break;
 
                                 case 'e':
-                                    var enemy = (Enemy)enemyFactory.Create();
+                                    var enemy = (Enemy)enemyFactory.Create(_enemyRace);
                                     enemy.Position = new Position (left, top);
                                     enemy.Size = new Size(width, height);
                                     Enemies.Add(enemy);
@@ -118,6 +125,18 @@
                 
                 throw;
             }
+        }
+
+        private static IRace ChoseRandomEnemyRace()
+        {
+            var index = Rand.Next(0, EnemyRaces.Count);
+            return EnemyRaces[index];
+        }
+
+        private static IRace ChoseRandomFriendRace()
+        {
+            var index = Rand.Next(0, FrienRaces.Count);
+            return FrienRaces[index];
         }
     }
 }

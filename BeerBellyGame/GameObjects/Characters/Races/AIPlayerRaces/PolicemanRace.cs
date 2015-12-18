@@ -1,8 +1,8 @@
 ﻿namespace BeerBellyGame.GameObjects.Characters.Races.AIPlayerRaces
 {
-    using Atributes;
+    using Attributes;
 
-    [Friend]
+    [FriendRace]
     public class PolicemanRace: AbstractRace
     {
         

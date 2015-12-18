@@ -1,8 +1,8 @@
 ﻿namespace BeerBellyGame.GameObjects.Characters.Races.AIPlayerRaces
 {
-    using Atributes;
+    using Attributes;
 
-    [Enemy]
+    [EnemyRace]
     public class NinjaRace: AbstractRace
     {
         private const string NinjaAvatar = "/Content/Characters/ninja.png.png";

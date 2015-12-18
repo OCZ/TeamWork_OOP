@@ -1,5 +1,8 @@
 ﻿namespace BeerBellyGame.GameObjects.Characters.Races.PlayerRaces
 {
+    using Attributes;
+
+    [PlayerRace]
     public class ChuckNorrisRace : AbstractRace
     {
         private const string ChuckAvatar = "/Content/Characters/chucknorrist.gif";

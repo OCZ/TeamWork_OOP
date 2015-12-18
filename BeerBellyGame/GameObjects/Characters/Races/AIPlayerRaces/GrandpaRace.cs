@@ -1,8 +1,8 @@
 ﻿namespace BeerBellyGame.GameObjects.Characters.Races.AIPlayerRaces
 {
-    using Atributes;
+    using Attributes;
 
-    [Enemy]
+    [EnemyRace]
     public class GrandpaRace : AbstractRace
     {
         private const string SuperGrandpaAvatar = "/Content/Characters/grandpa.png";

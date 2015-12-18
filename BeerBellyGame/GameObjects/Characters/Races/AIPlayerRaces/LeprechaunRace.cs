@@ -1,8 +1,8 @@
 ﻿namespace BeerBellyGame.GameObjects.Characters.Races.AIPlayerRaces
 {
-    using Atributes;
+    using Attributes;
 
-    [Enemy]
+    [EnemyRace]
     public class LeprechaunRace: AbstractRace
     {
         public LeprechaunRace() : base( AppSettings.RaceAggressionRangeLeprechaun, 

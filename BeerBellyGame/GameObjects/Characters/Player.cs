@@ -1,12 +1,13 @@
-﻿namespace BeerBellyGame.GameObjects.Characters
-{
-    using System.Collections.Generic;
-    using Interfaces;
-    using Items;
+﻿using System.Collections.Generic;
+using BeerBellyGame.GameObjects.Interfaces;
+using BeerBellyGame.GameObjects.Items;
 
-    public class Player: Character
+namespace BeerBellyGame.GameObjects.Characters
+{
+    public class Player : Character
     {
         private const int DefaultLifes = 3;
+
         public Player(IRace race)
             : base(DefaultLifes, race)
         {
@@ -18,25 +19,22 @@
             //TODO: or left + AgressionRange
             return false;
         }
-    }
+
         public List<CollectableItem> PosibleCollection(List<CollectableItem> items)
         {
             foreach (var item in items)
             {
-                var direction = this.IntersectWith(item);
+                var direction = IntersectWith(item);
                 if (direction != Direction.None)
                 {
                     var i = 0;
                     item.Consume(this);
                     item.IsCollected = true;
-                   // items.Remove(item);
+                    // items.Remove(item);
                 }
             }
-            items.RemoveAll(item => item.IsCollected == true);
+            items.RemoveAll(item => item.IsCollected);
             return items;
         }
-
-       
-    }   
->>>>>>> f305445bb55a778eaac6566cd002fe4bd732b43c
+    }
 }

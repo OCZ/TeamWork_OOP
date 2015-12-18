@@ -25,6 +25,7 @@
         private readonly IRace _playerRace;
         private readonly IGameRenderer _renderer;
         private readonly IInputHandlerer _inputHandlerer;
+      
        
         public GameEngine(IGameRenderer renderer, IInputHandlerer inputHandlerer, IRace playerRace)
         {
@@ -33,6 +34,7 @@
             this._inputHandlerer = inputHandlerer;
             this._inputHandlerer.UiActionHappened += this.HandleUIActionHappend;
             MapLoader.Load(this._playerRace);
+            this.ItemsToCollect = MapLoader.ItemToCollect;
         }
 
         public Player Player 
@@ -49,10 +51,7 @@
             get { return MapLoader.Enemies; } 
         }
 
-        public List<GameObject> ItemToCollect
-        {
-            get { return MapLoader.ItemToCollect; } 
-        }
+        public List<CollectableItem> ItemsToCollect {get; set; }
 
         public List<MazeItem> Maze
         {
@@ -82,25 +81,12 @@
         private void GameLoop(object sender, EventArgs e)
         {
             this._renderer.Clear();
-            //this._renderer.Draw(new MazeItem()
-            //{
-            //    Position = new Position(40, 20),
-            //    Size = new Size(20, 20),
-            //    AvatarUri = this.Player.AvatarUri
-            //});
-
-            //this._renderer.Draw(new Player(new PickachuRace())
-            //{
-            //    Position = new Position(this.Player.Position.Left, this.Player.Position.Top),
-            //    Size = new Size(20, 20),
-            //    AvatarUri = AppSettings.MazeItemAvatar
-            //});
            
             foreach (var mazeItem in this.Maze)
             {
                 this._renderer.Draw(mazeItem);
             }
-            foreach (var item in this.ItemToCollect)
+            foreach (var item in this.ItemsToCollect)
             {
                 this._renderer.Draw(item);
             }
@@ -113,6 +99,7 @@
                 this._renderer.Draw(enemy);
             }
             
+           
             ////prowerka na koliziqta
             //foreach (var enemy in Enemies)
             //{
@@ -135,9 +122,11 @@
             //        enemy.IsAlive = false;
             //    }
             //}
+            
             this.Friend.Move(this.Player, Maze);
             this.Enemies.ForEach(en => en.Move(this.Player, Maze));
             this.Enemies.RemoveAll(enemy => enemy.IsAlive == false);
+
           //  wzetite itemy trqbwa da se premahwat ot kolekciite
         }
 
@@ -146,6 +135,7 @@
         {
             var left = this.Player.Position.Left;
             var top = this.Player.Position.Top;
+
            
             var possibleMovements = this.Player.PossibleMovements(Maze);
 
@@ -154,18 +144,22 @@
                 case GameCommand.MoveDown:
                     if(possibleMovements.Contains(Direction.Down))
                         this.Player.Position = new Position(left, top + AppSettings.MopvementSpeed);
+                        this.ItemsToCollect = this.Player.PosibleCollection(this.ItemsToCollect);
                     break;
                 case GameCommand.MoveUp:
                     if (possibleMovements.Contains(Direction.Up))
                         this.Player.Position = new Position(left, top - AppSettings.MopvementSpeed);
+                        this.ItemsToCollect = this.Player.PosibleCollection(this.ItemsToCollect);
                     break;
                 case GameCommand.MoveLeft:
                     if (possibleMovements.Contains(Direction.Left))
                         this.Player.Position = new Position(left - AppSettings.MopvementSpeed, top);
+                        this.ItemsToCollect = this.Player.PosibleCollection(this.ItemsToCollect);
                     break;
                 case GameCommand.MoveRight:
                     if (possibleMovements.Contains(Direction.Right))
                         this.Player.Position = new Position(left + AppSettings.MopvementSpeed, top);
+                        this.ItemsToCollect = this.Player.PosibleCollection(this.ItemsToCollect);
                     break;
                 case GameCommand.Attack:
                     this.Atack();

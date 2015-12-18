@@ -4,14 +4,14 @@ namespace BeerBellyGame.GameObjects.Items
 {
     using Interfaces;
 
-    public class LifeItem: GameObject, ICollectable
+    public class LifeItem: CollectableItem
     {
         public LifeItem()
         {
             this.AvatarUri = AppSettings.LifeItemAvatar;
         }
         
-        public void Consume(Character ch)
+        public override void Consume(Character ch)
         {
             ch.Life++;
         }

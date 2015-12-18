@@ -6,6 +6,6 @@
 
     public interface IInputHandlerer
     {
-        event EventHandler<KeyDownEventArgs> UIActionHappened;
+        event EventHandler<KeyDownEventArgs> UiActionHappened;
     }
 }

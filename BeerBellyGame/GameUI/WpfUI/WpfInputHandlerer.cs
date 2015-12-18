@@ -1,4 +1,6 @@
-﻿namespace BeerBellyGame.GameUI.WpfUI
+﻿using System.Threading;
+
+namespace BeerBellyGame.GameUI.WpfUI
 {
     using System;
     using System.Windows.Controls;
@@ -16,7 +18,7 @@
             //cast to MainWindow couse MainWindow has Focus, canvas does not have
             this.KeyboardHandlerer();
         }
-        public event EventHandler<KeyDownEventArgs> UIActionHappened;
+        public event EventHandler<KeyDownEventArgs> UiActionHappened;
 
         private void KeyboardHandlerer()
         {
@@ -38,22 +40,22 @@
                 switch (key)
                 {
                     case Key.Down:
-                        this.UIActionHappened(this, new KeyDownEventArgs(GameCommand.MoveDown));
+                        this.UiActionHappened(this, new KeyDownEventArgs(GameCommand.MoveDown));
                         break;
                     case Key.Up:
-                        this.UIActionHappened(this, new KeyDownEventArgs(GameCommand.MoveUp));
+                        this.UiActionHappened(this, new KeyDownEventArgs(GameCommand.MoveUp));
                         break;
                     case Key.Right:
-                        this.UIActionHappened(this, new KeyDownEventArgs(GameCommand.MoveRight));
+                        this.UiActionHappened(this, new KeyDownEventArgs(GameCommand.MoveRight));
                         break;
                     case Key.Left:
-                        this.UIActionHappened(this, new KeyDownEventArgs(GameCommand.MoveLeft));
+                        this.UiActionHappened(this, new KeyDownEventArgs(GameCommand.MoveLeft));
                         break;
                     case Key.Space:
-                        this.UIActionHappened(this, new KeyDownEventArgs(GameCommand.Attack));
+                        this.UiActionHappened(this, new KeyDownEventArgs(GameCommand.Attack));
                         break;
                 }
-            };
+            };       
         }
 
         

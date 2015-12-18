@@ -78,6 +78,7 @@
     <Compile Include="GameObjects\Interfaces\ICharacter.cs" />
     <Compile Include="GameObjects\Interfaces\ICollectable.cs" />
     <Compile Include="GameObjects\Interfaces\IDrawable.cs" />
+    <Compile Include="GameObjects\Interfaces\IEquipable.cs" />
     <Compile Include="GameObjects\Interfaces\IHealable.cs" />
     <Compile Include="GameObjects\Interfaces\IRace.cs" />
     <Compile Include="GameObjects\Characters\Races\AbstractRace.cs" />
@@ -89,6 +90,8 @@
     <Compile Include="GameObjects\Items\LifeItem.cs" />
     <Compile Include="GameObjects\Items\MediumHealthItem.cs" />
     <Compile Include="GameObjects\Items\SmallHealthItem.cs" />
+    <Compile Include="GameObjects\Items\SpyToolItem.cs" />
+    <Compile Include="GameObjects\Items\WeaponItem.cs" />
     <Compile Include="GameUI\IInputHandlerer.cs" />
     <Compile Include="GameUI\WpfUI\GameCommand.cs" />
     <Compile Include="GameUI\WpfUI\KeyDownEventArgs.cs" />

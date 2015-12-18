@@ -1,4 +1,6 @@
-﻿namespace BeerBellyGame.GameObjects.Characters
+﻿using System;
+
+namespace BeerBellyGame.GameObjects.Characters
 {
     using Items;
     using Interfaces;
@@ -37,19 +39,53 @@
 
         public ICollection<Direction> PossibleMovements(ICollection<MazeItem> objs)
         {
-            List<Direction> directions = new List<Direction>(){
+            var directions = new List<Direction>(){
                 Direction.Down,
                 Direction.Left,
                 Direction.Right,
                 Direction.Up
             };
 
-            foreach (GameObject o in objs)
+            foreach (var o in objs)
             {
                 directions.Remove(this.IntersectWith(o));
             }
 
             return directions;
+        }
+
+        public void Attack(Enemy e)
+        {
+            //Reduce the enemy health here
+            //Enemy class not implemented!!!
+        }
+
+        public void EquipWeapon(WeaponItem i)
+        {
+            if (i.EquipedState)
+            {
+                this.Aggression -= i.AggressionValue;
+                i.EquipedState = false;
+            }
+            else
+            {
+                this.Aggression += i.AggressionValue;
+                i.EquipedState = true;
+            }
+        }
+
+        public void EquipSpyTool(SpyToolItem st)
+        {
+            if (st.EquipedState)
+            {
+                this.AggressionRange -= st.AgressionRange;
+                st.EquipedState = false;
+            }
+            else
+            {
+                this.AggressionRange += st.AgressionRange;
+                st.EquipedState = true;
+            }
         }
     }
 }

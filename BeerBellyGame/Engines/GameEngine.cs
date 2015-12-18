@@ -31,7 +31,7 @@
             this._playerRace = playerRace;
             this._renderer = renderer;
             this._inputHandlerer = inputHandlerer;
-            this._inputHandlerer.UIActionHappened += this.HandleUIActionHappend;
+            this._inputHandlerer.UiActionHappened += this.HandleUIActionHappend;
             MapLoader.Load(this._playerRace);
         }
 

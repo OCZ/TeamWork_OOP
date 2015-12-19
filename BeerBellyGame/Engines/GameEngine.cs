@@ -69,7 +69,7 @@ namespace BeerBellyGame.Engines
                 this._renderer.Draw(item);
             }
 
-            foreach (var enemy in Enemies)
+            foreach (var enemy in this.Enemies)
             {
                 this._renderer.Draw(enemy);
             }

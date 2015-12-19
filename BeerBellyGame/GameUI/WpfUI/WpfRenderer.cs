@@ -1,6 +1,7 @@
 ﻿namespace BeerBellyGame.GameUI.WpfUI
 {
     using System;
+    using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Media.Imaging;
    
@@ -28,12 +29,11 @@
         {
             foreach (GameObject go in gameObjects)
             {
-                //if (go is Hud)
-                //{
-                //    this.DrawHud(go);
-                //}
-                //else
-                    this.DrowGo(go);
+                if (go is Hud)
+                {
+                    this.DrawHud(go);
+                }
+                else this.DrowGo(go);
             }       
         }
         private void DrowGo(GameObject go)
@@ -57,21 +57,44 @@
 
         private void DrawHud(GameObject hud)
         {
-            var avatarSource = new BitmapImage();
-            avatarSource.BeginInit();
-            avatarSource.UriSource = new Uri(hud.AvatarUri, UriKind.Relative);
-            avatarSource.EndInit();
+            this.DrawLogo();
 
-            var avatar = new Image
+            var hudInstance = (Hud) hud;
+
+            foreach (TextBlock element in hudInstance.DynamicElements.Values)
             {
-                Source = avatarSource,
-                Width = hud.Size.Width,
-                Height = hud.Size.Height
+                this._canvas.Children.Add(element);
+            }
+            foreach (Label element in hudInstance.StaticElements)
+            {
+                this._canvas.Children.Add(element);
+            }
+
+            
+        }
+
+        private void DrawLogo()
+        {
+            //<Image  Name="img_logo"  HorizontalAlignment="Left" Height="109" VerticalAlignment="Top" Width="181" Source="/BeerBellyGame;component/Content/Windows/logo.png" Canvas.Left="8" Canvas.Top="8"/>
+
+
+            var logoSorce = new BitmapImage();
+            logoSorce.BeginInit();
+            logoSorce.UriSource = new Uri(AppSettings.WindowSmalLogo, UriKind.Relative);
+            logoSorce.EndInit();
+            var logo = new Image
+            {
+                Source = logoSorce,
+                Width = 181,
+                Height = 109,
+                HorizontalAlignment = HorizontalAlignment.Left, 
+                VerticalAlignment = VerticalAlignment.Top, 
+                Margin = new Thickness(5, 0, 0, 0)
             };
 
-            Canvas.SetLeft(avatar, hud.Position.Left);
-            Canvas.SetTop(avatar, hud.Position.Top);
-            this._canvas.Children.Add(avatar);
+            Canvas.SetLeft(logo, 0);
+            Canvas.SetTop(logo, 0);
+            this._canvas.Children.Add(logo);
         }
     }
 }

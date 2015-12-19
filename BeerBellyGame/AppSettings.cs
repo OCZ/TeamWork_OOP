@@ -8,14 +8,15 @@
         public const string WindowIcon = @"pack://application:,,,/BeerBellyGame;component/Content/Windows/icon.png";
         public const string WindowBackgraund = @"pack://application:,,,/BeerBellyGame;component/Content/Windows/background.jpg";
         public const string WindowLogo = @"pack://application:,,,/BeerBellyGame;component/Content/Windows/logo.png";
+        public const string WindowSmalLogo = "/Content/Windows/logo.png";
         public const int WindowHeight = 620;
         public const int WindowWidth = 950;
         
         //HUD
-        public static readonly int HudHeight = 100;
+        public static readonly int HudHeight = 110;
 
         //Map
-        public static readonly Position MapPosition = new Position(0, 0);
+        public static readonly Position MapPosition = new Position(0, HudHeight);
         public static readonly Size MapElementSize = new Size(30, 30);
         public static readonly int MapElementsCountX = 30;
         public static readonly int MapElementsCountY = 15;

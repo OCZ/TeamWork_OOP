@@ -44,13 +44,17 @@
             int index = 0;
             foreach (var avatar in avatars)
             {
-                var avatarSource = new BitmapImage();
-                avatarSource.BeginInit();
-                avatarSource.UriSource = new Uri(playerRaces[index].DefaultAvatar, UriKind.Relative);
-                avatarSource.EndInit();
+                if (avatar.Name != "Logo")
+                {
+                    var avatarSource = new BitmapImage();
+                    avatarSource.BeginInit();
+                    avatarSource.UriSource = new Uri(playerRaces[index].DefaultAvatar, UriKind.Relative);
+                    avatarSource.EndInit();
+                    avatar.Source = avatarSource;
+                    index++;
+                }
+                
 
-                avatar.Source = avatarSource;
-                index++;
             }
             index = 0;
             foreach (var description in descriptions)

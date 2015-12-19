@@ -10,6 +10,7 @@ namespace BeerBellyGame.Engines
     
     using GameObjects;
     using GameObjects.Characters;
+    using GameObjects.HUD;
     using GameObjects.Interfaces;
     using GameObjects.Items;
     using GameUI.WpfUI;
@@ -44,6 +45,7 @@ namespace BeerBellyGame.Engines
             this.Enemies = MapLoader.Instance.Enemies;
             this.ItemsToCollect = MapLoader.Instance.ItemToCollect;
             this.Maze = MapLoader.Instance.Maze;
+            Hud.Instance.PopulateElements(this.Player, this.Friend);
           
         }
 
@@ -58,7 +60,8 @@ namespace BeerBellyGame.Engines
         private void GameLoop(object sender, EventArgs e)
         {
             this._renderer.Clear();
-             
+            Hud.Instance.RefreshDynamicElements(this.Player, this.Friend);
+            this._renderer.Draw(Hud.Instance);
             foreach (var mazeItem in this.Maze)
             {
                 this._renderer.Draw(mazeItem);

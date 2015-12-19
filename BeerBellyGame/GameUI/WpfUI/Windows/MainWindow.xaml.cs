@@ -13,6 +13,8 @@
             var inputHandlerer = new WpfInputHandlerer(this.GameCanvas);
             this.Engine = new GameEngine(renderer, inputHandlerer);
             this.Engine.InitGame();
+            //this.PlayerLife.Text = this.Engine.Player.Life.ToString();
+            //this.PlayerBeerBelly.Text = this.Engine.Player.BeerBelly.ToString();
             this.Engine.StartGame();  
         }
 

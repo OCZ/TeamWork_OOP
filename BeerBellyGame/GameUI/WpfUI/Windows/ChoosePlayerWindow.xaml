@@ -4,7 +4,7 @@
         Title="Choose your HERO" 
         Height="620" 
         Width="950">
-    <Grid>
+    <Grid Name="window">
         <Grid.RowDefinitions>
             <RowDefinition Height="140" />
             <RowDefinition Height="410" />
@@ -44,9 +44,10 @@
                 <DropShadowEffect ShadowDepth="10" BlurRadius="10"/>
             </Button.Effect>
         </Button>
-        <Image Grid.Column="0" Name="avatar1" HorizontalAlignment="Left" Height="100" Margin="77,46,0,0" Grid.Row="1" VerticalAlignment="Top" Width="100"/>
-        <Image Grid.Column="1" Name="avatar2" HorizontalAlignment="Left" Height="100" Margin="77,46,0,0" Grid.Row="1" VerticalAlignment="Top" Width="100"/>
-        <Image Grid.Column="2" Name="avatar3" HorizontalAlignment="Left" Height="100" Margin="77,46,0,0" Grid.Row="1" VerticalAlignment="Top" Width="100"/>
-
+        <Image Grid.Column="0" Name="avatar1" HorizontalAlignment="Left" Height="50" Margin="128,46,0,0" Grid.Row="1" VerticalAlignment="Top" Width="50"/>           <Image Grid.Column="1" Name="avatar2" HorizontalAlignment="Left" Height="50" Margin="136,46,0,0" Grid.Row="1" VerticalAlignment="Top" Width="50"/>
+        <Image Grid.Column="2" Name="avatar3" HorizontalAlignment="Left" Height="50" Margin="139,46,0,0" Grid.Row="1" VerticalAlignment="Top" Width="50"/>
+         <TextBlock Name="descr1" HorizontalAlignment="Left" Margin="44,137,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="175" Width="219" FontFamily="Comic Sans MS" FontWeight="Bold" FontSize="20"/>
+        <TextBlock Name ="descr2" HorizontalAlignment="Left" Margin="66,137,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="175" Width="219" FontFamily="Comic Sans MS" FontWeight="Bold" FontSize="20" Grid.Column="1"/>
+        <TextBlock Name="descr3" HorizontalAlignment="Left" Margin="44,137,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="175" Width="219" FontFamily="Comic Sans MS" FontWeight="Bold" FontSize="20" Grid.Column="2"/>
     </Grid>
 </Window>

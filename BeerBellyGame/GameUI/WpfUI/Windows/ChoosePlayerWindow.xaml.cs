@@ -21,25 +21,45 @@
 
     public partial class ChoosePlayerWindow : Window
     {
+      
+
         private IRace _selectedPlayerRace;
-        private ICollection<IRace> _playeRaces = new List<IRace>()
-        {
-            new PickachuRace(), 
-            
-        };
+        private readonly IList<IRace> PlayerRaces = RacesExtractor.Instance.PlayerRaces;
+        private IEnumerable<Image> avatars;
+        private IEnumerable<TextBlock> descriptions;
+
+
+
         public ChoosePlayerWindow()
         {
             InitializeComponent();
-
-            var avatarSource = new BitmapImage();
-            avatarSource.BeginInit();
-            avatarSource.UriSource = new Uri(new PickachuRace().DefaultAvatar, UriKind.Relative);
-            avatarSource.EndInit();
-
-            this.avatar1.Source = avatarSource;
+            avatars = this.FindVisualChildren<Image>(this.window).ToList();
+            descriptions = this.FindVisualChildren<TextBlock>(this.window).ToList();
+            this.SetControls(PlayerRaces);
             this.BtnStartGame.IsEnabled = false;
-
         }
+
+        private void SetControls(IList<IRace> playerRaces)
+        {
+            int index = 0;
+            foreach (var avatar in avatars)
+            {
+                var avatarSource = new BitmapImage();
+                avatarSource.BeginInit();
+                avatarSource.UriSource = new Uri(playerRaces[index].DefaultAvatar, UriKind.Relative);
+                avatarSource.EndInit();
+
+                avatar.Source = avatarSource;
+                index++;
+            }
+            index = 0;
+            foreach (var description in descriptions)
+            {
+                description.Text = playerRaces[index].Description;
+                index++;
+            }
+        }
+        
         
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
@@ -76,20 +96,42 @@
         private void BtnChoosePickachu_Click(object sender, RoutedEventArgs e)
         {
             this.BtnStartGame.IsEnabled = true;
-            this._selectedPlayerRace = new PickachuRace();
+            this._selectedPlayerRace = PlayerRaces[0];
+            //MapLoader.Instance.PlayerRace = this._selectedPlayerRace;
+            
         }
 
 
         private void BtnChooseLeprechaun_Click(object sender, RoutedEventArgs e)
         {
             this.BtnStartGame.IsEnabled = true;
-            this._selectedPlayerRace = new MageRace();
+            this._selectedPlayerRace = PlayerRaces[1];
         }
 
         private void BtnChoosePoliceman_Click(object sender, RoutedEventArgs e)
         {
             this.BtnStartGame.IsEnabled = true;
-            this._selectedPlayerRace = new ChuckNorrisRace();
+            this._selectedPlayerRace = PlayerRaces[2];
+        }
+
+        private IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
+        {
+            if (depObj != null)
+            {
+                for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
+                {
+                    DependencyObject child = VisualTreeHelper.GetChild(depObj, i);
+                    if (child != null && child is T)
+                    {
+                        yield return (T)child;
+                    }
+
+                    foreach (T childOfChild in FindVisualChildren<T>(child))
+                    {
+                        yield return childOfChild;
+                    }
+                }
+            }
         }
     }
 }

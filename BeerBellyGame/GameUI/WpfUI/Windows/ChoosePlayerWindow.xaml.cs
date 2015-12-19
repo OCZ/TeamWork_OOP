@@ -13,6 +13,7 @@
     using System.Windows.Media;
     using System.Windows.Media.Imaging;
     using System.Windows.Shapes;
+    using Engines;
     using GameObjects.Characters.Races;
     using GameObjects.Characters.Races.AIPlayerRaces;
     using GameObjects.Characters.Races.PlayerRaces;
@@ -57,7 +58,8 @@
         }
         private void BtnStartGame_Click(object sender, RoutedEventArgs e)
         {
-            var gameWindow = new MainWindow(this._selectedPlayerRace)
+            MapLoader.Instance.PlayerRace = this._selectedPlayerRace;
+            var gameWindow = new MainWindow()
             {
                 Height = AppSettings.WindowHeight,
                 Width = AppSettings.WindowWidth,

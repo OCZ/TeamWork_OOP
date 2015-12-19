@@ -10,7 +10,6 @@ namespace BeerBellyGame.Engines
     
     using GameObjects;
     using GameObjects.Characters;
-    using GameObjects.HUD;
     using GameObjects.Interfaces;
     using GameObjects.Items;
     using GameUI.WpfUI;
@@ -19,53 +18,33 @@ namespace BeerBellyGame.Engines
 
     public class GameEngine
     {
-        //the interval of time in milliseconds which the game will be redrawn
-        private readonly IRace _playerRace;
+
         private readonly IGameRenderer _renderer;
         private readonly IInputHandlerer _inputHandlerer;
       
-       
-        public GameEngine(IGameRenderer renderer, IInputHandlerer inputHandlerer, IRace playerRace)
+        public GameEngine(IGameRenderer renderer, IInputHandlerer inputHandlerer)
         {
-            this._playerRace = playerRace;
             this._renderer = renderer;
             this._inputHandlerer = inputHandlerer;
             this._inputHandlerer.UiActionHappened += this.HandleUiActionHappend;
-            MapLoader.Load(this._playerRace);
-            this.ItemsToCollect = MapLoader.ItemToCollect;
         }
 
-        public Player Player 
-        {
-            get { return MapLoader.Player; } 
-        }
-        public Friend Friend
-        {
-            get { return MapLoader.Friend; } 
-        }
-
-        public List<Enemy> Enemies
-        {
-            get { return MapLoader.Enemies; } 
-        }
-
+        public Player Player { get; set; }
+        public Friend Friend{ get; set; }
+        public List<Enemy> Enemies{ get; set; }
         public List<CollectableItem> ItemsToCollect {get; set; }
-
-        public List<MazeItem> Maze
-        {
-            get { return MapLoader.Maze; } 
-        }
+        public List<MazeItem> Maze { get; set; }
         
-        public Hud Hud
-        { 
-            get { return Hud.Instance; }
-        }
-
-        
-
+       
         public void InitGame()
         {
-            this.Hud.Size = new Size(30, 70);
+            MapLoader.Instance.Load();
+            this.Player = MapLoader.Instance.Player;
+            this.Friend = MapLoader.Instance.Friend;
+            this.Enemies = MapLoader.Instance.Enemies;
+            this.ItemsToCollect = MapLoader.Instance.ItemToCollect;
+            this.Maze = MapLoader.Instance.Maze;
+          
         }
 
         public void StartGame() 
@@ -79,23 +58,26 @@ namespace BeerBellyGame.Engines
         private void GameLoop(object sender, EventArgs e)
         {
             this._renderer.Clear();
-           
+             
             foreach (var mazeItem in this.Maze)
             {
                 this._renderer.Draw(mazeItem);
             }
+       
             foreach (var item in this.ItemsToCollect)
             {
                 this._renderer.Draw(item);
             }
 
-            this._renderer.Draw(this.Player);
-            this._renderer.Draw(this.Friend);
-            this._renderer.Draw(this.Hud);
             foreach (var enemy in Enemies)
             {
                 this._renderer.Draw(enemy);
             }
+
+            this._renderer.Draw(this.Player);
+            this._renderer.Draw(this.Friend);
+            
+            
             
            
             ////prowerka na koliziqta
@@ -124,11 +106,8 @@ namespace BeerBellyGame.Engines
             this.Friend.Move(this.Player, Maze);
             this.Enemies.ForEach(en => en.Move(this.Player, Maze));
             this.Enemies.RemoveAll(enemy => enemy.IsAlive == false);
-
-          //  wzetite itemy trqbwa da se premahwat ot kolekciite
         }
 
-        //the method will be exec on UIaction happend
         private void HandleUiActionHappend(object sender, KeyDownEventArgs e)
         {
             var left = this.Player.Position.Left;

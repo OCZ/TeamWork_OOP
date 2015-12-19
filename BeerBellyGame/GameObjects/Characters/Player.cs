@@ -27,10 +27,8 @@ namespace BeerBellyGame.GameObjects.Characters
                 var direction = IntersectWith(item);
                 if (direction != Direction.None)
                 {
-                    var i = 0;
                     item.Consume(this);
                     item.IsCollected = true;
-                    // items.Remove(item);
                 }
             }
             items.RemoveAll(item => item.IsCollected);

@@ -10,35 +10,72 @@
     using GameObjects.Interfaces;
     using GameObjects.Items;
 
-    public static class MapLoader
+    public class MapLoader
     {
-        public static Player Player;
-        public static Friend Friend;
-        private static IRace _playerRace;
-        private static IRace _friendRace;
-        private static IRace _enemyRace;
-        private static readonly IList<IRace> EnemyRaces = RacesExtractor.Instance.EnemyRaces;
-        private static readonly IList<IRace> FrienRaces = RacesExtractor.Instance.FriendRaces;
-        public static List<Enemy> Enemies = new List<Enemy>();
-        public static List<CollectableItem> ItemToCollect = new List<CollectableItem>();
-        public static List<MazeItem> Maze = new List<MazeItem>();
-        private static readonly Random Rand = new Random();
+        private static volatile MapLoader instance;
+        private static object syncRoot = new Object();
+
+        private IRace _friendRace;
+        private IRace _enemyRace;
+
+        private readonly IList<IRace> _enemyRaces;
+        private readonly IList<IRace> _frienRaces;
+        private readonly Random Rand = new Random();
+
         
-        public static void Load(IRace playerRace)
+        
+
+        private MapLoader()
+        {
+            this._frienRaces = RacesExtractor.Instance.FriendRaces;
+            this._enemyRaces = RacesExtractor.Instance.EnemyRaces;
+            this._friendRace = this.ChoseRandomFriendRace();
+            this._enemyRace = this.ChoseRandomEnemyRace();
+            this.Enemies = new List<Enemy>();
+            this.ItemToCollect = new List<CollectableItem>();
+            this.Maze = new List<MazeItem>();
+            
+            
+        }
+
+        public static MapLoader Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    lock (syncRoot)
+                    {
+                        if (instance == null)
+                        {
+                            instance = new MapLoader();
+                        }
+                    }
+                }
+                return instance;
+            }
+        }
+
+        public IRace PlayerRace { get; set; }
+        public Player Player { get; private set; }
+        public Friend Friend { get; private set; }
+        public List<Enemy> Enemies { get; private set; }
+        public List<CollectableItem> ItemToCollect { get; private set; }
+        public List<MazeItem> Maze { get; private set; }
+
+
+        public void Load()
         {
             //TODO implement diff levels 
             //-> pass as parameter in methed the level create sweatch for levels and set for mapPath diff map resourse
 
+            
             string mapPath = AppSettings.MapLevel1;
-            _playerRace = playerRace;
-            _friendRace = ChoseRandomFriendRace();
-            _enemyRace = ChoseRandomEnemyRace();
             var frientFactory = new FriendFactory();
             var enemyFactory = new EnemyFactory();
-            
+
             var width = AppSettings.MapElementSize.Width;
-            var height = AppSettings.MapElementSize.Height;
-             
+            var height = AppSettings.MapElementSize.Height; 
             
 
             try
@@ -58,7 +95,7 @@
                             switch (currentsymbol)
                             {
                                 case 'p':
-                                    Player = new Player(_playerRace)
+                                    Player = new Player(this.PlayerRace)
                                     {
                                         Position = new Position (left, top),
                                         Size = new Size(width, height)
@@ -128,16 +165,16 @@
             }
         }
 
-        private static IRace ChoseRandomEnemyRace()
+        private IRace ChoseRandomEnemyRace()
         {
-            var index = Rand.Next(0, EnemyRaces.Count);
-            return EnemyRaces[index];
+            var index = this.Rand.Next(0, this._enemyRaces.Count);
+            return _enemyRaces[index];
         }
 
-        private static IRace ChoseRandomFriendRace()
+        private IRace ChoseRandomFriendRace()
         {
-            var index = Rand.Next(0, FrienRaces.Count);
-            return FrienRaces[index];
+            var index = this.Rand.Next(0, this._frienRaces.Count);
+            return _frienRaces[index];
         }
     }
 }

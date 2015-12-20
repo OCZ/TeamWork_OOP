@@ -85,6 +85,7 @@
     <Compile Include="GameObjects\Characters\Races\AIPlayerRaces\PolicemanRace.cs" />
     <Compile Include="GameObjects\Direction.cs" />
     <Compile Include="GameObjects\Items\BeerItem.cs" />
+    <Compile Include="GameObjects\Items\Bullet.cs" />
     <Compile Include="GameObjects\Items\CollectableItem.cs" />
     <Compile Include="GameObjects\Items\LargeHealthItem.cs" />
     <Compile Include="GameObjects\Items\LifeItem.cs" />
@@ -227,6 +228,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Content\Windows\logo_100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Items\bullet.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

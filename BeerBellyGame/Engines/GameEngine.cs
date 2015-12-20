@@ -11,12 +11,10 @@ namespace BeerBellyGame.Engines
     using GameObjects;
     using GameObjects.Characters;
     using GameObjects.HUD;
-    using GameObjects.Interfaces;
     using GameObjects.Items;
     using GameUI.WpfUI;
 
     
-
     public class GameEngine
     {
 
@@ -35,8 +33,8 @@ namespace BeerBellyGame.Engines
         public List<Enemy> Enemies{ get; set; }
         public List<CollectableItem> ItemsToCollect {get; set; }
         public List<MazeItem> Maze { get; set; }
-        
-       
+        public List<Bullet> Bullets { get; set; }
+
         public void InitGame()
         {
             MapLoader.Instance.Load();
@@ -46,6 +44,7 @@ namespace BeerBellyGame.Engines
             this.ItemsToCollect = MapLoader.Instance.ItemToCollect;
             this.Maze = MapLoader.Instance.Maze;
             Hud.Instance.PopulateElements(this.Player, this.Friend);
+            this.Bullets = new List<Bullet>();
           
         }
 
@@ -71,7 +70,7 @@ namespace BeerBellyGame.Engines
             {
                 this._renderer.Draw(item);
             }
-
+            
             foreach (var enemy in this.Enemies)
             {
                 this._renderer.Draw(enemy);
@@ -79,36 +78,33 @@ namespace BeerBellyGame.Engines
 
             this._renderer.Draw(this.Player);
             this._renderer.Draw(this.Friend);
-            
-            
-            
+            //check za koliziq
+            foreach (var bullet in this.Bullets)
+            {
+                bullet.
+            }
            
-            ////prowerka na koliziqta
-            //foreach (var enemy in Enemies)
-            //{
-            //    int pBottomRight = 0;
-            //    int pBottomLeft = 0;
-            //    int pTopRight = 0;
-            //    int pTopLeft = 0;
+            //remove bollets
+            this.Bullets.RemoveAll(b => b.IsFlaying == false);
 
-            //    int eBottomRight = 0;
-            //    int eBottomLeft = 0;
-            //    int eTopRight = 0;
-            //    int eTopLeft = 0;
+            //move bulets
+            foreach (var bullet in this.Bullets)
+            {
+               bullet.Move();
+               this._renderer.Draw(bullet);
+            }
 
-
-
-
-            //    bool shouldDie = false;
-            //    if (shouldDie)
-            //    {
-            //        enemy.IsAlive = false;
-            //    }
-            //}
+            //draw boolets
+            foreach (var bullet in this.Bullets)
+            {
+                this._renderer.Draw(bullet);
+            }
+           
             EnemyAttack();
             this.Friend.Move(this.Player, Maze);
             this.Enemies.ForEach(en => en.Move(this.Player, Maze));
             this.Enemies.RemoveAll(enemy => enemy.IsAlive == false);
+            this.Bullets.RemoveAll(bullet => bullet.IsFlaying == false);
         }
 
         private void HandleUiActionHappend(object sender, KeyDownEventArgs e)
@@ -124,28 +120,53 @@ namespace BeerBellyGame.Engines
                 case GameCommand.MoveDown:
                     if(possibleMovements.Contains(Direction.Down))
                         this.Player.Position = new Position(left, top + AppSettings.MopvementSpeed);
+                        this.Player.LastMoveDirection = Direction.Down;
                         this.ItemsToCollect = this.Player.PosibleCollection(this.ItemsToCollect);
                     break;
                 case GameCommand.MoveUp:
                     if (possibleMovements.Contains(Direction.Up))
                         this.Player.Position = new Position(left, top - AppSettings.MopvementSpeed);
+                        this.Player.LastMoveDirection = Direction.Up;
                         this.ItemsToCollect = this.Player.PosibleCollection(this.ItemsToCollect);
                     break;
                 case GameCommand.MoveLeft:
                     if (possibleMovements.Contains(Direction.Left))
                         this.Player.Position = new Position(left - AppSettings.MopvementSpeed, top);
+                        this.Player.LastMoveDirection = Direction.Left;
                         this.ItemsToCollect = this.Player.PosibleCollection(this.ItemsToCollect);
                     break;
                 case GameCommand.MoveRight:
                     if (possibleMovements.Contains(Direction.Right))
                         this.Player.Position = new Position(left + AppSettings.MopvementSpeed, top);
+                        this.Player.LastMoveDirection = Direction.Right;
                         this.ItemsToCollect = this.Player.PosibleCollection(this.ItemsToCollect);
                     break;
                 case GameCommand.Attack:
                     //this.PlayerAttack();
+                    this.Fire();
                     break;
             }
         }
+
+        private void Fire()
+        {
+            var bullet = new Bullet(this.Player);
+            this.Bullets.Add(bullet);
+        }
+
+        //private int GetLeft(int left, Direction lastMoveDirection)
+        //{
+        //    int bulletLeft;
+        //    switch (lastMoveDirection)
+        //    {
+        //        case Direction.Right:
+        //            bulletLeft = left + this.Player.Size.Width;
+        //            break;
+        //        default:
+        //            bulletLeft = left;
+        //    }
+        //    return bulletLeft;
+        //}
 
         private void EnemyAttack()
         {

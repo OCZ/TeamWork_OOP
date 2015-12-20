@@ -11,8 +11,26 @@ namespace BeerBellyGame.GameObjects.Characters
         public Player(IRace race)
             : base(DefaultLifes, race)
         {
+            this.LastMoveDirection = Direction.None;
+            this.Bullets = new List<Bullet>();
         }
 
+        public Direction LastMoveDirection { get; set; }
+        public List<Bullet> Bullets { get; set; }
+
+
+        //public void Attack()
+        //{
+        //    var bullet = new Bullet
+        //    {
+        //        Position = new Position(this.Position.Left, this.Position.Top),
+        //        Direction = this.LastMoveDirection
+        //    };
+        //    bullet.SetPosition(this.LastMoveDirection, this.Size, this.Position);
+        // //   this.Player.Position = new Position(left + AppSettings.MopvementSpeed, top);
+        //}
+
+        
         public bool CanAttack(IDrawable e)
         {
             //TODO: Implement player's detection system which should be like enemy on left
@@ -34,5 +52,7 @@ namespace BeerBellyGame.GameObjects.Characters
             items.RemoveAll(item => item.IsCollected);
             return items;
         }
+
+
     }
 }

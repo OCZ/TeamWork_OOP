@@ -2,9 +2,7 @@
 
 namespace BeerBellyGame.GameObjects.Items
 {
-    using Interfaces;
-
-    public class BeerItem: CollectableItem
+   public class BeerItem: CollectableItem
     {
         public BeerItem()
         {

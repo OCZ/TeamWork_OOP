@@ -5,11 +5,17 @@
     [EnemyRace]
     public class LeprechaunRace: AbstractRace
     {
-        public LeprechaunRace() : base( AppSettings.RaceAggressionRangeLeprechaun, 
-                                        AppSettings.RaceAggressionLeprechaun, 
-                                        AppSettings.RaceAvatarLeprechaun,
-                                        AppSettings.RaceDescriptionLeprechaun)
-        {
+        
+        private const string LeprechaunAvatar = "/Content/Characters/leprechaun_v2.png";
+        private const string LeprechaunDescription = "Leprechaun the green hero";
+        private const int    LeprechaunAggressionRange = 1;
+        private const double LeprechaunAggression = 300.2;
+
+        public LeprechaunRace(): base(  LeprechaunAggressionRange,
+                                        LeprechaunAggression,
+                                        LeprechaunAvatar,
+                                        LeprechaunDescription)
+        {                               
         }
     }
 }

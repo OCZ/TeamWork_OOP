@@ -79,6 +79,7 @@
     <Compile Include="GameObjects\Interfaces\IDrawable.cs" />
     <Compile Include="GameObjects\Interfaces\IEquipable.cs" />
     <Compile Include="GameObjects\Interfaces\IHealable.cs" />
+    <Compile Include="GameObjects\Interfaces\IMovable.cs" />
     <Compile Include="GameObjects\Interfaces\IRace.cs" />
     <Compile Include="GameObjects\Characters\Races\AbstractRace.cs" />
     <Compile Include="GameObjects\Characters\Races\PlayerRaces\PickachuRace.cs" />

@@ -56,13 +56,7 @@ namespace BeerBellyGame.GameObjects.Characters
             return directions;
         }
 
-//        public void Attack()
-//        {
-//            if ()
-//            {
-//                
-//            }
-//        }
+
 
         public void EquipWeapon(WeaponItem i)
         {

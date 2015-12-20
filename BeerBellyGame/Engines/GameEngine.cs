@@ -78,20 +78,18 @@ namespace BeerBellyGame.Engines
 
             this._renderer.Draw(this.Player);
             this._renderer.Draw(this.Friend);
-            //check za koliziq
-            foreach (var bullet in this.Bullets)
-            {
-                bullet.
-            }
-           
+            
             //remove bollets
             this.Bullets.RemoveAll(b => b.IsFlaying == false);
 
             //move bulets
             foreach (var bullet in this.Bullets)
             {
-               bullet.Move();
-               this._renderer.Draw(bullet);
+               this.Enemies = bullet.Move(this.Maze, this.Enemies);
+                if (bullet.IsFlaying)
+                {
+                    this._renderer.Draw(bullet);     
+                }
             }
 
             //draw boolets
@@ -142,7 +140,6 @@ namespace BeerBellyGame.Engines
                         this.ItemsToCollect = this.Player.PosibleCollection(this.ItemsToCollect);
                     break;
                 case GameCommand.Attack:
-                    //this.PlayerAttack();
                     this.Fire();
                     break;
             }
@@ -153,20 +150,6 @@ namespace BeerBellyGame.Engines
             var bullet = new Bullet(this.Player);
             this.Bullets.Add(bullet);
         }
-
-        //private int GetLeft(int left, Direction lastMoveDirection)
-        //{
-        //    int bulletLeft;
-        //    switch (lastMoveDirection)
-        //    {
-        //        case Direction.Right:
-        //            bulletLeft = left + this.Player.Size.Width;
-        //            break;
-        //        default:
-        //            bulletLeft = left;
-        //    }
-        //    return bulletLeft;
-        //}
 
         private void EnemyAttack()
         {

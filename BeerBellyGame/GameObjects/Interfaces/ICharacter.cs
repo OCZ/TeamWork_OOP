@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 namespace BeerBellyGame.GameObjects.Interfaces
 {
-    public interface ICharacter
+    public interface ICharacter: IMovable
     {
         bool IsAlive { get; set; }
         int Life { get; set; }
@@ -13,6 +13,5 @@ namespace BeerBellyGame.GameObjects.Interfaces
         double Money { get; set; }
         string Description { get; set; }
 
-        ICollection<Direction> PossibleMovements(ICollection<MazeItem> objs);
     }
 }

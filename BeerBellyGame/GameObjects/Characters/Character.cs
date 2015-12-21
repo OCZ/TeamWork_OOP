@@ -10,7 +10,7 @@ namespace BeerBellyGame.GameObjects.Characters
 
     public abstract class Character: GameObject, ICharacter
     {
-        private const double DeffHealth = 100;
+        public const double DeffHealth = 100;
 
         protected Character(int lifes, IRace race)
         {

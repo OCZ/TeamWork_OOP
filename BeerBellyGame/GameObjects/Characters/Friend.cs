@@ -21,6 +21,33 @@ using System.Collections.Generic;
             this.NormalAI = ai;
         }
 
+        public override double Health
+        {
+            get
+            {
+                return base.Health;
+            }
+            set
+            {
+                if (value <= 0)
+                {
+                    if (this.Life == 0)
+                    {
+                        this.IsAlive = false;
+                    }
+                    else
+                    {
+                        this.Life--;
+                        this.Health = DeffHealth;
+                    }
+                }
+                else
+                {
+                    base.Health = value;
+                }
+            }
+        }
+
         public void AddFrined(Player f)
         {
             this.FriendToHeal = f;

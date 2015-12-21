@@ -81,7 +81,10 @@ namespace BeerBellyGame.Engines
             }
 
             this._renderer.Draw(this.Player);
-            this._renderer.Draw(this.Friend);
+            if (this.Friend.IsAlive)
+            {
+                this._renderer.Draw(this.Friend);
+            }
             
             //remove bollets
             this.Bullets.RemoveAll(b => b.IsFlaying == false);
@@ -104,10 +107,6 @@ namespace BeerBellyGame.Engines
            
             EnemyAttack();
             this.Friend.Move(this.Player, Maze);
-            if (this.Friend.IsAlive == false)
-            {
-                //this.Friend = null;
-            }
 
             this.Enemies.ForEach(en => en.Move(this.Player, Maze));
             this.Enemies.RemoveAll(enemy => enemy.IsAlive == false);

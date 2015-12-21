@@ -29,14 +29,17 @@
 
         public void Draw(params IDrawable[] gameObjects)
         {
-            foreach (GameObject go in gameObjects)
+            if (gameObjects != null)
             {
-                if (go is Hud)
+                foreach (GameObject go in gameObjects)
                 {
-                    this.DrawHud(go);
-                }
-                else this.DrowGo(go);
-            }       
+                    if (go is Hud)
+                    {
+                        this.DrawHud(go);
+                    }
+                    else this.DrowGo(go);
+                } 
+            }   
         }
 
         public void ShowGameSatgeView(GameStage gameStage)

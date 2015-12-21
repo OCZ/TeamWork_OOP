@@ -13,7 +13,7 @@
 
     public partial class App : Application
     {
-        private void ApplicationStartup(object sender, StartupEventArgs e)
+        public void ApplicationStartup(object sender, StartupEventArgs e)
         {
             var window = new MenuWindow()
             {

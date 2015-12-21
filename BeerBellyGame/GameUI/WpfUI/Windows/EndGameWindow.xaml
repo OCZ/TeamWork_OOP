@@ -1,0 +1,22 @@
+﻿<Window x:Class="BeerBellyGame.GameUI.WpfUI.Windows.EndGameWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title = "End Game" 
+        Height="620" 
+        Width="950"
+        ResizeMode="NoResize">
+    <Grid>
+       
+        <Image  Name="img_logo"  HorizontalAlignment="Left" Height="185" VerticalAlignment="Top" Width="278" Source="/BeerBellyGame;component/Content/Windows/logo.png" Margin="22,8,0,0"/>
+        <TextBlock HorizontalAlignment="Center" Margin="147,139,692,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="23" Width="105" FontFamily="Comic Sans MS" FontSize="16" Foreground="#FF3E2E21" FontWeight="Bold" Text=" the GAME">
+            <TextBlock.Effect>
+                <DropShadowEffect Color="#FFFCBE39" BlurRadius="10"/>
+            </TextBlock.Effect>
+        </TextBlock>
+        <TextBlock Name="Result" HorizontalAlignment="Center" Margin="10,243,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="193" Width="924" FontFamily="Comic Sans MS" FontSize="48" Foreground="#FF3E2E21">
+            <TextBlock.Effect>
+                <DropShadowEffect Color="#FFFCBE39" BlurRadius="10" ShadowDepth="10"/>
+            </TextBlock.Effect></TextBlock>
+
+    </Grid>
+</Window>

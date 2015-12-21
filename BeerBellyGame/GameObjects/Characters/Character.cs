@@ -30,7 +30,7 @@ namespace BeerBellyGame.GameObjects.Characters
         public IRace Race { get; set; }
         public bool IsAlive { get; set; }
         public int Life { get; set; }
-        public double Health { get; set; }
+        public virtual double Health { get; set; }
         public int BeerBelly { get; set; }
         public int AggressionRange { get; set; }
         public double Aggression { get; set; }

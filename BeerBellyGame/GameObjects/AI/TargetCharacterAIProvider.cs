@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using Items;
+    using BeerBellyGame.GameObjects.Characters;
 
     public class TargetCharacterAIProvider : AIProvider
     {

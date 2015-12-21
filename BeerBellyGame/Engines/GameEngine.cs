@@ -40,6 +40,7 @@ namespace BeerBellyGame.Engines
             MapLoader.Instance.Load();
             this.Player = MapLoader.Instance.Player;
             this.Friend = MapLoader.Instance.Friend;
+            this.Friend.AddFrined(this.Player);
             this.Enemies = MapLoader.Instance.Enemies;
             this.ItemsToCollect = MapLoader.Instance.ItemToCollect;
             this.Maze = MapLoader.Instance.Maze;
@@ -100,6 +101,11 @@ namespace BeerBellyGame.Engines
            
             EnemyAttack();
             this.Friend.Move(this.Player, Maze);
+            if (this.Friend.IsAlive == false)
+            {
+                //this.Friend = null;
+            }
+
             this.Enemies.ForEach(en => en.Move(this.Player, Maze));
             this.Enemies.RemoveAll(enemy => enemy.IsAlive == false);
             this.Bullets.RemoveAll(bullet => bullet.IsFlaying == false);

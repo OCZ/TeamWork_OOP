@@ -7,7 +7,7 @@
     {
        public override Character Create(IRace race)
         {
-            var friend = new Friend(race, new RandomAIProvider());
+            var friend = new Friend(race, new RandomAIProvider(), new TargetCharacterAIProvider());
             return friend;
         }
     }

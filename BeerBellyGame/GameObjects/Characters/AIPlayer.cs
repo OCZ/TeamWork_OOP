@@ -7,7 +7,7 @@ namespace BeerBellyGame.GameObjects.Characters
 {
     public abstract class AIPlayer : Character, IAIMovement
     {
-        private AIProvider AI;
+        protected AIProvider AI;
 
         public AIPlayer(IRace race, AIProvider ai, int DefaultLifes)
             : base(DefaultLifes, race)
@@ -16,7 +16,7 @@ namespace BeerBellyGame.GameObjects.Characters
             this.AI.Character = this;
         }
 
-        public void Move(GameObject moveTo, ICollection<MazeItem> obstacles)
+        public virtual void Move(GameObject moveTo, ICollection<MazeItem> obstacles)
         {
             int left = this.Position.Left;
             int top = this.Position.Top;

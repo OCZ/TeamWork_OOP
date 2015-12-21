@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using BeerBellyGame.GameObjects.Interfaces;
 using BeerBellyGame.GameObjects.Items;
+using System;
 
 namespace BeerBellyGame.GameObjects.Characters
 {
     public class Player : Character
     {
         private const int DefaultLifes = 3;
+        private const int NeedHealMinPoints = 40;
 
         public Player(IRace race)
             : base(DefaultLifes, race)
@@ -15,9 +17,25 @@ namespace BeerBellyGame.GameObjects.Characters
             this.Bullets = new List<Bullet>();
         }
 
+        public override double Health
+        {
+            get
+            {
+                return base.Health;
+            }
+            set
+            {
+                if (value < NeedHealMinPoints)
+                {
+                    this.NeedHealEventHandler(this, new EventArgs());
+                }
+
+                base.Health = value;
+            }
+        }
         public Direction LastMoveDirection { get; set; }
         public List<Bullet> Bullets { get; set; }
-
+        public event EventHandler NeedHealEventHandler;
 
         //public void Attack()
         //{

@@ -3,8 +3,10 @@
     using System;
     using System.Windows;
     using System.Windows.Controls;
+    using System.Windows.Media;
     using System.Windows.Media.Imaging;
-   
+    using Windows;
+    using Engines;
     using GameObjects;
     using GameObjects.Characters;
     using GameObjects.Interfaces;
@@ -36,6 +38,40 @@
                 else this.DrowGo(go);
             }       
         }
+
+        public void ShowGameSatgeView(GameStage gameStage)
+        {
+            switch (gameStage)
+            {
+                    case GameStage.HowTo:
+                    break;
+                    case GameStage.MainMenu:
+                    break;
+                    case GameStage.SetPlayer:
+                    break;
+                    case GameStage.Won:
+                    case GameStage.Lost:
+                    var endGameWindow = new EndGameWindow(gameStage)
+                    {
+                        Height = AppSettings.WindowHeight,
+                        Width = AppSettings.WindowWidth,
+                        ResizeMode = ResizeMode.NoResize,
+                        WindowStartupLocation = WindowStartupLocation.CenterScreen,
+                        Background = new ImageBrush(new BitmapImage(new Uri(AppSettings.WindowBackgraund))),
+                        Icon = new BitmapImage(new Uri(AppSettings.WindowIcon))
+                    };
+                    endGameWindow.Show();
+                    break;
+            }
+            foreach (Window window in Application.Current.Windows)
+            {
+                if (window.Title == "The Beer Belly Game")
+                {
+                    window.Close();
+                }
+            }
+        }
+
         private void DrowGo(GameObject go)
         {
             var avatarSource = new BitmapImage();

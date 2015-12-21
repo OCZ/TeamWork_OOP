@@ -17,9 +17,7 @@
 
     public partial class MenuWindow : Window
     {
-        public IRace PlayerRace { get; set; }
-        public List<IRace> PlayerRaces { get; set; }
-
+        
         public MenuWindow()
         {
             InitializeComponent();

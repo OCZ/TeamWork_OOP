@@ -51,6 +51,7 @@
     </ApplicationDefinition>
     <Compile Include="AppSettings.cs" />
     <Compile Include="Attributes\PlayerRaceAttribute.cs" />
+    <Compile Include="Engines\GameStage.cs" />
     <Compile Include="Engines\MapLoader.cs" />
     <Compile Include="Engines\RacesExtractor.cs" />
     <Compile Include="GameObjects\AI\AIProvider.cs" />
@@ -100,6 +101,9 @@
     <Compile Include="GameUI\WpfUI\Windows\ChoosePlayerWindow.xaml.cs">
       <DependentUpon>ChoosePlayerWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GameUI\WpfUI\Windows\EndGameWindow.xaml.cs">
+      <DependentUpon>EndGameWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GameUI\WpfUI\Windows\HowToPlayWindow.xaml.cs">
       <DependentUpon>HowToPlayWindow.xaml</DependentUpon>
     </Compile>
@@ -111,6 +115,10 @@
     <Compile Include="GameUI\IRenderer.cs" />
     <Compile Include="GameUI\WpfUI\WpfRenderer.cs" />
     <Page Include="GameUI\WpfUI\Windows\ChoosePlayerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GameUI\WpfUI\Windows\EndGameWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

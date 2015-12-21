@@ -20,6 +20,7 @@ namespace BeerBellyGame.Engines
 
         private readonly IGameRenderer _renderer;
         private readonly IInputHandlerer _inputHandlerer;
+        private DispatcherTimer _timer;
       
         public GameEngine(IGameRenderer renderer, IInputHandlerer inputHandlerer)
         {
@@ -34,7 +35,8 @@ namespace BeerBellyGame.Engines
         public List<CollectableItem> ItemsToCollect {get; set; }
         public List<MazeItem> Maze { get; set; }
         public List<Bullet> Bullets { get; set; }
-
+        public GameStage GameStage { get; set; }
+      
         public void InitGame()
         {
             MapLoader.Instance.Load();
@@ -51,15 +53,16 @@ namespace BeerBellyGame.Engines
 
         public void StartGame() 
         {
-           var timer = new DispatcherTimer {Interval = TimeSpan.FromMilliseconds(AppSettings.TimerTickIntervalInMilliseconds)};
-            timer.Tick += this.GameLoop;
-            timer.Start();
+            this._timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(AppSettings.TimerTickIntervalInMilliseconds) };
+            this._timer.Tick += this.GameLoop;
+            this._timer.Start();
            
         }
 
         private void GameLoop(object sender, EventArgs e)
         {
             this._renderer.Clear();
+            
             Hud.Instance.RefreshDynamicElements(this.Player, this.Friend);
             this._renderer.Draw(Hud.Instance);
             foreach (var mazeItem in this.Maze)
@@ -109,6 +112,29 @@ namespace BeerBellyGame.Engines
             this.Enemies.ForEach(en => en.Move(this.Player, Maze));
             this.Enemies.RemoveAll(enemy => enemy.IsAlive == false);
             this.Bullets.RemoveAll(bullet => bullet.IsFlaying == false);
+            if (this.CheckGameEnd())
+            {
+                this._timer.Stop();
+                this._renderer.ShowGameSatgeView(this.GameStage);
+                return;
+            }
+            
+        }
+
+        private bool CheckGameEnd()
+        {
+            var beerCount = ItemsToCollect.Count(item => item.GetType() == typeof(BeerItem));
+            if (beerCount == 0)
+            {
+                this.GameStage = GameStage.Won;
+                return true;
+            }
+            else if (this.Player.IsAlive == false)
+            {
+                this.GameStage = GameStage.Lost;
+                return true;
+            }
+            return false;
         }
 
         private void HandleUiActionHappend(object sender, KeyDownEventArgs e)
@@ -181,16 +207,5 @@ namespace BeerBellyGame.Engines
             }
         }
 
-        //Work in progress 
-//        private void PlayerAttack()
-//        {
-//            foreach (var enemy in this.Enemies)
-//            {
-//                if (this.Player.IntersectWith(enemy) != Direction.None)
-//                {
-//                    enemy.Health -= this.Player.Aggression;
-//                }
-//            }
-//        }
     }
 }

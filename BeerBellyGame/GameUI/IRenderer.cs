@@ -1,7 +1,7 @@
 ﻿namespace BeerBellyGame.GameUI
 {
     using Engines;
-    using GameObjects.Interfaces;
+    using Interfaces;
 
     public interface IGameRenderer
     {
@@ -9,6 +9,6 @@
 
         void Draw(params IDrawable[] gameObjects);
 
-        void ShowGameSatgeView(GameStage gameStage);
+        void ShowGameSatgeView(GameResult gameStage);
     }
 }

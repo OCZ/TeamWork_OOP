@@ -13,7 +13,6 @@
             return enemy;
         }
 
-       
         private AIProvider GetAI()
         {
             _counter++;
@@ -21,7 +20,6 @@
             {
                 return new TargetCharacterAIProvider();
             }
-            
             return new RandomAIProvider();
         }
     }

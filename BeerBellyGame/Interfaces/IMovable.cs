@@ -1,7 +1,8 @@
-﻿namespace BeerBellyGame.GameObjects.Interfaces
+﻿namespace BeerBellyGame.Interfaces
 {
     using System.Collections.Generic;
-    using Items;
+    using Enums;
+    using GameObjects.Items;
 
     public interface IMovable
     {

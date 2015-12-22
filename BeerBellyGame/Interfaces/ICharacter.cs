@@ -1,6 +1,4 @@
-﻿using BeerBellyGame.GameObjects.Items;
-using System.Collections.Generic;
-namespace BeerBellyGame.GameObjects.Interfaces
+﻿namespace BeerBellyGame.Interfaces
 {
     public interface ICharacter: IMovable
     {

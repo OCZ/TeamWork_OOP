@@ -3,71 +3,63 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using System.Windows;
     using System.Windows.Controls;
-    using System.Windows.Data;
-    using System.Windows.Documents;
-    using System.Windows.Input;
     using System.Windows.Media;
     using System.Windows.Media.Imaging;
-    using System.Windows.Shapes;
+    
     using Engines;
-    using GameObjects.Characters.Races;
-    using GameObjects.Characters.Races.AIPlayerRaces;
-    using GameObjects.Characters.Races.PlayerRaces;
-    using GameObjects.Interfaces;
+    
+    using Interfaces;
 
     public partial class ChoosePlayerWindow : Window
     {
-      
-
         private IRace _selectedPlayerRace;
-        private readonly IList<IRace> PlayerRaces = RacesExtractor.Instance.PlayerRaces;
-        private IEnumerable<Image> avatars;
-        private IEnumerable<TextBlock> descriptions;
-
-
-
+        private readonly IList<IRace> _playerRaces = RacesExtractor.Instance.PlayerRaces;
+        private readonly IEnumerable<Image> _avatars;
+        private readonly IEnumerable<TextBlock> _descriptions;
+        
         public ChoosePlayerWindow()
         {
             InitializeComponent();
-            avatars = this.FindVisualChildren<Image>(this.window).ToList();
-            descriptions = this.FindVisualChildren<TextBlock>(this.window).ToList();
-            this.SetControls(PlayerRaces);
-            this.BtnStartGame.IsEnabled = false;
+            try
+            {
+                _avatars = this.FindVisualChildren<Image>(this.window).ToList();
+                _descriptions = this.FindVisualChildren<TextBlock>(this.window).ToList();
+                this.SetControls(_playerRaces);
+                this.BtnStartGame.IsEnabled = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
 
         private void SetControls(IList<IRace> playerRaces)
         {
-            int index = 0;
-            foreach (var avatar in avatars)
+            var index = 0;
+            foreach (var avatar in _avatars)
             {
-                if (avatar.Name != "Logo")
-                {
-                    var avatarSource = new BitmapImage();
-                    avatarSource.BeginInit();
-                    avatarSource.UriSource = new Uri(playerRaces[index].DefaultAvatar, UriKind.Relative);
-                    avatarSource.EndInit();
-                    avatar.Source = avatarSource;
-                    index++;
-                }
-                
-
+                if (avatar.Name == "Logo") continue;
+                var avatarSource = new BitmapImage();
+                avatarSource.BeginInit();
+                avatarSource.UriSource = new Uri(playerRaces[index].DefaultAvatar, UriKind.Relative);
+                avatarSource.EndInit();
+                avatar.Source = avatarSource;
+                index++;
             }
             index = 0;
-            foreach (var description in descriptions)
+            foreach (var description in _descriptions)
             {
                 description.Text = playerRaces[index].Description;
                 index++;
             }
         }
         
-        
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
-            var window = new MenuWindow()
+            var menuWindow = new MenuWindow()
             {
                 Height = AppSettings.WindowHeight,
                 Width = AppSettings.WindowWidth,
@@ -77,13 +69,13 @@
                 Icon = new BitmapImage(new Uri(AppSettings.WindowIcon))
             };
 
-            window.Show();
+            menuWindow.Show();
             this.Close();
         }
         private void BtnStartGame_Click(object sender, RoutedEventArgs e)
         {
-            MapLoader.Instance.PlayerRace = this._selectedPlayerRace;
-            var gameWindow = new MainWindow()
+         
+            var gameWindow = new MainWindow(this._selectedPlayerRace)
             {
                 Height = AppSettings.WindowHeight,
                 Width = AppSettings.WindowWidth,
@@ -100,22 +92,21 @@
         private void BtnChoosePickachu_Click(object sender, RoutedEventArgs e)
         {
             this.BtnStartGame.IsEnabled = true;
-            this._selectedPlayerRace = PlayerRaces[0];
-            //MapLoader.Instance.PlayerRace = this._selectedPlayerRace;
-            
+            this._selectedPlayerRace = _playerRaces[0];
+           
         }
 
 
         private void BtnChooseLeprechaun_Click(object sender, RoutedEventArgs e)
         {
             this.BtnStartGame.IsEnabled = true;
-            this._selectedPlayerRace = PlayerRaces[1];
+            this._selectedPlayerRace = _playerRaces[1];
         }
 
         private void BtnChoosePoliceman_Click(object sender, RoutedEventArgs e)
         {
             this.BtnStartGame.IsEnabled = true;
-            this._selectedPlayerRace = PlayerRaces[2];
+            this._selectedPlayerRace = _playerRaces[2];
         }
 
         private IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject

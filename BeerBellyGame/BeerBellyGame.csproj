@@ -51,11 +51,13 @@
     </ApplicationDefinition>
     <Compile Include="AppSettings.cs" />
     <Compile Include="Attributes\PlayerRaceAttribute.cs" />
-    <Compile Include="Engines\GameStage.cs" />
+    <Compile Include="Enums\GameResult.cs" />
     <Compile Include="Engines\MapLoader.cs" />
     <Compile Include="Engines\RacesExtractor.cs" />
+    <Compile Include="Exceptions\GameNullException.cs" />
+    <Compile Include="Exceptions\GameOutOfBourdersException.cs" />
     <Compile Include="GameObjects\AI\AIProvider.cs" />
-    <Compile Include="GameObjects\AI\IAIMovement.cs" />
+    <Compile Include="Interfaces\IAIMovement.cs" />
     <Compile Include="GameObjects\AI\RandomAIProvider.cs" />
     <Compile Include="GameObjects\AI\TargetCharacterAIProvider.cs" />
     <Compile Include="GameObjects\Characters\AIPlayer.cs" />
@@ -64,7 +66,6 @@
     <Compile Include="GameObjects\Characters\Factories\CharacterFactory.cs" />
     <Compile Include="GameObjects\Characters\Factories\EnemyFactory.cs" />
     <Compile Include="GameObjects\Characters\Factories\FriendFactory.cs" />
-    <Compile Include="GameObjects\Characters\Factories\IRandomRace.cs" />
     <Compile Include="GameObjects\Characters\Friend.cs" />
     <Compile Include="GameObjects\Characters\Races\AIPlayerRaces\GrandpaRace.cs" />
     <Compile Include="GameObjects\Characters\Races\AIPlayerRaces\LeprechaunRace.cs" />
@@ -76,16 +77,16 @@
     <Compile Include="GameObjects\Characters\Races\PlayerRaces\ChuckNorrisRace.cs" />
     <Compile Include="GameObjects\Characters\Races\PlayerRaces\MageRace.cs" />
     <Compile Include="GameObjects\HUD\Hud.cs" />
-    <Compile Include="GameObjects\Interfaces\ICharacter.cs" />
-    <Compile Include="GameObjects\Interfaces\IDrawable.cs" />
-    <Compile Include="GameObjects\Interfaces\IEquipable.cs" />
-    <Compile Include="GameObjects\Interfaces\IHealable.cs" />
-    <Compile Include="GameObjects\Interfaces\IMovable.cs" />
-    <Compile Include="GameObjects\Interfaces\IRace.cs" />
+    <Compile Include="Interfaces\ICharacter.cs" />
+    <Compile Include="Interfaces\IDrawable.cs" />
+    <Compile Include="Interfaces\IEquipable.cs" />
+    <Compile Include="Interfaces\IHealable.cs" />
+    <Compile Include="Interfaces\IMovable.cs" />
+    <Compile Include="Interfaces\IRace.cs" />
     <Compile Include="GameObjects\Characters\Races\AbstractRace.cs" />
     <Compile Include="GameObjects\Characters\Races\PlayerRaces\PickachuRace.cs" />
     <Compile Include="GameObjects\Characters\Races\AIPlayerRaces\PolicemanRace.cs" />
-    <Compile Include="GameObjects\Direction.cs" />
+    <Compile Include="Enums\Direction.cs" />
     <Compile Include="GameObjects\Items\BeerItem.cs" />
     <Compile Include="GameObjects\Items\Bullet.cs" />
     <Compile Include="GameObjects\Items\CollectableItem.cs" />
@@ -96,7 +97,7 @@
     <Compile Include="GameObjects\Items\SpyToolItem.cs" />
     <Compile Include="GameObjects\Items\WeaponItem.cs" />
     <Compile Include="GameUI\IInputHandlerer.cs" />
-    <Compile Include="GameUI\WpfUI\GameCommand.cs" />
+    <Compile Include="Enums\GameCommand.cs" />
     <Compile Include="GameUI\WpfUI\KeyDownEventArgs.cs" />
     <Compile Include="GameUI\WpfUI\Windows\ChoosePlayerWindow.xaml.cs">
       <DependentUpon>ChoosePlayerWindow.xaml</DependentUpon>
@@ -168,7 +169,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="AI.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -206,11 +206,6 @@
     <Resource Include="Content\Characters\policeman.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Content\Other\beer.png" />
-    <Resource Include="Content\Other\Leprechaun_with_Beer_PNG.png" />
-    <Resource Include="Content\Other\logo.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Content\Characters\pikachu_v1.png" />
   </ItemGroup>
   <ItemGroup>
@@ -240,6 +235,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Content\Items\bullet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Windows\spacebar.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

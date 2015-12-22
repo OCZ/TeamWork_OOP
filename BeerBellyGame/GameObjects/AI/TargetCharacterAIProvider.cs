@@ -1,9 +1,9 @@
 ﻿namespace BeerBellyGame.GameObjects.AI
 {
     using System.Collections.Generic;
+    using Enums;
     using Items;
-    using BeerBellyGame.GameObjects.Characters;
-
+    
     public class TargetCharacterAIProvider : AIProvider
     {
         public override Direction GetDirection(GameObject moveTo, ICollection<MazeItem> obstacles)

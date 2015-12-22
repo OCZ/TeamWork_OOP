@@ -1,9 +1,9 @@
 ﻿namespace BeerBellyGame.GameObjects.Items
 {
     using System.Collections.Generic;
-    using Characters;
-    using Engines;
     using Interfaces;
+    using Characters;
+    using Enums;
 
     public class Bullet: GameObject, IMovable
     {

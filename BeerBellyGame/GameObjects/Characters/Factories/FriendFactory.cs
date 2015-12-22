@@ -2,7 +2,7 @@
 {
     using AI;
     using Interfaces;
-  
+
     public class FriendFactory : CharacterFactory
     {
        public override Character Create(IRace race)

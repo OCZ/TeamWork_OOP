@@ -5,13 +5,8 @@
     [FriendRace]
     public class SuperGrandmaRace : AbstractRace
     {
-        private const string SuperGrandmaAvatar = "/Content/Characters/grandma.png";
-        private const string SuperGrandmaDescription = "GrandMa";
-        private const int    SuperGrandmaAggressionRange = 3;
-        private const double SuperGrandmaAggression = 300.2;
-
         public SuperGrandmaRace()
-            : base(SuperGrandmaAggressionRange, SuperGrandmaAggression, SuperGrandmaAvatar, SuperGrandmaDescription)
+            : base(AppSettings.SuperGrandmaAggressionRange, AppSettings.SuperGrandmaAggression, AppSettings.SuperGrandmaAvatar, AppSettings.SuperGrandmaDescription)
         {
         }
     }

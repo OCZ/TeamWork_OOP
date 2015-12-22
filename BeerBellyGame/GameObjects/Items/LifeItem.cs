@@ -1,8 +1,6 @@
-﻿using BeerBellyGame.GameObjects.Characters;
-
-namespace BeerBellyGame.GameObjects.Items
+﻿namespace BeerBellyGame.GameObjects.Items
 {
-    using Interfaces;
+    using Characters;
 
     public class LifeItem: CollectableItem
     {

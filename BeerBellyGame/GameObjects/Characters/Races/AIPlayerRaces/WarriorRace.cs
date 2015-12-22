@@ -5,17 +5,8 @@
     [EnemyRace]
     public class WarriorRace: AbstractRace
     {
-        private const string WarriorAvatar = "/Content/Characters/warrior.png";
-        private const string WarriorDescription = "Warrior";
-        private const int    WarriorAggressionRange = 3;
-        private const double WarriorAggression = 5;
-
         public WarriorRace()
-            : base(
-            WarriorAggressionRange, 
-            WarriorAggression, 
-            WarriorAvatar, 
-            WarriorDescription)
+            : base(AppSettings.WarriorAggressionRange, AppSettings.WarriorAggression, AppSettings.WarriorAvatar, AppSettings.WarriorDescription)
         {
         }
     }

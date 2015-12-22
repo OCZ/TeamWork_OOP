@@ -1,13 +1,11 @@
-﻿using System;
-using BeerBellyGame.Engines;
-using BeerBellyGame.GameUI.WpfUI.Windows;
-
-namespace BeerBellyGame.GameObjects.Characters
+﻿namespace BeerBellyGame.GameObjects.Characters
 {
-    using Items;
-    using Interfaces;
     using System.Collections.Generic;
-
+    
+    using Enums;
+    using Interfaces;
+    using Items;
+    
     public abstract class Character: GameObject, ICharacter
     {
         public const double DeffHealth = 100;
@@ -21,9 +19,6 @@ namespace BeerBellyGame.GameObjects.Characters
             this.AggressionRange = race.DefaultAggressionRange;
             this.Aggression = race.DefaultAggression;
             this.Description = race.Description;
-
-            //TODO: Money not implemented
-            //avatarUri comes from GO
             this.AvatarUri = race.DefaultAvatar;
         }
 
@@ -36,7 +31,6 @@ namespace BeerBellyGame.GameObjects.Characters
         public double Aggression { get; set; }
         public string Description { get; set; }
 
-        //TODO: Money not implemented
         public double Money { get; set; }
 
         public ICollection<Direction> PossibleMovements(ICollection<MazeItem> objs)
@@ -55,8 +49,6 @@ namespace BeerBellyGame.GameObjects.Characters
 
             return directions;
         }
-
-
 
         public void EquipWeapon(WeaponItem i)
         {

@@ -1,11 +1,11 @@
-﻿using System.Linq;
-
-namespace BeerBellyGame.Engines
+﻿namespace BeerBellyGame.Engines
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Windows.Threading;
-  
+    using Enums;
+    using Exceptions;
     using GameUI;
     
     using GameObjects;
@@ -13,15 +13,21 @@ namespace BeerBellyGame.Engines
     using GameObjects.HUD;
     using GameObjects.Items;
     using GameUI.WpfUI;
+    using Interfaces;
 
-    
+
     public class GameEngine
     {
-
         private readonly IGameRenderer _renderer;
         private readonly IInputHandlerer _inputHandlerer;
         private DispatcherTimer _timer;
-      
+        private Player _player;
+        private Friend _friend;
+        private List<Enemy> _enemies;
+        private List<CollectableItem> _itemsToCollect;
+        private List<MazeItem> _maze;
+        private List<Bullet> _bullets;
+
         public GameEngine(IGameRenderer renderer, IInputHandlerer inputHandlerer)
         {
             this._renderer = renderer;
@@ -29,23 +35,82 @@ namespace BeerBellyGame.Engines
             this._inputHandlerer.UiActionHappened += this.HandleUiActionHappend;
         }
 
-        public Player Player { get; set; }
-        public Friend Friend{ get; set; }
-        public List<Enemy> Enemies{ get; set; }
-        public List<CollectableItem> ItemsToCollect {get; set; }
-        public List<MazeItem> Maze { get; set; }
         public List<Bullet> Bullets { get; set; }
-        public GameStage GameStage { get; set; }
-      
-        public void InitGame()
+        public GameResult GameResult { get; set; }
+        public Player Player
         {
-            MapLoader.Instance.Load();
-            this.Player = MapLoader.Instance.Player;
-            this.Friend = MapLoader.Instance.Friend;
+            get { return this._player; }
+            private set
+            {
+                if (value == null)
+                {
+                    throw new GameNullException("Player can not be null");
+                }
+                else
+                {
+                    this._player = value;
+                }
+            }
+        }
+        public Friend Friend
+        {
+            get { return this._friend; }
+            private set
+            {
+                if (value == null)
+                {
+                    throw new GameNullException("Friend can not be null");
+                }
+                else
+                {
+                    this._friend = value;
+                }
+            }
+        }
+        public List<Enemy> Enemies { get; set; }
+        public List<CollectableItem> ItemsToCollect
+        {
+            get { return this._itemsToCollect; }
+            private set
+            {
+                if (value.Count == 0)
+                {
+                    throw new GameNullException("Items to collect can not be null");
+                }
+                else
+                {
+                    this._itemsToCollect = value;
+                }
+            }
+        }
+        public List<MazeItem> Maze
+        {
+            get { return this._maze; }
+            private set
+            {
+                if (value.Count == 0)
+                {
+                    throw new GameNullException("Maze Items can not be null");
+                }
+                else
+                {
+                    this._maze = value;
+                }
+            }
+        }
+        
+      
+        public void InitGame(IRace selectedPlayerRace)
+        {
+            var mapLoader = new MapLoader();
+            mapLoader.Load(selectedPlayerRace);
+
+            this.Player = mapLoader.Player;
+            this.Friend = mapLoader.Friend;
             this.Friend.AddFrined(this.Player);
-            this.Enemies = MapLoader.Instance.Enemies;
-            this.ItemsToCollect = MapLoader.Instance.ItemToCollect;
-            this.Maze = MapLoader.Instance.Maze;
+            this.Enemies = mapLoader.Enemies;
+            this.ItemsToCollect = mapLoader.ItemToCollect;
+            this.Maze = mapLoader.Maze;
             Hud.Instance.PopulateElements(this.Player, this.Friend);
             this.Bullets = new List<Bullet>();
           
@@ -56,15 +121,15 @@ namespace BeerBellyGame.Engines
             this._timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(AppSettings.TimerTickIntervalInMilliseconds) };
             this._timer.Tick += this.GameLoop;
             this._timer.Start();
-           
         }
 
         private void GameLoop(object sender, EventArgs e)
         {
             this._renderer.Clear();
-            
+
             Hud.Instance.RefreshDynamicElements(this.Player, this.Friend);
             this._renderer.Draw(Hud.Instance);
+
             foreach (var mazeItem in this.Maze)
             {
                 this._renderer.Draw(mazeItem);
@@ -80,16 +145,16 @@ namespace BeerBellyGame.Engines
                 this._renderer.Draw(enemy);
             }
 
-            this._renderer.Draw(this.Player);
+            if (this.Player.IsAlive)
+            {
+                this._renderer.Draw(this.Player);    
+            }
+            
             if (this.Friend.IsAlive)
             {
                 this._renderer.Draw(this.Friend);
             }
             
-            //remove bollets
-            this.Bullets.RemoveAll(b => b.IsFlaying == false);
-
-            //move bulets
             foreach (var bullet in this.Bullets)
             {
                this.Enemies = bullet.Move(this.Maze, this.Enemies);
@@ -99,22 +164,25 @@ namespace BeerBellyGame.Engines
                 }
             }
 
-            //draw boolets
             foreach (var bullet in this.Bullets)
             {
                 this._renderer.Draw(bullet);
             }
            
             EnemyAttack();
+            
             this.Friend.Move(this.Player, Maze);
 
             this.Enemies.ForEach(en => en.Move(this.Player, Maze));
+            
             this.Enemies.RemoveAll(enemy => enemy.IsAlive == false);
+            
             this.Bullets.RemoveAll(bullet => bullet.IsFlaying == false);
+            
             if (this.CheckGameEnd())
             {
                 this._timer.Stop();
-                this._renderer.ShowGameSatgeView(this.GameStage);
+                this._renderer.ShowGameSatgeView(this.GameResult);
                 return;
             }
             
@@ -125,12 +193,12 @@ namespace BeerBellyGame.Engines
             var beerCount = ItemsToCollect.Count(item => item.GetType() == typeof(BeerItem));
             if (beerCount == 0)
             {
-                this.GameStage = GameStage.Won;
+                this.GameResult = GameResult.Won;
                 return true;
             }
             else if (this.Player.IsAlive == false)
             {
-                this.GameStage = GameStage.Lost;
+                 this.GameResult = GameResult.Lost;
                 return true;
             }
             return false;
@@ -140,8 +208,7 @@ namespace BeerBellyGame.Engines
         {
             var left = this.Player.Position.Left;
             var top = this.Player.Position.Top;
-
-           
+            
             var possibleMovements = this.Player.PossibleMovements(Maze);
 
             switch (e.Command)

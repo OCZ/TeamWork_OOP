@@ -2,8 +2,15 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Choose your HERO" 
-        Height="620" 
-        Width="950">
+       Height="620" 
+        Width="950" 
+		ResizeMode="CanMinimize" 
+        Icon="/BeerBellyGame;component/Content/Windows/icon.png" 
+        WindowStartupLocation="CenterScreen" 
+        >
+    <Window.Background>
+        <ImageBrush ImageSource="/BeerBellyGame;component/Content/Windows/background.jpg"/>
+    </Window.Background>
     <Grid Name="window">
         <Grid.RowDefinitions>
             <RowDefinition Height="140" />

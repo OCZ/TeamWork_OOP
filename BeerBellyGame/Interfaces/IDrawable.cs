@@ -1,5 +1,7 @@
-﻿namespace BeerBellyGame.GameObjects.Interfaces
+﻿namespace BeerBellyGame.Interfaces
 {
+    using GameObjects;
+
     public interface IDrawable
     {
         Position Position { get; set; }

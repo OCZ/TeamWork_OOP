@@ -1,7 +1,7 @@
-﻿using BeerBellyGame.GameObjects.Interfaces;
-
-namespace BeerBellyGame.GameObjects.Items
+﻿namespace BeerBellyGame.GameObjects.Items
 {
+    using Interfaces;
+
     public class SpyToolItem: GameObject, IEquipable
     {
         public SpyToolItem(string name, decimal purchasePrice, decimal sellingPrice, int agressionRange)

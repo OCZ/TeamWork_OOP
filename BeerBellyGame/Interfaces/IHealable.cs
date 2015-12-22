@@ -1,7 +1,7 @@
-﻿using BeerBellyGame.GameObjects.Characters;
-
-namespace BeerBellyGame.GameObjects.Interfaces
+﻿namespace BeerBellyGame.Interfaces
 {
+    using GameObjects.Characters;
+
     public interface IHealable
     {
         int RegenAmount { get; }

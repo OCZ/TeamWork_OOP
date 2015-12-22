@@ -3,8 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="The Beer Belly Game" 
         Height="620" 
-        Width="950">
-
+        Width="950" 
+		ResizeMode="CanMinimize" 
+        Icon="/BeerBellyGame;component/Content/Windows/icon.png" 
+        WindowStartupLocation="CenterScreen" 
+        >
+    <Window.Background>
+        <ImageBrush ImageSource="/BeerBellyGame;component/Content/Windows/background.jpg"/>
+    </Window.Background>
     <Grid >
         <Canvas HorizontalAlignment="Center" Height="550" VerticalAlignment="Center" Width="900" Name="GameCanvas" >
         <Image  Name="img_logo"  HorizontalAlignment="Left" Height="109" VerticalAlignment="Top" Width="181" Source="/BeerBellyGame;component/Content/Windows/logo.png" Canvas.Left="8" Canvas.Top="8"/>

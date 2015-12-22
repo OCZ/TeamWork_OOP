@@ -1,8 +1,9 @@
-﻿using BeerBellyGame.GameObjects.Characters;
-using BeerBellyGame.GameObjects.Interfaces;
-
-namespace BeerBellyGame.GameObjects.Items
+﻿namespace BeerBellyGame.GameObjects.Items
 {
+    using Interfaces;
+
+    using Characters;
+
     public class LargeHealthItem : CollectableItem, IHealable
     {
         public LargeHealthItem()

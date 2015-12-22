@@ -1,4 +1,4 @@
-﻿namespace BeerBellyGame.GameUI.WpfUI
+﻿namespace BeerBellyGame.Enums
 {
     public enum GameCommand
     {

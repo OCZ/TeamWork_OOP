@@ -1,7 +1,7 @@
-﻿using BeerBellyGame.GameObjects.Interfaces;
-
-namespace BeerBellyGame.GameObjects.Items
+﻿namespace BeerBellyGame.GameObjects.Items
 {
+    using Interfaces;
+
     public class WeaponItem : GameObject, IEquipable
     {
         public WeaponItem(string name, decimal purchasePrice, 

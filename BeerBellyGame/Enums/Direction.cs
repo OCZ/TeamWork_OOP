@@ -1,4 +1,4 @@
-﻿namespace BeerBellyGame.GameObjects
+﻿namespace BeerBellyGame.Enums
 {
     public enum Direction
     {

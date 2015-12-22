@@ -3,91 +3,74 @@
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using System.Windows;
+    using Exceptions;
     using GameObjects;
     using GameObjects.Characters;
     using GameObjects.Characters.Factories;
-
-    using GameObjects.Interfaces;
     using GameObjects.Items;
+    using Interfaces;
+    using Size = GameObjects.Size;
 
     public class MapLoader
     {
-        private static volatile MapLoader instance;
-        private static object syncRoot = new Object();
-
-        private IRace _friendRace;
-        private IRace _enemyRace;
-
-        private readonly IList<IRace> _enemyRaces;
-        private readonly IList<IRace> _frienRaces;
-        private readonly Random Rand = new Random();
-
-        
-        
-
-        private MapLoader()
+        private readonly IRace _friendRace;
+        private readonly IRace _enemyRace;
+        private readonly Random _rand = new Random();
+        private IRace _playerRace;
+       
+        public MapLoader()
         {
-            this._frienRaces = RacesExtractor.Instance.FriendRaces;
-            this._enemyRaces = RacesExtractor.Instance.EnemyRaces;
             this._friendRace = this.ChoseRandomFriendRace();
             this._enemyRace = this.ChoseRandomEnemyRace();
             this.Enemies = new List<Enemy>();
             this.ItemToCollect = new List<CollectableItem>();
             this.Maze = new List<MazeItem>();
-            
-            
         }
 
-        public static MapLoader Instance
+        public IRace PlayerRace
         {
-            get
+            get { return this._playerRace; }
+            set
             {
-                if (instance == null)
+                if (value == null)
                 {
-                    lock (syncRoot)
-                    {
-                        if (instance == null)
-                        {
-                            instance = new MapLoader();
-                        }
-                    }
+                    throw new GameNullException("Player Race can not be null;");
                 }
-                return instance;
+                this._playerRace = value;
             }
         }
-
-        public IRace PlayerRace { get; set; }
-        public Player Player { get; private set; }
+        public Player Player {get; private set;}
         public Friend Friend { get; private set; }
         public List<Enemy> Enemies { get; private set; }
         public List<CollectableItem> ItemToCollect { get; private set; }
         public List<MazeItem> Maze { get; private set; }
 
 
-        public void Load()
+        public void Load(IRace selectedPlayerRace)
         {
-            //TODO implement diff levels 
-            //-> pass as parameter in methed the level create sweatch for levels and set for mapPath diff map resourse
-
+            //TODO implement diff levels //-> pass as parameter in methed the level create sweatch for levels and set for mapPath diff map resourse
             
-            string mapPath = AppSettings.MapLevel1;
+            
+            var mapPath = AppSettings.MapLevel1;
             var frientFactory = new FriendFactory();
             var enemyFactory = new EnemyFactory();
 
+            this.PlayerRace = selectedPlayerRace;
             var width = AppSettings.MapElementSize.Width;
             var height = AppSettings.MapElementSize.Height; 
             
 
             try
             {
-                using (StreamReader reader = new StreamReader(mapPath))
+                using (var reader = new StreamReader(mapPath))
                 {
-                    for (int row = 0; row < AppSettings.MapElementsCountY; row++)
+                    for (var row = 0; row < AppSettings.MapElementsCountY; row++)
                     {
                         var top = (row*height)+AppSettings.MapPosition.Top;
 
-                        string line = reader.ReadLine();
-                        for (int col = 0; col < AppSettings.MapElementsCountX; col++)
+                        var line = reader.ReadLine();
+                        for (var col = 0; col < AppSettings.MapElementsCountX; col++)
                         {
                             var left = col*width;
 
@@ -95,7 +78,7 @@
                             switch (currentsymbol)
                             {
                                 case 'p':
-                                    Player = new Player(this.PlayerRace)
+                                    this.Player = new Player(this.PlayerRace)
                                     {
                                         Position = new Position (left, top),
                                         Size = new Size(width, height)
@@ -103,78 +86,75 @@
                                     break;
 
                                 case 'f':
-                                    Friend = (Friend)frientFactory.Create(_friendRace);
-                                    Friend.Position = new Position(left, top);
-                                    Friend.Size = new Size(width, height);
+                                    this.Friend = (Friend)frientFactory.Create(_friendRace);
+                                    this.Friend.Position = new Position(left, top);
+                                    this.Friend.Size = new Size(width, height);
                                     break;
 
                                 case 'e':
                                     var enemy = (Enemy)enemyFactory.Create(_enemyRace);
-                                    enemy.Aggression = 20;
                                     enemy.Position = new Position (left, top);
                                     enemy.Size = new Size(width, height);
-                                    Enemies.Add(enemy);
+                                    this.Enemies.Add(enemy);
                                     break;
 
 
                                 case 'w': 
-                                    MazeItem mazeElement = new MazeItem()
+                                    var mazeElement = new MazeItem()
                                     {
                                         Position = new Position(left, top),
                                         Size = new Size(width, height)
                                     };
-                                    Maze.Add(mazeElement);
+                                    this.Maze.Add(mazeElement);
                                     break;
 
                                 case 'b': 
-                                    BeerItem beer = new BeerItem()
+                                    var beer = new BeerItem()
                                     {
                                         Position = new Position(left, top),
                                         Size = new Size(width, height)
                                     };
-                                    ItemToCollect.Add(beer);
+                                    this.ItemToCollect.Add(beer);
                                     break;
 
                                 case 'l': 
-                                    LifeItem itemLife = new LifeItem()
+                                    var itemLife = new LifeItem()
                                     {
                                         Position = new Position(left, top),
                                         Size = new Size(width, height)
                                     };
-                                    ItemToCollect.Add(itemLife);
+                                    this.ItemToCollect.Add(itemLife);
                                     break;
 
                                 case 'h':
-                                    
-                                    LargeHealthItem itemHealth = new LargeHealthItem()
+                                    var itemHealth = new LargeHealthItem()
                                     {
                                         Position = new Position(left, top),
                                         Size = new Size(width, height)
                                     };
-                                    ItemToCollect.Add(itemHealth);
+                                    this.ItemToCollect.Add(itemHealth);
                                     break;
                             }
                         }   
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
-                throw;
+                MessageBox.Show(ex.Message, "BB Game MapLoader");
             }
         }
 
         private IRace ChoseRandomEnemyRace()
         {
-            var index = this.Rand.Next(0, this._enemyRaces.Count);
-            return _enemyRaces[index];
+            var index = this._rand.Next(0,RacesExtractor.Instance.EnemyRaces.Count);
+            return RacesExtractor.Instance.EnemyRaces[index];
         }
 
         private IRace ChoseRandomFriendRace()
         {
-            var index = this.Rand.Next(0, this._frienRaces.Count);
-            return _frienRaces[index];
+            var index = this._rand.Next(0, RacesExtractor.Instance.FriendRaces.Count);
+            return RacesExtractor.Instance.FriendRaces[index];
         }
     }
 }

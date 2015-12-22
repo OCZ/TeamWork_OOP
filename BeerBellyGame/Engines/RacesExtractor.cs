@@ -4,9 +4,9 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
-    using System.Windows;
     using Attributes;
-    using GameObjects.Interfaces;
+    using Exceptions;
+    using Interfaces;
 
     public class RacesExtractor
     {
@@ -21,22 +21,19 @@
            this.GetRaces();
         }
         
-
         public static RacesExtractor Instance
         {
             get
             {
-                if (_instance == null)
+                if (_instance != null) return _instance;
+                lock (_syncRoot)
                 {
-                    lock (_syncRoot)
+                    if (_instance == null)
                     {
-                        if (_instance == null)
-                        {
-                            _instance = new RacesExtractor();
-                        }
+                        _instance = new RacesExtractor();
                     }
                 }
-                
+
                 return _instance;
             }
         }
@@ -58,8 +55,6 @@
         }
 
        
-
-       
         private void GetRaces()
         {
             var classes = Assembly.GetExecutingAssembly().GetTypes()
@@ -70,7 +65,7 @@
                 .ToList();
             if (classes.Count == 0)
             {
-                throw new Exception("No attributes are appliyed");
+                throw new GameNullException("No Attributes are applied");
             }
             this._enemyRaces =
                 classes.Where(t => t.CustomAttributes.Any(a => a.AttributeType == typeof (EnemyRaceAttribute)))
@@ -78,7 +73,7 @@
                     .ToList();
             if (_enemyRaces.Count == 0)
             {
-                throw new Exception("No EnemyAttributes is appliyed");
+                throw new GameNullException("No EnemyAttributes is applied");
             }
              this._friendRaces =
                 classes.Where(t => t.CustomAttributes.Any(a => a.AttributeType == typeof (FriendRaceAttribute)))
@@ -86,18 +81,15 @@
                     .ToList();
              if (_friendRaces.Count == 0)
              {
-                 throw new Exception("No FriendAttributes is appliyed");
+                 throw new GameNullException("No FriendAttributes is applied");
              }
             this._playerRaces = classes.Where(t => t.CustomAttributes.Any(a => a.AttributeType == typeof (PlayerRaceAttribute)))
                     .Select(raceClass => Activator.CreateInstance(raceClass) as IRace)
                     .ToList();
             if (_playerRaces.Count == 0)
             {
-                throw new Exception("No FriendAttributes is appliyed");
-            }
-            
-        }
-
-        
+                throw new GameNullException("No FriendAttributes is applied");
+            }    
+        }       
     }
 }

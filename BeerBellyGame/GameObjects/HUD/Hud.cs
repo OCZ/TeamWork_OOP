@@ -6,10 +6,10 @@
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Media;
-    using Characters;
-    using Interfaces;
 
-    public sealed class Hud : GameObject, IDrawable
+    using Characters;
+
+    public sealed class Hud : GameObject
     {
         private static volatile Hud instance;
         private static object syncRoot = new Object();
@@ -24,14 +24,12 @@
         {
             get
             {
-                if (instance == null)
+                if (instance != null) return instance;
+                lock (syncRoot)
                 {
-                    lock (syncRoot)
+                    if (instance == null)
                     {
-                        if (instance == null)
-                        {
-                            instance = new Hud();
-                        }
+                        instance = new Hud();
                     }
                 }
 
@@ -46,7 +44,6 @@
         {
             this.PopulateStaticElements();
             this.PopulateDynamicElements(player, friend);
-           
         }
 
         private void PopulateDynamicElements(Player player, Friend friend)
@@ -103,57 +100,13 @@
                 TextWrapping = TextWrapping.Wrap,
                 VerticalAlignment = VerticalAlignment.Top,
             });
-            //this.DynamicElements.Add("playerAggretion", new TextBlock()
-            //{
-            //    Name = "playerAggretion",
-            //    Text = player.Aggression.ToString(),
-            //    Margin = new Thickness(576, 33, 0, 0),
-            //    Width = 28,
-            //    HorizontalAlignment = HorizontalAlignment.Left,
-            //    TextWrapping = TextWrapping.Wrap,
-            //    VerticalAlignment = VerticalAlignment.Top,
-            //});
-            //this.DynamicElements.Add("playerAggretionRange", new TextBlock()
-            //{
-            //    Name = "playerAggretionRange",
-            //    Text = player.AggressionRange.ToString(),
-            //    Margin = new Thickness(667, 33, 0, 0),
-            //    Width = 28,
-            //    HorizontalAlignment = HorizontalAlignment.Left,
-            //    TextWrapping = TextWrapping.Wrap,
-            //    VerticalAlignment = VerticalAlignment.Top,
-            //});
            
-            //this.DynamicElements.Add("friendAggretion", new TextBlock()
-            //{
-            //    Name = "friendAggreation",
-            //    Text = friend.Aggression.ToString(),
-            //    Margin = new Thickness(576, 80, 0, 0),
-            //    Width = 28,
-            //    HorizontalAlignment = HorizontalAlignment.Left,
-            //    TextWrapping = TextWrapping.Wrap,
-            //    VerticalAlignment = VerticalAlignment.Top,
-            //});
-            //this.DynamicElements.Add("friendAggretionRange", new TextBlock()
-            //{
-            //    Name = "friendAggreationRange",
-            //    Text = friend.AggressionRange.ToString(),
-            //    Margin = new Thickness(667, 80, 0, 0),
-            //    Width = 28,
-            //    HorizontalAlignment = HorizontalAlignment.Left,
-            //    TextWrapping = TextWrapping.Wrap,
-            //    VerticalAlignment = VerticalAlignment.Top,
-            //});
-            /* NOT ADDED Eventualy to ADD   
-            p money  <TextBlock HorizontalAlignment="Left" Margin="747,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="28"><Run  Text="100"/></TextBlock>
-            f money   <TextBlock HorizontalAlignment="Left" Margin="749,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="28"><Run Text="100"/></TextBlock>
-                    */
         }
 
         
         private void PopulateStaticElements()
         {
-            Label player = new Label()
+            var player = new Label()
             {
                 Content = "Player",
                 HorizontalAlignment = HorizontalAlignment.Left,
@@ -164,7 +117,7 @@
                 FontSize = 16
             };
             this.StaticElements.Add(player);
-            Label friend = new Label()
+            var friend = new Label()
             {
                 Content = "Friend",
                 HorizontalAlignment = HorizontalAlignment.Left,
@@ -226,51 +179,7 @@
                 VerticalAlignment = VerticalAlignment.Top,
             });
 
-            //this.StaticElements.Add(new Label()
-            //{
-            //    Content = "Aggretion",
-            //    Margin = new Thickness(495, 26, 0, 0),
-            //    Width = 76,
-            //    FontSize = 14,
-            //    FontFamily = new FontFamily("Comic Sans MS"),
-            //    HorizontalAlignment = HorizontalAlignment.Left,
-            //    VerticalAlignment = VerticalAlignment.Top,
-            //});
-            //this.StaticElements.Add(new Label()
-            //{
-            //    Content = "Range",
-            //    Margin = new Thickness(612, 26, 0, 0),
-            //    Width = 48,
-            //    FontSize = 14,
-            //    FontFamily = new FontFamily("Comic Sans MS"),
-            //    HorizontalAlignment = HorizontalAlignment.Left,
-            //    VerticalAlignment = VerticalAlignment.Top,
-            //});
-            
-            //this.StaticElements.Add(new Label()
-            //{
-            //    Content = "Aggretion",
-            //    Margin = new Thickness(495, 71, 0, 0),
-            //    Width = 76,
-            //    FontSize = 14,
-            //    FontFamily = new FontFamily("Comic Sans MS"),
-            //    HorizontalAlignment = HorizontalAlignment.Left,
-            //    VerticalAlignment = VerticalAlignment.Top,
-            //});
-            //this.StaticElements.Add(new Label()
-            //{
-            //    Content = "Range",
-            //    Margin = new Thickness(612, 71, 0, 0),
-            //    Width = 48,
-            //    FontSize = 14,
-            //    FontFamily = new FontFamily("Comic Sans MS"),
-            //    HorizontalAlignment = HorizontalAlignment.Left,
-            //    VerticalAlignment = VerticalAlignment.Top,
-            //});
-            /** NOT ADDED Eventualy to ADD       
-        Label Content="Money" HorizontalAlignment="Left" Margin="688,27,0,0" VerticalAlignment="Top" Width="55" FontFamily="Comic Sans MS" FontSize="14" />
-        Label Content="Money" HorizontalAlignment="Left" Margin="688,72,0,0" VerticalAlignment="Top" Width="55" FontFamily="Comic Sans MS" FontSize="14" />
-               */
+          
         }
 
         public void RefreshDynamicElements(Player player, Friend friend)
@@ -278,12 +187,8 @@
             this.DynamicElements["playerBeerBelly"].Text = player.BeerBelly.ToString();
             this.DynamicElements["playerLife"].Text = player.Life.ToString();
             this.DynamicElements["playerHealth"].Text = player.Health.ToString(CultureInfo.CurrentUICulture);
-            //this.DynamicElements["playerAggretion"].Text = player.Aggression.ToString(CultureInfo.CurrentUICulture);
-            //this.DynamicElements["playerAggretionRange"].Text = player.AggressionRange.ToString();
             this.DynamicElements["friendLife"].Text = friend.Life.ToString();
             this.DynamicElements["friendHealth"].Text = friend.Health.ToString(CultureInfo.CurrentUICulture);
-            //this.DynamicElements["friendAggretion"].Text = friend.Aggression.ToString(CultureInfo.CurrentUICulture);
-            //this.DynamicElements["friendAggretionRange"].Text = friend.AggressionRange.ToString();
         }
     }
 }

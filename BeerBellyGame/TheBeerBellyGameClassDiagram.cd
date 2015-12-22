@@ -1,145 +1,116 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="BeerBellyGame.GameObjects.Characters.Character">
-    <Position X="5.75" Y="0.5" Width="1.5" />
+  <Class Name="BeerBellyGame.GameObjects.Characters.Character" Collapsed="true">
+    <Position X="10.75" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QQAQCAAAEAAgAAAAAAAAQAAAAAAAgAAAAAAAAAABAAA=</HashCode>
+      <HashCode>QQAQCAAAEAAgAAEAAAAARAAAAABAgAAAAAAAgAABAAA=</HashCode>
       <FileName>GameObjects\Characters\Character.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="BeerBellyGame.GameObjects.Characters.Enemy">
-    <Position X="2.5" Y="5" Width="1.5" />
+  <Class Name="BeerBellyGame.GameObjects.Characters.Enemy" Collapsed="true">
+    <Position X="13" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GameObjects\Characters\Enemy.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BeerBellyGame.GameObjects.GameObject">
-    <Position X="3.75" Y="0.5" Width="1.5" />
+  <Class Name="BeerBellyGame.GameObjects.GameObject" Collapsed="true">
+    <Position X="2.75" Y="1.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAgAAoAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAwAAoAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GameObjects\GameObject.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.21" />
   </Class>
-  <Class Name="BeerBellyGame.GameObjects.Characters.Player">
-    <Position X="6" Y="5" Width="1.5" />
+  <Class Name="BeerBellyGame.GameObjects.Characters.Player" Collapsed="true">
+    <Position X="10" Y="4" Width="1.5" />
+    <InheritanceLine Type="BeerBellyGame.GameObjects.Characters.Character" ManuallyRouted="true">
+      <Path>
+        <Point X="11.5" Y="3.441" />
+        <Point X="11.5" Y="3.679" />
+        <Point X="10.75" Y="3.679" />
+        <Point X="10.75" Y="4" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAiAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAEA=</HashCode>
       <FileName>GameObjects\Characters\Player.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BeerBellyGame.GameObjects.Characters.Races.PickachuRace">
-    <Position X="7.75" Y="4" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>GameObjects\Characters\Races\PickachuRace.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="BeerBellyGame.GameObjects.Characters.Races.PolicemanRace">
-    <Position X="9.75" Y="4" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>GameObjects\Characters\Races\PolicemanRace.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="BeerBellyGame.GameObjects.Characters.Races.AbstractRace">
-    <Position X="8.75" Y="0.5" Width="1.5" />
+  <Class Name="BeerBellyGame.GameObjects.Characters.Races.AbstractRace" Collapsed="true">
+    <Position X="16" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AQAAAAAAAADgAAAAAAQAAAAAAAAgABAAAAAAAAAAQAA=</HashCode>
       <FileName>GameObjects\Characters\Races\AbstractRace.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="BeerBellyGame.GameObjects.Characters.Friend">
-    <Position X="4.25" Y="5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAA=</HashCode>
-      <FileName>GameObjects\Characters\Friend.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="BeerBellyGame.GameObjects.Characters.Factories.EnemyFactory">
-    <Position X="3.25" Y="8.75" Width="1.5" />
-    <InheritanceLine Type="BeerBellyGame.GameObjects.Characters.Factories.CharacterFactory" FixedToPoint="true">
+  <Class Name="BeerBellyGame.GameObjects.Characters.Friend" Collapsed="true">
+    <Position X="11" Y="5.25" Width="1.5" />
+    <InheritanceLine Type="BeerBellyGame.GameObjects.Characters.AIPlayer" ManuallyRouted="true" FixedToPoint="true">
       <Path>
-        <Point X="5.25" Y="8.296" />
-        <Point X="5.25" Y="8.5" />
-        <Point X="4.188" Y="8.5" />
-        <Point X="4.188" Y="8.75" />
+        <Point X="12.5" Y="4.691" />
+        <Point X="12.5" Y="4.95" />
+        <Point X="11.375" Y="4.95" />
+        <Point X="11.375" Y="5.25" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAQAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAACAAAAIwAAAAAAAAAAAAAIAAAgEAARAAAAAAAAgE=</HashCode>
+      <FileName>GameObjects\Characters\Friend.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BeerBellyGame.GameObjects.Characters.Factories.EnemyFactory" Collapsed="true">
+    <Position X="7.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABAAAAAAAAAEAAAAAAAAAAEAA=</HashCode>
       <FileName>GameObjects\Characters\Factories\EnemyFactory.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BeerBellyGame.GameObjects.Characters.Factories.FriendFactory">
-    <Position X="5.75" Y="8.75" Width="1.5" />
+  <Class Name="BeerBellyGame.GameObjects.Characters.Factories.FriendFactory" Collapsed="true">
+    <Position X="9" Y="8" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAQAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>GameObjects\Characters\Factories\FriendFactory.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BeerBellyGame.GameObjects.Characters.Factories.CharacterFactory">
-    <Position X="4.5" Y="7" Width="1.5" />
+  <Class Name="BeerBellyGame.GameObjects.Characters.Factories.CharacterFactory" Collapsed="true">
+    <Position X="8.25" Y="6.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAQAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>GameObjects\Characters\Factories\CharacterFactory.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BeerBellyGame.GameObjects.HUD.Hud" Collapsed="true">
-    <Position X="4" Y="3.5" Width="1.5" />
+    <Position X="0.5" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAASAAAAAAAAAABAAAAAQAAAAAAAAAA=</HashCode>
+      <HashCode>AEAACQAAAAAAAMAQAAAAAAAAAABAAAAAQAAAAAAAAAE=</HashCode>
       <FileName>GameObjects\HUD\Hud.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BeerBellyGame.GameObjects.Characters.Races.LeprechaunRace">
-    <Position X="8.75" Y="5.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>GameObjects\Characters\Races\LeprechaunRace.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="BeerBellyGame.GameObjects.Items.BeerItem" Collapsed="true">
-    <Position X="1.25" Y="0.5" Width="1.5" />
+    <Position X="1" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GameObjects\Items\BeerItem.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Orientation="Left" Position="0.1" />
-  </Class>
-  <Class Name="BeerBellyGame.GameObjects.Items.HealthItem" Collapsed="true">
-    <Position X="1.25" Y="2" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>GameObjects\Items\HealthItem.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Orientation="Left" Position="0.1" />
   </Class>
   <Class Name="BeerBellyGame.GameObjects.Items.LifeItem" Collapsed="true">
-    <Position X="1.25" Y="1.25" Width="1.5" />
-    <InheritanceLine Type="BeerBellyGame.GameObjects.GameObject" FixedToPoint="true">
-      <Path>
-        <Point X="3.75" Y="1.562" />
-        <Point X="2.75" Y="1.562" />
-      </Path>
-    </InheritanceLine>
+    <Position X="2.75" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GameObjects\Items\LifeItem.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Orientation="Left" Position="0.1" />
   </Class>
   <Class Name="BeerBellyGame.GameObjects.Items.MazeItem" Collapsed="true">
-    <Position X="2.25" Y="3.5" Width="1.5" />
-    <InheritanceLine Type="BeerBellyGame.GameObjects.GameObject" FixedToPoint="true">
+    <Position X="2.25" Y="2.75" Width="1.5" />
+    <InheritanceLine Type="BeerBellyGame.GameObjects.GameObject" ManuallyRouted="true">
       <Path>
-        <Point X="4.5" Y="2.44" />
-        <Point X="4.5" Y="3.125" />
-        <Point X="2.688" Y="3.125" />
-        <Point X="2.688" Y="3.5" />
+        <Point X="3.5" Y="1.812" />
+        <Point X="3.5" Y="2.368" />
+        <Point X="3" Y="2.368" />
+        <Point X="3" Y="2.75" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
@@ -147,47 +118,365 @@
       <FileName>GameObjects\Items\MazeItem.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Struct Name="BeerBellyGame.GameObjects.Position" Collapsed="true">
-    <Position X="13.75" Y="1.25" Width="1.5" />
+  <Class Name="BeerBellyGame.GameObjects.AI.AIProvider" Collapsed="true">
+    <Position X="11.75" Y="6.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAACAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>GameObjects\AI\AIProvider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BeerBellyGame.GameObjects.AI.RandomAIProvider" Collapsed="true">
+    <Position X="11" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAoAAAAAAAAAAAACAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>GameObjects\AI\RandomAIProvider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BeerBellyGame.GameObjects.AI.TargetCharacterAIProvider" Collapsed="true">
+    <Position X="12.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObjects\AI\TargetCharacterAIProvider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BeerBellyGame.GameObjects.Characters.AIPlayer" Collapsed="true">
+    <Position X="11.75" Y="4" Width="1.5" />
+    <InheritanceLine Type="BeerBellyGame.GameObjects.Characters.Character" ManuallyRouted="true">
+      <Path>
+        <Point X="11.5" Y="3.441" />
+        <Point X="11.5" Y="3.656" />
+        <Point X="12.5" Y="3.656" />
+        <Point X="12.5" Y="4" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObjects\Characters\AIPlayer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BeerBellyGame.GameObjects.Characters.Races.AIPlayerRaces.GrandpaRace" Collapsed="true">
+    <Position X="18.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObjects\Characters\Races\AIPlayerRaces\GrandpaRace.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BeerBellyGame.GameObjects.Characters.Races.AIPlayerRaces.LeprechaunRace" Collapsed="true">
+    <Position X="14.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObjects\Characters\Races\AIPlayerRaces\LeprechaunRace.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BeerBellyGame.GameObjects.Characters.Races.AIPlayerRaces.NinjaRace" Collapsed="true">
+    <Position X="18.25" Y="3.5" Width="1.5" />
+    <InheritanceLine Type="BeerBellyGame.GameObjects.Characters.Races.AbstractRace" FixedToPoint="true">
+      <Path>
+        <Point X="16.75" Y="3.062" />
+        <Point X="16.75" Y="3.398" />
+        <Point X="18.562" Y="3.398" />
+        <Point X="18.562" Y="3.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObjects\Characters\Races\AIPlayerRaces\NinjaRace.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BeerBellyGame.GameObjects.Characters.Races.AIPlayerRaces.PolicemanRace" Collapsed="true">
+    <Position X="16.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObjects\Characters\Races\AIPlayerRaces\PolicemanRace.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BeerBellyGame.GameObjects.Characters.Races.AIPlayerRaces.SuperGrandmaRace" Collapsed="true">
+    <Position X="14.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObjects\Characters\Races\AIPlayerRaces\SuperGrandmaRace.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BeerBellyGame.GameObjects.Characters.Races.AIPlayerRaces.WarriorRace" Collapsed="true">
+    <Position X="16.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObjects\Characters\Races\AIPlayerRaces\WarriorRace.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BeerBellyGame.GameObjects.Characters.Races.AIPlayerRaces.XenaRace" Collapsed="true">
+    <Position X="14.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObjects\Characters\Races\AIPlayerRaces\XenaRace.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BeerBellyGame.GameObjects.Characters.Races.AIPlayerRaces.YodaRace" Collapsed="true">
+    <Position X="16.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObjects\Characters\Races\AIPlayerRaces\YodaRace.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BeerBellyGame.GameObjects.Characters.Races.PlayerRaces.ChuckNorrisRace" Collapsed="true">
+    <Position X="16.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObjects\Characters\Races\PlayerRaces\ChuckNorrisRace.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BeerBellyGame.GameObjects.Characters.Races.PlayerRaces.MageRace" Collapsed="true">
+    <Position X="14.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObjects\Characters\Races\PlayerRaces\MageRace.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BeerBellyGame.GameObjects.Characters.Races.PlayerRaces.PickachuRace" Collapsed="true">
+    <Position X="18.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObjects\Characters\Races\PlayerRaces\PickachuRace.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BeerBellyGame.GameObjects.Items.Bullet" Collapsed="true">
+    <Position X="4" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAKAAIAACgBgACAAAQAAAARAAgQAgAAAAQAAAAA=</HashCode>
+      <FileName>GameObjects\Items\Bullet.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BeerBellyGame.GameObjects.Items.CollectableItem" Collapsed="true">
+    <Position X="6" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObjects\Items\CollectableItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BeerBellyGame.GameObjects.Items.LargeHealthItem" Collapsed="true">
+    <Position X="8" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObjects\Items\LargeHealthItem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BeerBellyGame.GameObjects.Items.MediumHealthItem" Collapsed="true">
+    <Position X="6.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObjects\Items\MediumHealthItem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BeerBellyGame.GameObjects.Items.SmallHealthItem" Collapsed="true">
+    <Position X="4.5" Y="4.25" Width="1.5" />
+    <InheritanceLine Type="BeerBellyGame.GameObjects.Items.CollectableItem" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.75" Y="3.441" />
+        <Point X="6.75" Y="4.238" />
+        <Point X="5.5" Y="4.238" />
+        <Point X="5.5" Y="4.25" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObjects\Items\SmallHealthItem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BeerBellyGame.Engines.RacesExtractor" Collapsed="true">
+    <Position X="23.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEEAAAQAAAAgAAACAAAAAAAAgAIggAAQAAAAAAAAAA=</HashCode>
+      <FileName>Engines\RacesExtractor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BeerBellyGame.Engines.GameEngine" Collapsed="true">
+    <Position X="21.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAQAgAAAARQAoyAAgEAEEAAAASACAAUKAAAg=</HashCode>
+      <FileName>Engines\GameEngine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BeerBellyGame.Engines.MapLoader" Collapsed="true">
+    <Position X="23.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAiAAAAAAAAAAAAgAAAAAAChEAAgAAGBAAAQIAAAA=</HashCode>
+      <FileName>Engines\MapLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BeerBellyGame.Attributes.PlayerRaceAttribute" Collapsed="true">
+    <Position X="16.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Attributes\PlayerRaceAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BeerBellyGame.Attributes.EnemyRaceAttribute" Collapsed="true">
+    <Position X="14.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Attributes\EnemyRaceAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BeerBellyGame.Attributes.FriendRaceAttribute" Collapsed="true">
+    <Position X="18.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Attributes\FriendRaceAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BeerBellyGame.GameUI.WpfUI.KeyDownEventArgs" Collapsed="true">
+    <Position X="26.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameUI\WpfUI\KeyDownEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BeerBellyGame.GameUI.WpfUI.WpfInputHandlerer" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="26.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAIAAAAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameUI\WpfUI\WpfInputHandlerer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BeerBellyGame.GameUI.WpfUI.WpfRenderer" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="26.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAIAAAAAoAAAAAAAAAAAAAAAAAAAAAABABgAAA=</HashCode>
+      <FileName>GameUI\WpfUI\WpfRenderer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BeerBellyGame.GameUI.WpfUI.Windows.ChoosePlayerWindow" Collapsed="true">
+    <Position X="28" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAwEAAAAAkAAAAAAAAAAAAAAgAAIAQAAAEAIIAAAAA=</HashCode>
+      <FileName>GameUI\WpfUI\Windows\ChoosePlayerWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BeerBellyGame.GameUI.WpfUI.Windows.EndGameWindow" Collapsed="true">
+    <Position X="28" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>GameUI\WpfUI\Windows\EndGameWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BeerBellyGame.GameUI.WpfUI.Windows.HowToPlayWindow" Collapsed="true">
+    <Position X="28" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>GameUI\WpfUI\Windows\HowToPlayWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BeerBellyGame.GameUI.WpfUI.Windows.MainWindow" Collapsed="true">
+    <Position X="28" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>GameUI\WpfUI\Windows\MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BeerBellyGame.GameUI.WpfUI.Windows.MenuWindow" Collapsed="true">
+    <Position X="28" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>GameUI\WpfUI\Windows\MenuWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="BeerBellyGame.GameObjects.Position" Collapsed="true">
+    <Position X="0.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAIAAAAAAAAAAAAAIAAAACAAAAAAAAAA=</HashCode>
       <FileName>GameObjects\Position.cs</FileName>
     </TypeIdentifier>
   </Struct>
   <Struct Name="BeerBellyGame.GameObjects.Size" Collapsed="true">
-    <Position X="13.75" Y="0.5" Width="1.5" />
+    <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAABAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAABACAAAAAAAAAAEAAABAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GameObjects\Size.cs</FileName>
     </TypeIdentifier>
   </Struct>
-  <Interface Name="BeerBellyGame.GameObjects.Interfaces.ICharacter">
-    <Position X="11.75" Y="2.25" Width="1.5" />
+  <Interface Name="BeerBellyGame.Interfaces.ICharacter" Collapsed="true">
+    <Position X="14.25" Y="1.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AQAQCAAAEAAgAAAAAAAAAAAAAAAAgAAAAAAAAAABAAA=</HashCode>
-      <FileName>GameObjects\Interfaces\ICharacter.cs</FileName>
+      <FileName>Interfaces\ICharacter.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="BeerBellyGame.GameObjects.Interfaces.IRace">
-    <Position X="11.75" Y="4.75" Width="1.5" />
+  <Interface Name="BeerBellyGame.Interfaces.IRace" Collapsed="true">
+    <Position X="10.75" Y="1.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAACgAAAAAAAAAAAAAAAAABAAAAAAAAAAQAA=</HashCode>
-      <FileName>GameObjects\Interfaces\IRace.cs</FileName>
+      <FileName>Interfaces\IRace.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="BeerBellyGame.GameObjects.Interfaces.IDrawable">
-    <Position X="11.75" Y="0.5" Width="1.5" />
+  <Interface Name="BeerBellyGame.Interfaces.IDrawable" Collapsed="true">
+    <Position X="9" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAgAAoAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>GameObjects\Interfaces\IDrawable.cs</FileName>
+      <FileName>Interfaces\IDrawable.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="BeerBellyGame.GameObjects.Interfaces.ICollectable" Collapsed="true">
-    <Position X="11.75" Y="6.75" Width="1.5" />
+  <Interface Name="BeerBellyGame.Interfaces.IAIMovement" Collapsed="true">
+    <Position X="12.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>GameObjects\Interfaces\ICollectable.cs</FileName>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IAIMovement.cs</FileName>
     </TypeIdentifier>
   </Interface>
+  <Interface Name="BeerBellyGame.Interfaces.IHealable" Collapsed="true">
+    <Position X="12.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IHealable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BeerBellyGame.Interfaces.IMovable" Collapsed="true">
+    <Position X="14.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IMovable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BeerBellyGame.GameUI.IInputHandlerer" Collapsed="true">
+    <Position X="16" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameUI\IInputHandlerer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BeerBellyGame.GameUI.IGameRenderer" Collapsed="true">
+    <Position X="16" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>GameUI\IRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="BeerBellyGame.Enums.Direction" Collapsed="true">
+    <Position X="18.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAACACAAAEAAAI=</HashCode>
+      <FileName>Enums\Direction.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BeerBellyGame.Engines.GameResult" Collapsed="true">
+    <Position X="21.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enums\GameResult.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BeerBellyGame.Enums.GameCommand" Collapsed="true">
+    <Position X="18.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAIAAAAAIQAAAAAAAAAA=</HashCode>
+      <FileName>Enums\GameCommand.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

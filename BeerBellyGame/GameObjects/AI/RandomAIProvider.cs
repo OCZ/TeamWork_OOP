@@ -1,18 +1,15 @@
 ﻿namespace BeerBellyGame.GameObjects.AI
 {
-    using BeerBellyGame.GameObjects.Characters;
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+    using Enums;
     using Items;
 
    public class RandomAIProvider : AIProvider
     {
-       private DateTime _time;
-       private Direction _rand;
-       private readonly Random _random;
+        private DateTime _time;
+        private Direction _rand;
+        private readonly Random _random;
 
         public RandomAIProvider()
         {
@@ -27,7 +24,6 @@
                 this._rand = possibles[_random.Next(0, possibles.Count)];
                 this._time = DateTime.Now;
             }
-
             return this._rand;
         }
     }

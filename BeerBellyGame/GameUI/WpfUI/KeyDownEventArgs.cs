@@ -1,6 +1,7 @@
 ﻿namespace BeerBellyGame.GameUI.WpfUI
 {
     using System;
+    using Enums;
 
     public class KeyDownEventArgs: EventArgs
     {

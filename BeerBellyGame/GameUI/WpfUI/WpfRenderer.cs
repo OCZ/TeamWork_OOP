@@ -1,16 +1,18 @@
 ﻿namespace BeerBellyGame.GameUI.WpfUI
 {
     using System;
+    using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Media;
     using System.Windows.Media.Imaging;
+    
     using Windows;
     using Engines;
+    
     using GameObjects;
-    using GameObjects.Characters;
-    using GameObjects.Interfaces;
     using GameObjects.HUD;
+    using Interfaces;
 
     public class WpfRenderer: IGameRenderer
     {
@@ -42,36 +44,22 @@
             }   
         }
 
-        public void ShowGameSatgeView(GameStage gameStage)
+        public void ShowGameSatgeView(GameResult gameStage)
         {
-            switch (gameStage)
+            var endGameWindow = new EndGameWindow(gameStage)
             {
-                    case GameStage.HowTo:
-                    break;
-                    case GameStage.MainMenu:
-                    break;
-                    case GameStage.SetPlayer:
-                    break;
-                    case GameStage.Won:
-                    case GameStage.Lost:
-                    var endGameWindow = new EndGameWindow(gameStage)
-                    {
-                        Height = AppSettings.WindowHeight,
-                        Width = AppSettings.WindowWidth,
-                        ResizeMode = ResizeMode.NoResize,
-                        WindowStartupLocation = WindowStartupLocation.CenterScreen,
-                        Background = new ImageBrush(new BitmapImage(new Uri(AppSettings.WindowBackgraund))),
-                        Icon = new BitmapImage(new Uri(AppSettings.WindowIcon))
-                    };
-                    endGameWindow.Show();
-                    break;
-            }
-            foreach (Window window in Application.Current.Windows)
+                Height = AppSettings.WindowHeight,
+                Width = AppSettings.WindowWidth,
+                ResizeMode = ResizeMode.NoResize,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen,
+                Background = new ImageBrush(new BitmapImage(new Uri(AppSettings.WindowBackgraund))),
+                Icon = new BitmapImage(new Uri(AppSettings.WindowIcon))
+            };
+            endGameWindow.Show();
+            
+            foreach (Window window in Application.Current.Windows.Cast<Window>().Where(window => window.Title == "The Beer Belly Game"))
             {
-                if (window.Title == "The Beer Belly Game")
-                {
-                    window.Close();
-                }
+                window.Close();
             }
         }
 
@@ -108,16 +96,11 @@
             {
                 this._canvas.Children.Add(element);
             }
-
-            
         }
 
         private void DrawLogo()
         {
-            //<Image  Name="img_logo"  HorizontalAlignment="Left" Height="109" VerticalAlignment="Top" Width="181" Source="/BeerBellyGame;component/Content/Windows/logo.png" Canvas.Left="8" Canvas.Top="8"/>
-
-
-            var logoSorce = new BitmapImage();
+           var logoSorce = new BitmapImage();
             logoSorce.BeginInit();
             logoSorce.UriSource = new Uri(AppSettings.WindowSmalLogo, UriKind.Relative);
             logoSorce.EndInit();

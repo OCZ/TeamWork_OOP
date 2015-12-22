@@ -1,7 +1,6 @@
-﻿using BeerBellyGame.GameObjects.Characters;
-
-namespace BeerBellyGame.GameObjects.Items
+﻿namespace BeerBellyGame.GameObjects.Items
 {
+   using Characters;
    public class BeerItem: CollectableItem
     {
         public BeerItem()

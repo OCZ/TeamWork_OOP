@@ -1,10 +1,12 @@
 ﻿namespace BeerBellyGame.GameObjects.Characters
 {
-    using BeerBellyGame.GameObjects.AI;
-using Interfaces;
-using System;
-using System.Collections.Generic;
-   
+    using System;
+    using System.Collections.Generic;
+
+     using AI;
+     using Enums;
+     using Interfaces;
+
     public class Friend : AIPlayer
     {
         private const int DefaultLifes = 3;

@@ -1,4 +1,4 @@
-﻿namespace BeerBellyGame.GameObjects.Interfaces
+﻿namespace BeerBellyGame.Interfaces
 {
     public interface IRace
     {

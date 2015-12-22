@@ -1,8 +1,8 @@
-﻿using BeerBellyGame.GameObjects.Characters;
-using BeerBellyGame.GameObjects.Interfaces;
-
-namespace BeerBellyGame.GameObjects.Items
+﻿namespace BeerBellyGame.GameObjects.Items
 {
+    using Characters;
+    using Interfaces;
+
     public class MediumHealthItem : CollectableItem, IHealable
     {
         public MediumHealthItem()
@@ -10,8 +10,7 @@ namespace BeerBellyGame.GameObjects.Items
             this.AvatarUri = AppSettings.HealthItemAvatar;
             this.RegenAmount = 20;
         }
-
-
+        
         public int RegenAmount { get; private set; }
 
         public override void Consume(Character ch)

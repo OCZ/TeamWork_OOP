@@ -1,13 +1,9 @@
-﻿
-namespace BeerBellyGame.GameObjects.AI
+﻿namespace BeerBellyGame.GameObjects.AI
 {
-    using BeerBellyGame.GameObjects.Characters;
-    using BeerBellyGame.GameObjects.Items;
-    using System;
+    using Characters;
+    using Items;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+    using Enums;
 
     public abstract class AIProvider
     {

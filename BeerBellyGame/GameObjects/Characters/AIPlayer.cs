@@ -1,15 +1,16 @@
-﻿using BeerBellyGame.GameObjects.AI;
-using BeerBellyGame.GameObjects.Interfaces;
-using BeerBellyGame.GameObjects.Items;
-using System.Collections.Generic;
-
-namespace BeerBellyGame.GameObjects.Characters
+﻿namespace BeerBellyGame.GameObjects.Characters
 {
+    using AI;
+    using Items;
+    using System.Collections.Generic;
+    using Enums;
+    using Interfaces;
+
     public abstract class AIPlayer : Character, IAIMovement
     {
         protected AIProvider AI;
 
-        public AIPlayer(IRace race, AIProvider ai, int DefaultLifes)
+        protected AIPlayer(IRace race, AIProvider ai, int DefaultLifes)
             : base(DefaultLifes, race)
         {
             this.AI = ai;
@@ -18,8 +19,8 @@ namespace BeerBellyGame.GameObjects.Characters
 
         public virtual void Move(GameObject moveTo, ICollection<MazeItem> obstacles)
         {
-            int left = this.Position.Left;
-            int top = this.Position.Top;
+            var left = this.Position.Left;
+            var top = this.Position.Top;
 
             switch (this.AI.GetDirection(moveTo, obstacles))
             {
@@ -36,7 +37,6 @@ namespace BeerBellyGame.GameObjects.Characters
                     top = this.Position.Top + AppSettings.MopvementSpeed;
                     break;
             }
-
             this.Position = new Position(left, top);
         }
     }

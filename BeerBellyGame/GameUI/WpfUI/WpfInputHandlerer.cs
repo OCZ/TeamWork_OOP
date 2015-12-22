@@ -1,11 +1,10 @@
-﻿using System.Threading;
-
-namespace BeerBellyGame.GameUI.WpfUI
+﻿namespace BeerBellyGame.GameUI.WpfUI
 {
     using System;
     using System.Windows.Controls;
     using System.Windows.Input;
     using Windows;
+    using Enums;
     using GameUI;
 
     public class WpfInputHandlerer: IInputHandlerer
@@ -15,7 +14,6 @@ namespace BeerBellyGame.GameUI.WpfUI
         public WpfInputHandlerer(Canvas canvas)
         {
             this._canvas = canvas;
-            //cast to MainWindow couse MainWindow has Focus, canvas does not have
             this.KeyboardHandlerer();
         }
         public event EventHandler<KeyDownEventArgs> UiActionHappened;
@@ -32,11 +30,14 @@ namespace BeerBellyGame.GameUI.WpfUI
             {
                 focusedControl = this._canvas.Parent as MainWindow;
             }
+            if (focusedControl == null)
+            {
+                throw new NullReferenceException("Canvas focus parent is null");
+            }
 
             (focusedControl).KeyDown += (sender, args) =>
             {
                 var key = args.Key;
-                //in cases the event is fired
                 switch (key)
                 {
                     case Key.Down:
